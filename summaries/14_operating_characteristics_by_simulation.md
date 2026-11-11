@@ -1,7 +1,7 @@
 # Chapter 14. Operating Characteristics by Simulation
 
 <!-- cite:begin -->
-From *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 14. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24122876. Book page: https://vsokolov.org/books/bayesian_clinical_trials_v1/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials_v1.
+From *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 14. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24138413. Book page: https://vsokolov.org/books/bayesian_clinical_trials_v1/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials_v1.
 <!-- cite:end -->
 
 This chapter asks how a Bayesian design earns an error rate. It first describes what a traditional design computes and what goes in the SAP (the fixed sample design and the group sequential design), then the Bayesian success rule and why it has no error rate until calibrated, and why the uncalibrated rule inflates the error. It gives the calibration of the threshold and the interim boundary by simulation, with the algorithm and how to choose them, and a worked two arm binary trial with four looks: type I error across the null space, the null boundary, power, expected sample size, early stopping and bias, and the sources of calibration noise. It covers scenario grids and the worst case, the Goldilocks design, what the simulation report must contain, and software, reproducibility and what to submit. Cases: BNT162b2, REBYOTA, DAWN and Superion.
@@ -13,7 +13,7 @@ Bayesian designs calibrated to frequentist operating characteristics (Spiegelhal
 ## New results
 
 <!-- results:begin -->
-- [Calibration of a posterior probability rule by the null maximum](../RESULTS.md#null_maximum_calibration) (Section 14.4.1, page 305; proved): The smallest threshold that holds a monitored posterior probability rule to level alpha is the (1 minus alpha) quantile of the largest posterior probability reached over the looks in null simulations, so one simulation serves every threshold. New in this book.
+- [Calibration of a posterior probability rule by the null maximum](../RESULTS.md#null_maximum_calibration) (Section 14.4.1, page 309; proved): The smallest threshold that holds a monitored posterior probability rule to level alpha is the (1 minus alpha) quantile of the largest posterior probability reached over the looks in null simulations, so one simulation serves every threshold. New in this book.
 <!-- results:end -->
 
 ## Key terms

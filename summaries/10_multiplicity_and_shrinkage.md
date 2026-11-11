@@ -1,7 +1,7 @@
 # Chapter 10. Multiplicity and Shrinkage
 
 <!-- cite:begin -->
-From *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 10. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24122876. Book page: https://vsokolov.org/books/bayesian_clinical_trials_v1/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials_v1.
+From *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 10. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24138413. Book page: https://vsokolov.org/books/bayesian_clinical_trials_v1/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials_v1.
 <!-- cite:end -->
 
 This chapter asks what multiplicity is and how to pay for it. It starts with many chances for luck and what counts as the family, then the traditional toolbox: Bonferroni, Holm, Hochberg, closed testing, fixed sequence and graphical procedures, and what the FDA multiple endpoints guidance asks for. It discusses subgroups and forking paths, and why a Bayesian must also ask how the result was chosen. The Bayesian alternative is shrinkage instead of threshold inflation: the idea, Stein, Efron and Morris and the batting averages, a numerical illustration of the winner's curse, and what shrinkage does not do. It treats false discovery rate (Benjamini and Hochberg) and prior probabilities, where familywise control is not the target, and the Bayesian view of multiplicity, then a large trial with many subgroups (RECOVERY). It works through the four operation ulcer trial, compares the two ways to pay for looking, and extends to platforms across arms and drugs. Cases: I-SPY 2, REMAP-CAP and the FDA master protocol position.
@@ -13,7 +13,7 @@ Bonferroni and Dunn (1961); Holm (1979); Hochberg (1988); Hommel (1988); Simes (
 ## New results
 
 <!-- results:begin -->
-- [Four operation ulcer example, adjusted p value against posterior probability](../RESULTS.md#ulcer_bonferroni_vs_posterior) (Section 10.5.3, page 228; computed): In the four operation ulcer example the Bonferroni adjusted p value for best against worst is 0.0855, while the hierarchical posterior probability that drainage is worse than 75 per cent resection is 0.952 on a contrast shrunk from 1.053 to 0.464. First stated in Polson and Sokolov (2026), Bayesian versus Standard Clinical Trial Design: Theory, Evidence, and Protocol, working paper.
+- [Four operation ulcer example, adjusted p value against posterior probability](../RESULTS.md#ulcer_bonferroni_vs_posterior) (Section 10.5.3, page 232; computed): In the four operation ulcer example the Bonferroni adjusted p value for best against worst is 0.0855, while the hierarchical posterior probability that drainage is worse than 75 per cent resection is 0.952 on a contrast shrunk from 1.053 to 0.464. First stated in Polson and Sokolov (2026), Bayesian versus Standard Clinical Trial Design: Theory, Evidence, and Protocol, working paper.
 <!-- results:end -->
 
 ## Key terms

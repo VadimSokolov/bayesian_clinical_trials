@@ -412,7 +412,7 @@ Where the SELECT and REWIND reconstructions are counterfactuals, BNT162b2 shows 
 
 ## What the saving is worth {#sec-cases-worth}
 
-A claim that a design decides at `r mda_b` events (the all-trial median; `r med_b` among trials that declare efficacy) rather than 1,270 is not yet an argument that anyone outside the field will weigh. This section converts it into four currencies. Every conversion is a modeled counterfactual, and the conversions differ in how many assumptions they stack. They use the expected stopping point over all simulated trials, so that trials which never cross, and therefore save nothing, are counted.
+A claim that a design decides at `r mda_b` events (the all-trial median; `r med_b` among trials that declare efficacy) rather than 1,270 is not yet an argument that anyone outside the field will weigh. This section converts it into five currencies. Every conversion is a modeled counterfactual, and the conversions differ in how many assumptions they stack. They use the expected stopping point over all simulated trials, so that trials which never cross, and therefore save nothing, are counted.
 
 ### Inside the trial: events and QALYs
 
@@ -487,6 +487,26 @@ knitr::kable(data.frame(`patients treated in the window` = format(N, big.mark = 
 
 Two orders of magnitude separate this from the in-trial figures, and that asymmetry is the real economics of trial design: the value of a trial is overwhelmingly in the decision it enables for the population outside it, which is the post-trial population size $M$ of the loss function in the working paper [@polson2026bayesstandard]. But the calculation assumes that approval, reimbursement, manufacturing and clinical uptake would all have moved forward by the full `r round((60 - m_b) / 12, 1)` years, and none of those would. Manufacturing capacity for these agents was the binding constraint on access during this period, so the realistic acceleration is a fraction of the statistical one.
 
+### Label revenue brought forward
+
+```{r}
+#| label: label-values
+#| include: false
+wegovy_usd <- 58.206 / 6.9                      # DKK billion at an assumed 6.9 DKK per US dollar
+yrs_s <- (60 - m_b) / 12                        # all-trial median saving, SELECT, years
+rev_s <- label_revenue_forward(wegovy_usd, c(0.10, 0.25), yrs_s)
+trulicity_2019 <- (3155.2 + 972.7) / 1000       # US plus outside-US Trulicity revenue in 2019, dollars billion
+m_rw <- select_month_of_events(med_brw, 1257, T_en = 24, T_end = 85)   # REWIND: 24-month enrollment assumed, 85-month trial
+yrs_rw <- (85 - m_rw) / 12
+rev_rw <- label_revenue_forward(trulicity_2019, c(0.10, 0.20), yrs_rw)
+```
+
+The largest sum in the accounting is commercial, and it rests on the least. Patent expiry is fixed, so a cardiovascular indication reached earlier adds the same number of years of protected, label-driven sales. Novo Nordisk reported global Wegovy sales of DKK 58.2 billion for 2024 [@novo_annual_report_2024]. The share of sales that the cardiovascular label drives is not public, and we assume 10 to 25 percent. At an assumed 6.9 DKK per dollar the 2024 sales are about \$`r round(wegovy_usd, 1)` billion, and brought forward by the all-trial median saving of `r round(yrs_s, 1)` years the label-driven revenue is \$`r round(rev_s[1], 1)` billion to \$`r round(rev_s[2], 1)` billion. This is a modeled counterfactual of revenue, not profit, and an upper bound: approval, reimbursement and uptake would not all have moved forward by the full statistical acceleration, for the reasons given for the population bound above, and the sales level, the label share and the exchange rate are assumptions.
+
+REWIND gives the same arithmetic only conditionally. Trulicity (dulaglutide) had revenue of \$`r round(trulicity_2019, 2)` billion in 2019 [@lilly_form10k_2021], and the FDA approved its cardiovascular indication on 21 February 2020 [@fda_trulicity_cv_letter_2020]. In the reconstruction the Bayesian rule acts in only `r round(100 * pw_brw)` percent of simulated REWIND trials, so the all-trial median saving is zero, because fewer than half of the simulated trials cross. The unconditional expected saving can still be positive: the mean decision falls at `r round(mna_brw)` of 1,257 events, so on average `r round(100 * (1 - mna_brw / 1257))` percent of the events and person time would come after it. The revenue figures below describe the conditional median among trials that cross, and multiplying the crossing probability by a conditional median would not give an expected revenue (that needs the calendar saving averaged over all paths, which the summary output does not keep). Conditional on its acting, the median decision falls at `r med_brw` of 1,257 events. Under an accrual model with an assumed 24 months of linear enrollment and the 85 months between the registered start and primary completion dates [@ctgov_rewind_2019], that is month `r round(m_rw)`, or `r round(yrs_rw, 1)` years before the read-out. With an assumed 10 to 20 percent of 2019 sales attributable to the label, the revenue brought forward would be \$`r round(rev_rw[1], 1)` billion to \$`r round(rev_rw[2], 1)` billion, but only in the trials in which the rule acts, and the scheduled design acts more often there.
+
+Two caveats from the earlier sections apply to every currency in this section. Among trials stopping early for efficacy, naive estimates tend to exaggerate benefit. Skeptical priors may reduce this bias; bias and interval coverage should be evaluated for the specified estimator and stopping rule. And a regulator would want safety follow-up to continue after an efficacy decision, which recovers only part of the cost saving.
+
 ### Summary of the accounting
 
 | currency | SELECT | basis |
@@ -496,11 +516,12 @@ Two orders of magnitude separate this from the in-trial figures, and that asymme
 | QALYs inside the trial | `r round(sel$excess * 1.5)` to `r round(sel$excess * 3)` | plus a QALY value per event |
 | calendar time | `r round(60 - m_b)` months before read-out (`r round(m[["SELECT actual"]] - m_b)` before SELECT's actual design, at the all-trial medians) | plus an accrual model |
 | trial cost | `r round(100 * (1 - sel$share) * 0.5)` to `r round(100 * (1 - sel$share) * 0.7)` percent | plus a fixed and variable cost split |
+| label revenue brought forward | \$`r round(rev_s[1], 1)` to \$`r round(rev_s[2], 1)` billion of Wegovy revenue | plus a label share, an exchange rate and full acceleration; revenue, not profit |
 | population QALYs | thousands | plus an access counterfactual |
 
 : The accounting for SELECT, by the strength of its basis. {#tbl-accounting}
 
-Every row is a modeled counterfactual computed from the all-trial distribution of simulated stopping points, and none is an observed fact about the trial. The first two rows rest on the stopping distribution and on assumptions about treatment switching and the uniformity of events. The last four add assumptions we have stated and a reader can vary. We would defend the first two as modeling exercises with few assumptions, the third and fourth as modeling exercises, the fifth as an order of magnitude, and the sixth only as a bound.
+Every row is a modeled counterfactual computed from the all-trial distribution of simulated stopping points, and none is an observed fact about the trial. The first two rows rest on the stopping distribution and on assumptions about treatment switching and the uniformity of events. The rest add assumptions we have stated and a reader can vary. We would defend the first two as modeling exercises with few assumptions, the third and fourth as modeling exercises, the fifth as an order of magnitude, the sixth as an upper bound on revenue that rests on an assumed label share, and the seventh only as a bound.
 
 ## Side by side: what changes in the protocol {#sec-cases-side}
 
@@ -516,6 +537,68 @@ Every row is a modeled counterfactual computed from the all-trial distribution o
 : The traditional and Bayesian designs on the same decision. {#tbl-cases-side}
 
 Where the two agree numerically: with a flat prior, the posterior probability of benefit equals one minus the one-sided $p$ value, so a single-look Bayesian rule with threshold $c$ is the fixed one-sided test at level $1 - c$.
+
+## Trials running now {#sec-cases-current}
+
+The cases above are trials that have reported. The ones below are running, or have just reported, and each sits next to relevant evidence from a sibling or rival trial. We list them to show where the ideas of this book would apply now, not to predict their results. Design facts are from the ClinicalTrials.gov records (retrieved 10 November 2026, with each record's last-update date in the references), and the status of a trial is its status on that date; dates marked "est." are registry estimates and move. We give no result that we could not read in a registry record or a sponsor announcement.
+
+| Trial (drug, sponsor) | Design as registered | Status on 10 November 2026 | What a Bayesian design or analysis would change |
+|:--|:--|:--|:--|
+| PREVAIL (obicetrapib, NewAmsterdam) [@ctgov_prevail_2026] | Randomized, quadruple-masked, placebo-controlled phase 3; 9,541 participants; primary endpoint major adverse cardiovascular events | Active, not recruiting; primary completion est. November 2026 (the record was last updated June 2024) | A discounted prior from the sponsor's earlier phase 3 trial of the same drug, and an interim decision by the predictive probability of success at completion (@sec-predictive) |
+| AHEAD 3-45 (lecanemab, Eisai and Biogen) [@ctgov_ahead345_2026] | Randomized, quadruple-masked phase 3 in preclinical Alzheimer's disease; est. 1,400 participants; two primary outcomes, change in the PACC5 composite (A45) and in amyloid PET (A3) at week 216 | Active, not recruiting; primary completion est. December 2028 | The two prevention trials as estimates of a common class effect, so that the first readout updates the second, with biomarker change modeled jointly with cognition |
+| TRAILBLAZER-ALZ 3 (donanemab, Lilly) [@ctgov_tbalz3_2026] | Randomized, double-masked phase 3 in preclinical Alzheimer's disease; est. 2,996 participants; primary endpoint time to clinical progression on the Clinical Dementia Rating | Active, not recruiting; primary completion est. November 2027 | As above; the endpoints differ (a time to progression and a change score), so exchangeability would have to be argued on a common scale |
+| SURMOUNT-MMO (tirzepatide, Lilly) [@ctgov_surmount_mmo_2026] | Randomized, double-masked phase 3; 15,374 participants; primary endpoint time to first of all-cause death, nonfatal myocardial infarction, nonfatal stroke, coronary revascularization or heart failure event, up to 5 years | Active, not recruiting; primary completion est. October 2027 | A prior from SELECT and SURPASS-CVOT (@sec-cases-surpass), discounted for a five-component composite and a different drug, and calibrated monitoring as in the SELECT reconstruction |
+| REDEFINE 3 (CagriSema, Novo Nordisk) [@ctgov_redefine3_2026] | Randomized, quadruple-masked phase 3; 7,101 participants aged 55 or older with established cardiovascular disease; primary endpoint time to first 3-point MACE | Active, not recruiting; primary completion est. September 2027 | A power prior for the semaglutide component from SELECT, discounted for the added uncertainty about cagrilintide (@sec-borrowing) |
+| TRIUMPH-3 (retatrutide, Lilly) [@ctgov_triumph3_2026] | Randomized, double-masked phase 3, 80 weeks, in obesity with established cardiovascular disease; 1,946 participants in the registry; registered primary outcome percent change in body weight | Completed; topline announced 23 July 2026 [@lilly_triumph23_2026] | A class prior turns an imprecise cardiovascular interval into a posterior (below) |
+| Lp(a)HORIZON (pelacarsen, Novartis) [@ctgov_horizon_2026] | Randomized, double-masked phase 3; 8,323 participants; two primary outcomes, expanded MACE in patients with Lp(a) of at least 70 mg/dL and of at least 90 mg/dL | Completed; Novartis announced on 4 September 2026 that the primary endpoint was not met [@novartis_horizon_2026]; full results published 7 November 2026 [@cho2026pelacarsen] | A posterior for the sizes of benefit the published hazard ratio (1.02, 95 percent interval 0.90 to 1.15) rules out (below) |
+| OCEAN(a)-Outcomes (olpasiran, Amgen) [@ctgov_ocean_a_2026] | Randomized, double-masked phase 3; 7,297 participants; primary endpoint time to coronary heart disease death, myocardial infarction or urgent coronary revascularization | Active, not recruiting; primary completion est. March 2028 | A hierarchical model across the Lp(a) outcomes trials with the depth of Lp(a) lowering as a covariate, and a futility rule on the predictive probability of a clinically meaningful effect |
+| ACCLAIM-Lp(a) (lepodisiran, Lilly) [@ctgov_acclaim_2026] | Randomized, double-masked phase 3; est. 17,300 participants; primary endpoint time to first MACE-4 | Active, not recruiting; primary completion est. March 2029 | A futility rule and a final sample size set from OCEAN(a) as it reads out |
+
+: Nine registered trials, their designs as registered, their status on 10 November 2026, and what a Bayesian design or analysis would change. {#tbl-cases-current}
+
+The traditional designs here are sound for what they are asked to do. All are randomized and masked. Several cardiovascular outcomes trials are event driven; AHEAD and TRIUMPH-3 assess their primary outcomes at specified follow-up times. Each is built to stand alone as substantial evidence, and a sibling trial's result does not automatically change the analysis plan. Justified amendments based solely on external information may be acceptable while comparative interim results remain protected [@fda_adaptive_2019]. For the proposed Bayesian designs, the borrowing and updating procedures, including any incorporation of future sibling results, should be prespecified. The Bayesian changes in the last column are therefore proposals with a price: each borrowed prior must be fixed before the data, discounted and justified, and each design with it simulated for its operating characteristics under a plan the regulator has seen (@sec-borrowing, @sec-simulation). Where we write that a Bayesian rule could stop sooner, the size of the gain depends on an effect size that is not yet known, and the SELECT reconstruction above is not a forecast for any of these trials.
+
+### Retatrutide in TRIUMPH-3
+
+Lilly's announcement reports 44 five-component events (all-cause death, myocardial infarction, stroke, heart failure event or coronary revascularization) on pooled retatrutide against 52 on placebo, a hazard ratio of 0.82 with a 95 percent interval from 0.55 to 1.22, in prespecified analyses of a trial whose registered primary outcome was weight [@lilly_triumph23_2026]. The three-component MACE hazard ratio in the same announcement was 1.12 (0.64 to 1.96). A frequentist reading of the five-component interval says that benefit is not established, and that is a correct statement about the interval. A Bayesian reading adds what the interval does not say, and shows how much of it depends on the prior. The interval gives the log hazard ratio $\log 0.82$ with standard error $(\log 1.22 - \log 0.55)/3.92$. For a class prior we use SELECT, with a hazard ratio of 0.80 and interval 0.72 to 0.90 [@lincoff2023semaglutide], discounted by inflating its variance (doubling it for half weight, quadrupling it for quarter weight), and for contrast a skeptical normal prior with standard deviation 0.15 and a flat prior (@sec-reanalyses-normal).
+
+```{r}
+#| label: tbl-cases-triumph
+#| echo: true
+#| tbl-cap: "Posterior for the five-component cardiovascular hazard ratio of pooled retatrutide against placebo in TRIUMPH-3 (estimate 0.82, 95 percent interval 0.55 to 1.22, from the sponsor announcement of 23 July 2026), by prior. The SELECT prior is the semaglutide hazard ratio 0.80 (0.72 to 0.90) for a three-component outcome in a different population, with its variance doubled or quadrupled; the rows differ by how much that borrowing is believed."
+est <- log(0.82); se_t <- (log(1.22) - log(0.55)) / 3.92
+se_s <- (log(0.90) - log(0.72)) / 3.92
+pri <- list(`Flat` = c(0, Inf), `SELECT, half weight` = c(log(0.80), sqrt(2) * se_s),
+            `SELECT, quarter weight` = c(log(0.80), 2 * se_s), `Skeptical, N(0, 0.15^2)` = c(0, 0.15))
+tri <- t(sapply(pri, function(p) {
+  u <- normal_update(p[1], p[2], est, se_t)
+  c(exp(u$mean), pnorm(0, u$mean, u$sd), pnorm(log(0.9), u$mean, u$sd), pnorm(log(0.8), u$mean, u$sd))
+}))
+knitr::kable(tri, digits = c(2, 3, 3, 3), align = "rrrr",
+  col.names = c("Posterior hazard ratio", "Pr(HR < 1)", "Pr(HR < 0.9)", "Pr(HR < 0.8)"))
+```
+
+With no prior the posterior probability of some benefit is `r sprintf("%.2f", tri[1, 2])`, and of a reduction of at least 10 percent `r sprintf("%.2f", tri[1, 3])`. With SELECT at quarter weight the probability of some benefit is `r sprintf("%.2f", tri[3, 2])` and of at least a 10 percent reduction `r sprintf("%.2f", tri[3, 3])`, while the skeptical prior gives `r sprintf("%.2f", tri[4, 2])` and `r sprintf("%.2f", tri[4, 3])`. The disagreement among the rows is the scientific question, whether a class effect measured with a three-component outcome in semaglutide carries over to a triple agonist and a five-component outcome, and the analysis puts it on the table instead of leaving it behind "not significant". The three-component hazard ratio above 1 is a reason to give the class prior a low weight, not to hide it. With 96 events in all, none of these is a confirmatory result.
+
+### What a Lp(a)HORIZON result does to OCEAN(a)
+
+When an analyst moves the probability that a related trial succeeds from $p_0$ to $p_1$ after a sibling reads out, the analyst has implicitly applied a Bayes factor, the ratio of the posterior odds to the prior odds:
+
+$$B = \frac{p_1/(1 - p_1)}{p_0/(1 - p_0)}.$$
+
+We could not confirm a published analyst estimate of the probability of success of OCEAN(a)-Outcomes after the Lp(a)HORIZON announcement of 4 September 2026, so we use an illustrative move from 50 to 20 percent, which is not a finding about any analyst.
+
+```{r}
+#| label: bf-horizon
+#| include: false
+se_hz <- (log(1.15) - log(0.90)) / (2 * 1.96)
+hz <- list(p90 = pnorm(log(0.90), log(1.02), se_hz), p85 = pnorm(log(0.85), log(1.02), se_hz), p80 = pnorm(log(0.80), log(1.02), se_hz), lp_p = 64.4, lp_c = 233.4)
+bf <- function(p0, p1) (p1 / (1 - p1)) / (p0 / (1 - p0))
+B_ill <- bf(0.5, 0.2)
+B_grid <- bf(0.5, c(0.4, 0.3, 0.2, 0.1))
+```
+
+On that illustration $B = `r sprintf("%.2f", B_ill)`$: the analyst treats the Lp(a)HORIZON result as `r round(1 / B_ill)` times as likely if olpasiran fails as if it succeeds. A fall from 50 percent to 40, 30 or 10 percent implies factors of `r sprintf("%.2f", B_grid[1])`, `r sprintf("%.2f", B_grid[2])` and `r sprintf("%.2f", B_grid[4])`. Whether the factor is reasonable depends on how much the two drugs share, which the announcement does not settle: it reports that Lp(a) was lowered and that the primary endpoint was not met, with no hazard ratio and no comparison with the depth of lowering of other agents [@novartis_horizon_2026]. That is the information set of the September announcement. The full results of 7 November 2026 reported a hazard ratio of 1.02 (95 percent interval 0.90 to 1.15) overall and 1.00 (0.87 to 1.15) among patients with Lp(a) of at least 90 mg/dL, with Lp(a) at 12 months of `r round(hz$lp_p, 1)` nmol/L on pelacarsen against `r round(hz$lp_c, 1)` on placebo, a difference of `r round(100 * (1 - hz$lp_p / hz$lp_c))` percent [@cho2026pelacarsen]. On the flat-prior normal approximation to the log hazard ratio, the posterior probability that the hazard ratio is below 0.90 is `r sprintf("%.3f", hz$p90)`, below 0.85 `r sprintf("%.3f", hz$p85)` and below 0.80 `r sprintf("%.4f", hz$p80)`, so a 10 percent or larger benefit is largely ruled out for pelacarsen at its depth of lowering. These are the sizes of benefit compatible with HORIZON, and they inform OCEAN(a) only to the extent that olpasiran's benefit is expected to track that of pelacarsen. If the benefit of Lp(a) lowering is proportional to the absolute reduction, a drug that lowers it further should be judged against a different benchmark and the factor should be closer to 1. A hierarchical model with the depth of lowering as a covariate makes that assumption explicit and lets the data weigh it, which one revised probability does not.
 
 ## Limits of the reconstruction {#sec-cases-limits}
 
@@ -542,6 +625,8 @@ Language a sponsor could use if it chose the Bayesian monitoring rule for an out
 - TRAILBLAZER-ALZ 2 shows that regulators accept a prespecified biomarker-guided treatment strategy and a prespecified two-population analysis with baseline tau strata when the rules are written in advance. A hierarchical Bayesian analysis of the strata is a proposed alternative that would itself need prespecification and a simulation of its false-positive risk.
 - Unlike the counterfactual reconstructions above, BNT162b2 is a Bayesian confirmatory trial whose actual analysis supported an EUA and a BLA: a prespecified beta-binomial posterior, a bar set on vaccine efficacy of 30 percent and not on zero, and thresholds calibrated to a one-sided type I error of 2.5 percent.
 - The in-trial value of the SELECT saving is, as a modeled counterfactual, of order a hundred QALYs (`r round(sel$excess * 1.5)` to `r round(sel$excess * 3)` under stated assumptions) and tens to hundreds of millions of dollars, computed from the all-trial stopping distribution; the population-level value is orders of magnitude larger but is a bound, not a forecast.
+- The label-driven revenue that an earlier SELECT decision would have brought forward is, as a modeled counterfactual, of order a few billion dollars of Wegovy revenue (\$`r round(rev_s[1], 1)` billion to \$`r round(rev_s[2], 1)` billion under an assumed label share of 10 to 25 percent), an upper bound and not profit. The REWIND analogue holds only conditionally on the Bayesian rule acting.
+- Trials still running show where the same ideas apply now: a discounted prior from a sibling trial, a predictive interim, and a hierarchical model across a drug class. The TRIUMPH-3 posterior depends on the prior, with the probability of some benefit between `r sprintf("%.2f", tri[4, 2])` and `r sprintf("%.2f", tri[2, 2])` across the priors considered, and none of the rows is a confirmatory result.
 - A calibration is a property of the monitoring plan, its event grid and its horizon, and it is estimated with Monte Carlo error. The reconstruction is a counterfactual, and no part of it argues that these trials should have stopped early.
 
 ::: {.callout-note title="Discussion questions"}

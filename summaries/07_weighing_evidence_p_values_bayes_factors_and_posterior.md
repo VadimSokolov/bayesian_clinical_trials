@@ -1,7 +1,7 @@
 # Chapter 7. Weighing Evidence: p-values, Bayes Factors, and Posterior Probabilities
 
 <!-- cite:begin -->
-From *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 7. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24122876. Book page: https://vsokolov.org/books/bayesian_clinical_trials_v1/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials_v1.
+From *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 7. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24138413. Book page: https://vsokolov.org/books/bayesian_clinical_trials_v1/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials_v1.
 <!-- cite:end -->
 
 This chapter asks how much evidence a result carries. It defines the p-value, reviews the ASA statement and the dirty dozen of misinterpretations, and develops the false positive risk. It compares the exact p-value with the Bayes factor, with a Gaussian example in closed form and Lindley's paradox, and asks how small a Bayes factor can be, which gives calibrations of the p-value. It then asks how much evidence is enough on three scales, shows that a test is a Bayes rule for an implied loss, and gives the Bayes risk of a test, what a fixed level implies as information grows, the type I error of the Bayes rule, and the Jeffreys table in terms of a threshold. It moves from p-values to posterior probabilities of benefit, including the FDA success criterion, the flat prior case where Bayes and the p-value agree, and how an informative prior changes the mapping. It compares four quantities side by side. Examples: EOLIA, ANDROMEDA SHOCK and false positive risk in practice (Zia and colleagues).
@@ -13,7 +13,7 @@ The ASA statement on p-values (Wasserstein and Lazar 2016) and the dirty dozen (
 ## New results
 
 <!-- results:begin -->
-- [The Bayes factor bar exceeds the fixed level bar once information times prior variance passes about 46](../RESULTS.md#bayes_bar_crossing_46) (Section 7.5.1, page 144; computed): Against a single unadjusted look, the Bayes rule with a point null asks for more evidence than the fixed level test once the data carry about 46 times the information in the prior. New in this book.
+- [The Bayes factor bar exceeds the fixed level bar once information times prior variance passes about 46](../RESULTS.md#bayes_bar_crossing_46) (Section 7.5.1, page 148; computed): Against a single unadjusted look, the Bayes rule with a point null asks for more evidence than the fixed level test once the data carry about 46 times the information in the prior. New in this book.
 <!-- results:end -->
 
 ## Key terms

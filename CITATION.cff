@@ -13,9 +13,9 @@ authors:
 - family-names: Polson
   given-names: Nicholas G.
   affiliation: Booth School of Business, University of Chicago
-version: 1.0.0
-doi: 10.5281/zenodo.24122876
-date-released: '2026-11-10'
+version: 1.1.0
+doi: 10.5281/zenodo.24138413
+date-released: '2026-11-11'
 license: CC-BY-4.0
 repository-code: https://github.com/VadimSokolov/bayesian_clinical_trials_v1
 url: https://vsokolov.org/books/bayesian_clinical_trials_v1/
@@ -41,10 +41,10 @@ abstract: 'This book is for the people who run clinical trials: investigators, p
   Our main claim is that a Bayesian adaptive design reaches the regulatory standard of evidence sooner without lowering the bar. Against a single unadjusted look the Bayesian bar is never lower without an informative prior. The saving comes from monitoring, from the handling of multiple arms, and from prior information, and we price each one with calibrated rules and simulated operating characteristics.
 
 
-  We test this on real trials. In our reconstruction of the semaglutide trial SELECT, simulated at a true hazard ratio of 0.80, a calibrated Bayesian rule stops at a median of 486 events over all simulated trials (464 among those that declare efficacy), against 817 for SELECT''s planned design (one interim analysis with Lan-DeMets spending, then the final), with power of 95 per cent against 97 per cent; an anytime valid evidence rule is slower and less powerful. The reconstruction is ours, not the sponsor''s, and the savings it implies are modeled counterfactuals. A scheduled design can win when the effect is modest, as the dulaglutide trial REWIND shows.
+  We test this on real trials. In our reconstruction of the semaglutide trial SELECT, simulated at a true hazard ratio of 0.80, a calibrated Bayesian rule stops at a median of 486 events over all simulated trials (464 among those that declare efficacy), against 817 for SELECT''s planned design (one interim analysis with Lan-DeMets spending, then the final), with power of 95 percent against 97 percent; an anytime valid evidence rule is slower and less powerful. The reconstruction is ours, not the sponsor''s. We also put the cost of waiting in three currencies, the trial cost avoided, the cardiovascular label reached earlier inside a fixed patent life, and the health value inside and outside the trial, each a modeled counterfactual with its assumptions stated. A scheduled design can win when the effect is modest, as the dulaglutide trial REWIND shows.
 
 
-  Beyond design and monitoring, the book follows a drug from first in human to postmarketing, covers safety signals (rofecoxib, the gamma Poisson shrinker, toxicity stopping rules), time to event endpoints, noninferiority, and Bayesian reanalyses of GUSTO, EOLIA, ANDROMEDA SHOCK and RECOVERY. Volume II of the series turns to personalized medicine.
+  Beyond design and monitoring, the book follows a drug from first in human to postmarketing, with recruitment and the value of speed told through the 1995 Larry King appeal for prostate cancer families, covers covariate adjustment, safety signals (rofecoxib, the gamma Poisson shrinker, toxicity stopping rules), time to event endpoints, noninferiority, Bayesian reanalyses of GUSTO, EOLIA, ANDROMEDA SHOCK and RECOVERY, and trials running now, among them TRIUMPH 3 and Lp(a)HORIZON. Volume II of the series turns to personalized medicine.
 
 
   Every number comes from the companion R package bayestrials (https://github.com/VadimSokolov/bayestrials), and an interactive lab at https://nytel.ai/testing/ lets readers run the trials themselves.'
@@ -63,7 +63,7 @@ preferred-citation:
     given-names: Nicholas G.
     affiliation: Booth School of Business, University of Chicago
   year: 2026
-  doi: 10.5281/zenodo.24122876
+  doi: 10.5281/zenodo.24138413
   url: https://vsokolov.org/books/bayesian_clinical_trials_v1/
   publisher:
     name: Independently published
