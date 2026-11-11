@@ -1,8 +1,8 @@
 {
  "edition": "1",
  "pdf": {
-  "bytes": 7082131,
-  "file": "pdf/bayesian_clinical_trials_v1.pdf",
+  "bytes": 7083550,
+  "file": "pdf/bayesian_clinical_trials.pdf",
   "pages": 612,
   "parts": [
    {
@@ -202,7 +202,7 @@
     "title": "Appendix C. Software and Code"
    }
   ],
-  "sha256": "71f019b6f94a3dff9c8056a2f9e2c09ae753c7e422c8f0e7a3cf49a637ec3ac5"
+  "sha256": "f4ef4e8a38fb7474fe89608cefc12aac6067c2002fba669567ab92dddf2b8696"
  },
  "results": {
   "backward_induction_states": {
@@ -296,12 +296,12 @@
   "shared_control_false_positive_counts": {
    "environment": "res",
    "file": "17-platform.qmd",
-   "fingerprint": "496f63b8d002",
+   "fingerprint": "f550b5653aa1",
    "label": "res-shared-control-counts",
    "number": "20.4.1",
    "page": "452",
    "printed": "Section 20.4.1",
-   "verified_fingerprint": "496f63b8d002",
+   "verified_fingerprint": "f550b5653aa1",
    "verified_on": "2026-11-11"
   },
   "surcharge_seventy_percent": {
@@ -342,6 +342,13 @@
  "zenodo": {
   "concept_doi": "10.5281/zenodo.24122875",
   "doi": "10.5281/zenodo.24141732",
+  "draft": {
+   "doi": "10.5281/zenodo.24147174",
+   "html": "https://zenodo.org/deposit/24147174",
+   "id": 24147174,
+   "reserved_on": "2026-11-11",
+   "version": "1.2.0"
+  },
   "html": "https://zenodo.org/records/24141732",
   "latest_id": 24141732,
   "tag": "v1.1.3",

@@ -41,7 +41,7 @@ The statute leaves "adequate and well-controlled" undefined. FDA's regulation at
 6. uses well-defined and reliable methods of assessing response;
 7. analyses the results adequately to assess the effects of the drug.
 
-Two observations. Item 7 asks for an adequate analysis, and the regulation expects the protocol to state the proposed methods, and where it did not, the report to explain how the methods were chosen. This is the regulatory root of the pre-specification that every guidance in this chapter repeats, and it applies to Bayesian analyses as it applies to frequentist ones. Item 2 admits historical control as a recognized type, but the 2026 draft cautions that external controls have a weakness: differences between groups arise "because of the lack of randomized treatment assignment" [@fda_single_trial_2026]. The hierarchy of controls will come back in @sec-borrowing.
+Two observations. Item 7 asks for an adequate analysis, and item 1 expects the protocol to state the proposed methods of analysis, and where it did not, the report to explain how the methods were chosen. Items 1 and 7 together are the regulatory root of the pre-specification that every guidance in this chapter repeats, and it applies to Bayesian analyses as it applies to frequentist ones. Item 2 admits historical control as a recognized type, but the 2026 draft cautions that external controls have a weakness: differences between groups arise "because of the lack of randomized treatment assignment" [@fda_single_trial_2026]. The hierarchy of controls will come back in @sec-borrowing.
 
 ### The 2026 substantial-evidence draft
 

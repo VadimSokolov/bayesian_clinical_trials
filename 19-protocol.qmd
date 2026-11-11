@@ -185,7 +185,7 @@ A regulator should never meet a Bayesian design for the first time in the submis
 | Pre-IND | Type B meeting | The development plan and, where a Bayesian phase 1 or 2 design is proposed, the design and the safety rules. |
 | Phase 2 design | Type C or Type B; CID or MIDD paired meeting for a complex design | The proposed adaptive or Bayesian design, with a simulation report. |
 | End of phase 2 | Type B (end of phase) | The phase 3 design: estimand, prior, success criterion and calibration, interim plan, evidence package. |
-| Phase 3 protocol | Special Protocol Assessment (SPA) request; Type C | The final protocol and SAP; agreement on the design and analysis. |
+| Phase 3 protocol | Special Protocol Assessment (SPA) request (a written submission, optionally with a Type C meeting) | The final protocol and SAP; agreement on the design and analysis. |
 | Before database lock | Type C | Changes to the SAP (but not the design, which cannot change after unblinding), and handling of deviations. |
 | Pre-NDA or BLA | Type B | The planned submission, including the simulation report and the prior sensitivity analyses. |
 

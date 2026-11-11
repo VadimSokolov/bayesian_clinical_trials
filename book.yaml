@@ -3,8 +3,8 @@
 # The books website reads it too. Guide: references/repository.md of the book-writing skill.
 
 slug: bayesian_clinical_trials                    # lowercase letters, digits and underscores; also the name of the book's page on the site
-title: "Bayesian Clinical Trials and Personalized Medicine"
-subtitle: "Volume I: Bayesian Clinical Trials"
+title: "Bayesian Clinical Trials"
+subtitle: ""
 authors:
   - given: "Alexandra"
     family: "Sokolova"
@@ -21,23 +21,23 @@ authors:
 credit_names: "Sokolova, Sokolov and Polson"                 # how a citation names the authors, e.g. "Polson and Sokolov"; empty: built from the family names
 year: 2026
 edition: "1"
-version: "1.1.3"                 # the release tag is v<version>
+version: "1.2.0"                 # the release tag is v<version>
 date_released: "2026-11-11"                # YYYY-MM-DD, set at release
 publisher: "Independently published"                    # "Independently published" (the imprint KDP shows for a free KDP ISBN)
 # no isbn: a free KDP ISBN may be used only on KDP, so it goes on the ISBN line of kdp.md (private) and is not printed in
 # the PDF unless kdp.md says "ISBN on the copyright page: yes" (kdp.py interior); this file is published (references/publishing.md)
-doi: "10.5281/zenodo.24141732" # this edition's DOI; zenodo.py reserve writes it before the final build
+doi: "10.5281/zenodo.24147174" # this edition's DOI; zenodo.py reserve writes it before the final build
 license_text: CC-BY-4.0          # text, figures and PDF
 license_code: MIT
-repository: https://github.com/VadimSokolov/bayesian_clinical_trials_v1   # the public repository; its name is the slug
-site_page: https://vsokolov.org/books/bayesian_clinical_trials_v1/    # the book page on the website; its PDF link is the GitHub release asset
+repository: https://github.com/VadimSokolov/bayesian_clinical_trials   # the public repository; its name is the slug
+site_page: https://vsokolov.org/books/bayesian_clinical_trials/    # the book page on the website; its PDF link is the GitHub release asset
 language: en
 print_url: ""                    # where to buy the printed book (optional)
-html_url: "https://vsokolov.org/bayesian_clinical_trials_v1/"                     # Quarto books only: where the HTML edition (the book as a website) is served, https://vsokolov.org/<repository>/
+html_url: "https://vsokolov.org/bayesian_clinical_trials/"                     # Quarto books only: where the HTML edition (the book as a website) is served, https://vsokolov.org/<repository>/
 cover_image: pdf/cover.jpg                  # front cover image (PNG or JPEG, about 1600 px tall) in the repository, e.g. pdf/cover.png
-pdf: pdf/bayesian_clinical_trials_v1.pdf              # the released PDF; bookrepo.py pdf copies the build here
+pdf: pdf/bayesian_clinical_trials.pdf              # the released PDF; bookrepo.py pdf copies the build here
 keywords: ["Bayesian clinical trials", "adaptive trial design", "group sequential design", "interim monitoring", "type I error calibration", "FDA Bayesian guidance", "multiplicity and shrinkage", "informative priors", "e-values", "operating characteristics simulation", "biostatistics", "R package"]                     # 5 to 12 search terms
-short_description: "Volume I of a two volume series. Bayesian clinical trials built up from the traditional trial and tied to regulation: calibration, monitoring, safety, borrowing, adaptive designs, and reanalyses of landmark trials, with an R package and an online lab."
+short_description: "Bayesian clinical trials built up from the traditional trial and tied to regulation: calibration, monitoring, safety, borrowing, adaptive designs, and reanalyses of landmark trials, with an R package and an online lab."
 description: |
   This book is for the people who run clinical trials: investigators, physicians, biostatisticians at sponsors and contract research organizations, data monitoring committee members, and regulatory reviewers. It assumes an introductory statistics course and nothing more.
 
@@ -47,7 +47,7 @@ description: |
 
   We test this on real trials. In our reconstruction of the semaglutide trial SELECT, simulated at a true hazard ratio of 0.80, a calibrated Bayesian rule stops at a median of 486 events over all simulated trials (464 among those that declare efficacy), against 817 for SELECT's planned design (one interim analysis with Lan-DeMets spending, then the final), with power of 95 percent against 97 percent; an anytime valid evidence rule is slower and less powerful. The reconstruction is ours, not the sponsor's. We also put the cost of waiting in three currencies, the trial cost avoided, the cardiovascular label reached earlier inside a fixed patent life, and the health value inside and outside the trial, each a modeled counterfactual with its assumptions stated. A scheduled design can win when the effect is modest, as the dulaglutide trial REWIND shows.
 
-  Beyond design and monitoring, the book follows a drug from first in human to postmarketing, with recruitment and the value of speed told through the 1995 Larry King appeal for prostate cancer families, covers covariate adjustment, safety signals (rofecoxib, the gamma Poisson shrinker, toxicity stopping rules), time to event endpoints, noninferiority, Bayesian reanalyses of GUSTO, EOLIA, ANDROMEDA SHOCK and RECOVERY, and trials running now, among them TRIUMPH 3 and Lp(a)HORIZON. Volume II of the series turns to personalized medicine.
+  Beyond design and monitoring, the book follows a drug from first in human to postmarketing, with recruitment and the value of speed told through the 1995 Larry King appeal for prostate cancer families, covers covariate adjustment, safety signals (rofecoxib, the gamma Poisson shrinker, toxicity stopping rules), time to event endpoints, noninferiority, Bayesian reanalyses of GUSTO, EOLIA, ANDROMEDA SHOCK and RECOVERY, and trials running now, among them TRIUMPH 3 and Lp(a)HORIZON. A companion book, Personalized Medicine, turns from the trial to the patient.
 
   Every number comes from the companion R package bayestrials (https://github.com/VadimSokolov/bayestrials), an interactive lab at https://vsokolov.org/bayesian_trials_lab/ lets readers run the trials themselves, and an online encyclopedia at https://vsokolov.org/bayesian_trials_lab/encyclopedia/ links the methods, trials and documents to the sections of the book that treats it.
 source:
@@ -56,7 +56,7 @@ source:
   main: index.qmd
   aux: index.aux       # kept by the PDF build when _quarto.yml sets latex-clean: false
   toc: index.toc
-  pdf: _book/Bayesian-Clinical-Trials-and-Personalized-Medicine.pdf  # the built PDF; its name follows the book title or output-file
+  pdf: _book/Bayesian-Clinical-Trials.pdf  # the built PDF; its name follows the book title or output-file
   meta: bookmeta.yml   # generated: book-doi, book-version ...; list it under metadata-files in _quarto.yml
 macros: ""                       # the file that defines the book's macros, e.g. source/main.tex
 code_dir: ""             # empty if the book has no code

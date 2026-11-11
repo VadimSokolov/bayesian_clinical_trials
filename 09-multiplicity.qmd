@@ -280,7 +280,7 @@ knitr::kable(transform(ulcer, rate = round(100 * recurrences / n, 1), log_odds =
 ```
 
 ::: {.callout-note title="A note on the companion lab"}
-Module 05 of the companion lab uses a different table for the same trial: four treatments (named A to D) with 100 patients each and a three-level outcome (excellent, fair, death), described there as "the 1965 data as used in Polson and Sokolov (2026)". The working paper itself says its counts are illustrative and recurrence-based, so the companion lab's table and this chapter's table are not the same data. Both illustrate the same lesson, and the numbers in this chapter come from the code shown.
+Module 05 of the companion lab uses a different table for the same trial: four treatments (named A to D) with 100 patients each and a three-level outcome (excellent, fair, death), described there as illustrative counts at the scale of Novick and Grizzle (1965), not transcribed from Polson and Sokolov (2026). The working paper itself says its counts are illustrative and recurrence-based, so the companion lab's table and this chapter's table are not the same data. Both illustrate the same lesson, and the numbers in this chapter come from the code shown.
 :::
 
 ### What the traditional reading does with it

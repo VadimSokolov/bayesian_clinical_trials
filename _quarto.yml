@@ -4,8 +4,7 @@ project:
   output-dir: _book
 
 book:
-  title: "Bayesian Clinical Trials and Personalized Medicine"
-  subtitle: "Volume I: Bayesian Clinical Trials"
+  title: "Bayesian Clinical Trials"
   author:
     - Alexandra Sokolova
     - Vadim Sokolov

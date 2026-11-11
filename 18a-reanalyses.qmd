@@ -84,7 +84,7 @@ EOLIA [@combes2018] randomized 249 patients with very severe acute respiratory d
 
 @goligher2018 carried out the published Bayesian reanalysis. Under a minimally informative prior they reported a posterior relative risk of 0.78 (95 percent credible interval 0.56 to 1.04), a posterior probability of any mortality reduction of 96 percent, of a relative risk below 0.67 of 18 percent, and of an absolute risk reduction of at least 2 percentage points of 92 percent. Across their other priors (moderately enthusiastic, strongly skeptical, and one built from earlier studies) the probability of benefit ranged from 88 to 99 percent.
 
-Our own calculation uses the counts, so $\log \widehat{RR} = \log(0.355/0.456) =$ `r fmt(log((44/124)/(57/125)), 3)` with $s^2 = 1/44 - 1/124 + 1/57 - 1/125 =$ `r fmt(1/44 - 1/124 + 1/57 - 1/125, 4)`, $s =$ `r fmt(sqrt(1/44 - 1/124 + 1/57 - 1/125), 3)`. The counts give a relative risk of `r fmt(e$post_ratio[1], 3)`, a little different from the published 0.76, which is adjusted. The priors are normal on the log relative risk and every one is stated in @tbl-reanalyses-eolia-priors.
+Our own calculation uses the counts, so $\log \widehat{RR} = \log(0.355/0.456) =$ `r fmt(log((44/124)/(57/125)), 3)` with $s^2 = 1/44 - 1/124 + 1/57 - 1/125 =$ `r fmt(1/44 - 1/124 + 1/57 - 1/125, 4)`, $s =$ `r fmt(sqrt(1/44 - 1/124 + 1/57 - 1/125), 3)`. The counts give a relative risk of `r fmt(e$post_ratio[1], 3)`, a little different from the published 0.76, which we take as printed (it equals the ratio of the rounded percentages, 35 to 46). The priors are normal on the log relative risk and every one is stated in @tbl-reanalyses-eolia-priors.
 
 ```{r}
 #| label: tbl-reanalyses-eolia-priors
