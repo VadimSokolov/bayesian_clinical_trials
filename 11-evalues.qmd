@@ -85,7 +85,7 @@ Take the two-arm binary trial of Sokolova and Sokolov [@sokolova2026]: patients 
 $$
 E_n = \prod_{i=1}^{n} (1 + \lambda D_i).
 $$
-Then $\mathbb{E}[1 + \lambda D_i] = 1$ under the null whatever $p$ is, so $E_n$ is a test martingale for the composite null "the two arms have the same response probability". The nuisance parameter $p$ never needs to be estimated. In the book's companion online lab (module 08, https://nytel.ai/testing/08-e-values.html) the paths of this process under the null and under an alternative can be drawn directly. We reproduce the picture.
+Then $\mathbb{E}[1 + \lambda D_i] = 1$ under the null whatever $p$ is, so $E_n$ is a test martingale for the composite null "the two arms have the same response probability". The nuisance parameter $p$ never needs to be estimated. In the book's companion online lab (module 08, https://vsokolov.org/bayesian_trials_lab/08-e-values.html) the paths of this process under the null and under an alternative can be drawn directly. We reproduce the picture.
 
 ```{r}
 #| label: fig-evalues-paths
@@ -317,5 +317,5 @@ The lesson for this chapter is about what the design needed and what it did not.
 :::
 
 ::: {.callout-tip title="Try it in the lab"}
-Open module 08 at <https://nytel.ai/testing/08-e-values.html>. Before pressing anything, predict how many of 40 trials with a drug that does nothing will cross the \$40 line, then count them; then press "RECOVERY-like" and predict, and check, what fraction of trials with RECOVERY's survival rates (77.1 versus 74.3 percent, 2,000 per arm) reach \$40.
+Open module 08 at <https://vsokolov.org/bayesian_trials_lab/08-e-values.html>. Before pressing anything, predict how many of 40 trials with a drug that does nothing will cross the \$40 line, then count them; then press "RECOVERY-like" and predict, and check, what fraction of trials with RECOVERY's survival rates (77.1 versus 74.3 percent, 2,000 per arm) reach \$40.
 :::

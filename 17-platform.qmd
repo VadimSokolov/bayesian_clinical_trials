@@ -146,7 +146,7 @@ The EMA draft reflection paper defines concurrent controls as those with a posit
 
 ### How big is the bias? A simulation
 
-Module 10 of the book's companion online lab (https://nytel.ai/testing/10-platform-trials.html) draws a platform in which success on standard care rises 2 percentage points a year and shows a drug that does nothing and appears to help. The simulation below makes the arithmetic explicit. The platform runs for four years, enrolling 300 patients per year in equal proportions between control, arm A and (after two years have elapsed) arm B. Arm B has no effect in the first scenario, and in the second a true absolute improvement of 10 percentage points. Control success starts at 30% and rises by the drift. We analyze arm B three ways: against concurrent controls (those randomized in years 3 and 4), against all controls, and against all controls with a linear calendar-time term.
+Module 10 of the book's companion online lab (https://vsokolov.org/bayesian_trials_lab/10-platform-trials.html) draws a platform in which success on standard care rises 2 percentage points a year and shows a drug that does nothing and appears to help. The simulation below makes the arithmetic explicit. The platform runs for four years, enrolling 300 patients per year in equal proportions between control, arm A and (after two years have elapsed) arm B. Arm B has no effect in the first scenario, and in the second a true absolute improvement of 10 percentage points. Control success starts at 30% and rises by the drift. We analyze arm B three ways: against concurrent controls (those randomized in years 3 and 4), against all controls, and against all controls with a linear calendar-time term.
 
 ```{r}
 #| label: tbl-platform-drift
@@ -342,7 +342,7 @@ A traditional two-arm trial and a platform differ less in the statistics of one 
 What stays the same: randomization within the platform defends each comparison against confounding exactly as in a two-arm trial, the estimand for each arm is still defined in the protocol table of @sec-protocol, and the legal standard of substantial evidence of effectiveness is not lowered. A master protocol supports a marketing application for each drug on the evidence of that drug's comparison. What the regulator will ask about is what is new: the controls, the multiplicity rule, the governance, and the simulation.
 
 ::: {.callout-tip title="Try it in the lab"}
-Open module 10 of the companion tutorial, https://nytel.ai/testing/10-platform-trials.html. Before you press the button, predict how many patients five separate trials need compared with one platform, then drop a drug into the platform in year 2 and check which control group the lab regards as fair when success on standard care is rising 2 points a year.
+Open module 10 of the companion tutorial, https://vsokolov.org/bayesian_trials_lab/10-platform-trials.html. Before you press the button, predict how many patients five separate trials need compared with one platform, then drop a drug into the platform in year 2 and check which control group the lab regards as fair when success on standard care is rising 2 points a year.
 :::
 
 ## Key points {.unnumbered}

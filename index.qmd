@@ -2,7 +2,8 @@
 
 ::: {.callout-tip title="Companion resources"}
 - **R package bayestrials**, which computes the worked calculations and figures in the book (numbers quoted from cited publications are taken from those sources): <https://github.com/VadimSokolov/bayestrials> (install with `remotes::install_github("VadimSokolov/bayestrials")`).
-- **Interactive lab**, fifteen short browser modules that let you run the trials yourself, from "are these two groups different?" to a Bayesian trial simulator: <https://nytel.ai/testing/>.
+- **Interactive lab**, fifteen short browser modules that let you run the trials yourself, from "are these two groups different?" to a Bayesian trial simulator: <https://vsokolov.org/bayesian_trials_lab/>.
+- **Encyclopedia**, an online companion with entries for the methods, trials, regulatory documents and people in this book, each linked to the section where the book treats it, with its equations explained in words: <https://vsokolov.org/bayesian_trials_lab/encyclopedia/>.
 :::
 
 This book is for the people who run clinical trials: clinical investigators, physicians, biostatisticians at sponsors and contract research organizations, members of data monitoring committees, and the regulatory reviewers who decide whether the evidence a trial produces is enough to approve a drug. Most of them were trained on the traditional trial: a sample size fixed by a power calculation, equal randomization, a significance level of 2.5 percent one-sided, interim looks paid for with an alpha-spending function, and a p-value and confidence interval in the clinical study report. That is where the book starts.
@@ -19,7 +20,7 @@ Boxes marked "Technical note" contain derivations that a clinical reader can ski
 
 ## The companion laboratory
 
-An interactive tutorial at <https://nytel.ai/testing/> accompanies the book. Its modules let the reader predict an outcome, run the trial many times, and check the prediction, and it includes a Bayesian trial simulator for designing and calibrating a two-arm adaptive trial in the browser. Chapters point to the matching module in a "Try it in the lab" box.
+An interactive tutorial at <https://vsokolov.org/bayesian_trials_lab/> accompanies the book. Its modules let the reader predict an outcome, run the trial many times, and check the prediction, and it includes a Bayesian trial simulator for designing and calibrating a two-arm adaptive trial in the browser. Chapters point to the matching module in a "Try it in the lab" box.
 
 ## Code
 

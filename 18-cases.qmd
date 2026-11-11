@@ -638,5 +638,5 @@ Language a sponsor could use if it chose the Bayesian monitoring rule for an out
 :::
 
 ::: {.callout-tip title="Try it in the lab"}
-Module 12 (Decisions: what Type I control costs) at <https://nytel.ai/testing/12-decisions.html> lets you tighten the bar for a "yes" and watch the cost in power, the same trade as the calibrated Bayesian threshold and the REWIND table. Before you click, predict how much power a stricter bar costs when the true effect is small, then check.
+Module 12 (Decisions: what Type I control costs) at <https://vsokolov.org/bayesian_trials_lab/12-decisions.html> lets you tighten the bar for a "yes" and watch the cost in power, the same trade as the calibrated Bayesian threshold and the REWIND table. Before you click, predict how much power a stricter bar costs when the true effect is small, then check.
 :::

@@ -349,7 +349,7 @@ The Acute Stroke Therapy by Inhibition of Neutrophils (ASTIN) trial was a Bayesi
 :::
 
 ::: {.callout-tip title="Try it in the lab"}
-The open simulator at <https://nytel.ai/testing/14-studio.html> lets you set doses, adaptive allocation and scenarios and read off operating characteristics tables. Before opening it, predict how a design that updates after every cohort should behave when the true dose-response is flat across the top two doses, then change the true curves in the scenarios of this chapter (`dose_scenarios()`) and check your prediction.
+The open simulator at <https://vsokolov.org/bayesian_trials_lab/14-studio.html> lets you set doses, adaptive allocation and scenarios and read off operating characteristics tables. Before opening it, predict how a design that updates after every cohort should behave when the true dose-response is flat across the top two doses, then change the true curves in the scenarios of this chapter (`dose_scenarios()`) and check your prediction.
 :::
 
 ## Key points {.unnumbered}

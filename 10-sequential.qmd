@@ -183,7 +183,7 @@ for (lab in c("planned", "actual")) {
 }
 ```
 
-The calculation shows the point. Four looks planned at $t = 0.4, 0.6, 0.8, 1$ (the design used in module 07 of the book's companion online lab, https://nytel.ai/testing/07-interim-looks.html) have an O'Brien-Fleming-type boundary at the second look of $`r round(ld$planned$b[2], 2)`$. If enrollment falls behind and the second look takes place at $t = 0.55$, the boundary at that look becomes $`r round(ld$actual$b[2], 2)`$, and the later boundaries move slightly. The total error is $`r round(ld$planned$alpha, 3)`$ and $`r round(ld$actual$alpha, 3)`$ in the two cases.
+The calculation shows the point. Four looks planned at $t = 0.4, 0.6, 0.8, 1$ (the design used in module 07 of the book's companion online lab, https://vsokolov.org/bayesian_trials_lab/07-interim-looks.html) have an O'Brien-Fleming-type boundary at the second look of $`r round(ld$planned$b[2], 2)`$. If enrollment falls behind and the second look takes place at $t = 0.55$, the boundary at that look becomes $`r round(ld$actual$b[2], 2)`$, and the later boundaries move slightly. The total error is $`r round(ld$planned$alpha, 3)`$ and $`r round(ld$actual$alpha, 3)`$ in the two cases.
 
 Two cautions belong with this flexibility. First, the information fraction at the final analysis is $1$ only if the trial reaches its planned size; a trial that stops short, for example because event accrual is slower than planned, must decide in the protocol whether the remaining alpha is spent at the last look actually held. Second, the final analysis of a Lan-DeMets design is valid even if the interim looks turn out not to occur at the planned fractions, but the *sample size* was chosen for a particular plan, and the power calculation assumed a particular boundary.
 
@@ -490,7 +490,7 @@ What stays the same is more important than what changes. In both worlds the rule
 :::
 
 ::: {.callout-tip title="Try it in the lab"}
-Open Module 7, [Peeking at the data](https://nytel.ai/testing/07-interim-looks.html). Before you press Run, predict the false-alarm rate for a useless drug tested at the usual cutoff with four looks, then run 100 trials with the raw cutoff and again with an O'Brien-Fleming or Pocock rule and compare with your prediction. The lab uses two-sided $0.05$ and the 40, 60, 80 and 100 percent design of this chapter.
+Open Module 7, [Peeking at the data](https://vsokolov.org/bayesian_trials_lab/07-interim-looks.html). Before you press Run, predict the false-alarm rate for a useless drug tested at the usual cutoff with four looks, then run 100 trials with the raw cutoff and again with an O'Brien-Fleming or Pocock rule and compare with your prediction. The lab uses two-sided $0.05$ and the 40, 60, 80 and 100 percent design of this chapter.
 :::
 
 ## One outcomes trial under three rulebooks {#sec-ch10-threerulebooks}

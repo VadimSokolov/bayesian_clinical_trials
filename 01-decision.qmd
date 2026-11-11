@@ -290,7 +290,7 @@ Whatever the design, the protocol and statistical analysis plan should answer fi
 :::
 
 ::: {.callout-tip title="Try it in the lab"}
-Open Module 12, "Decisions: what Type I control costs" (<https://nytel.ai/testing/12-decisions.html>). Before you touch a control, predict what happens to the power of a fixed trial when the number of looks goes from one to four and the number of Bonferroni tests from one to six. Then set the sliders in section B and compare. In section A, move the cost ratio from 39:1 to 9:1 and see how the threshold $L_{\mathrm{I}}/(L_{\mathrm{I}}+L_{\mathrm{II}})$ in @eq-ch01-rule changes.
+Open Module 12, "Decisions: what Type I control costs" (<https://vsokolov.org/bayesian_trials_lab/12-decisions.html>). Before you touch a control, predict what happens to the power of a fixed trial when the number of looks goes from one to four and the number of Bonferroni tests from one to six. Then set the sliders in section B and compare. In section A, move the cost ratio from 39:1 to 9:1 and see how the threshold $L_{\mathrm{I}}/(L_{\mathrm{I}}+L_{\mathrm{II}})$ in @eq-ch01-rule changes.
 :::
 
 ## In practice {#sec-decision-practice}

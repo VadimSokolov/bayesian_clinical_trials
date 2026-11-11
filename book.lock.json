@@ -1,7 +1,7 @@
 {
  "edition": "1",
  "pdf": {
-  "bytes": 7079081,
+  "bytes": 7082131,
   "file": "pdf/bayesian_clinical_trials_v1.pdf",
   "pages": 612,
   "parts": [
@@ -202,146 +202,153 @@
     "title": "Appendix C. Software and Code"
    }
   ],
-  "sha256": "bd56701d6238be0cbcd90d4894cdf41bec3039248b438783d286682d7cf3676d"
+  "sha256": "71f019b6f94a3dff9c8056a2f9e2c09ae753c7e422c8f0e7a3cf49a637ec3ac5"
  },
  "results": {
   "backward_induction_states": {
    "environment": "res",
    "file": "13-predictive.qmd",
-   "fingerprint": "91681c01968e",
+   "fingerprint": "de25d7aa9603",
    "label": "res-backward-induction-states",
    "number": "15.6.2",
    "page": "342",
    "printed": "Section 15.6.2",
-   "verified_fingerprint": "91681c01968e",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "de25d7aa9603",
+   "verified_on": "2026-11-11"
   },
   "bayes_bar_crossing_46": {
    "environment": "res",
    "file": "06-evidence.qmd",
-   "fingerprint": "8df88c0e5d8e",
+   "fingerprint": "72f1500e1266",
    "label": "res-bayes-bar-crossing",
    "number": "7.5.1",
    "page": "148",
    "printed": "Section 7.5.1",
-   "verified_fingerprint": "8df88c0e5d8e",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "72f1500e1266",
+   "verified_on": "2026-11-11"
   },
   "bnt162b2_beta_binomial_reproduction": {
    "environment": "res",
    "file": "05-bayes.qmd",
-   "fingerprint": "104bec12ccf3",
+   "fingerprint": "c8861878f449",
    "label": "res-bnt162b2-reproduction",
    "number": "6.12.1",
    "page": "136",
    "printed": "Section 6.12.1",
-   "verified_fingerprint": "104bec12ccf3",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "c8861878f449",
+   "verified_on": "2026-11-11"
   },
   "evidence_tolls_three_scales": {
    "environment": "res",
    "file": "10-sequential.qmd",
-   "fingerprint": "b1988753a6ab",
+   "fingerprint": "af0fdeea3a09",
    "label": "res-evidence-tolls",
    "number": "11.9.2",
    "page": "253",
    "printed": "Section 11.9.2",
-   "verified_fingerprint": "b1988753a6ab",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "af0fdeea3a09",
+   "verified_on": "2026-11-11"
   },
   "moderate_deviation_sample_size": {
    "environment": "res",
    "file": "08-power.qmd",
-   "fingerprint": "c46c42adaaba",
+   "fingerprint": "f4f4fa072295",
    "label": "res-md-sample-size",
    "number": "9.3.2",
    "page": "202",
    "printed": "Section 9.3.2",
-   "verified_fingerprint": "c46c42adaaba",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "f4f4fa072295",
+   "verified_on": "2026-11-11"
   },
   "moderate_deviation_select_comparison": {
    "environment": "res",
    "file": "08-power.qmd",
-   "fingerprint": "4ffbb2e560e8",
+   "fingerprint": "008239b71000",
    "label": "res-md-select-prediction",
    "number": "9.3.6",
    "page": "207",
    "printed": "Section 9.3.6",
-   "verified_fingerprint": "4ffbb2e560e8",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "008239b71000",
+   "verified_on": "2026-11-11"
   },
   "null_maximum_calibration": {
    "environment": "res",
    "file": "12-simulation.qmd",
-   "fingerprint": "c95a4a5edb6f",
+   "fingerprint": "cc1057e0971f",
    "label": "res-null-max-calibration",
    "number": "14.4.1",
    "page": "309",
    "printed": "Section 14.4.1",
-   "verified_fingerprint": "c95a4a5edb6f",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "cc1057e0971f",
+   "verified_on": "2026-11-11"
   },
   "select_reconstruction_medians": {
    "environment": "res",
    "file": "18-cases.qmd",
-   "fingerprint": "2e3455d364d1",
+   "fingerprint": "a3685b8c9627",
    "label": "res-select-reconstruction",
    "number": "21.1.2",
    "page": "476",
    "printed": "Section 21.1.2",
-   "verified_fingerprint": "2e3455d364d1",
+   "verified_fingerprint": "a3685b8c9627",
    "verified_on": "2026-11-11"
   },
   "shared_control_false_positive_counts": {
    "environment": "res",
    "file": "17-platform.qmd",
-   "fingerprint": "b53a66b6318d",
+   "fingerprint": "496f63b8d002",
    "label": "res-shared-control-counts",
    "number": "20.4.1",
    "page": "452",
    "printed": "Section 20.4.1",
-   "verified_fingerprint": "b53a66b6318d",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "496f63b8d002",
+   "verified_on": "2026-11-11"
   },
   "surcharge_seventy_percent": {
    "environment": "res",
    "file": "10-sequential.qmd",
-   "fingerprint": "5fb18b34074c",
+   "fingerprint": "534cac2b2da5",
    "label": "res-seventy-percent",
    "number": "11.9.4",
    "page": "256",
    "printed": "Section 11.9.4",
-   "verified_fingerprint": "5fb18b34074c",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "534cac2b2da5",
+   "verified_on": "2026-11-11"
   },
   "ulcer_bonferroni_vs_posterior": {
    "environment": "res",
    "file": "09-multiplicity.qmd",
-   "fingerprint": "b2e21c9d8e91",
+   "fingerprint": "d15b6f81157f",
    "label": "res-ulcer-reading",
    "number": "10.5.3",
    "page": "232",
    "printed": "Section 10.5.3",
-   "verified_fingerprint": "b2e21c9d8e91",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "d15b6f81157f",
+   "verified_on": "2026-11-11"
   },
   "utility_only_rule_null_declaration": {
    "environment": "res",
    "file": "13-predictive.qmd",
-   "fingerprint": "0549c0530468",
+   "fingerprint": "561f82d9c5ed",
    "label": "res-utility-only-null",
    "number": "15.6.3",
    "page": "345",
    "printed": "Section 15.6.3",
-   "verified_fingerprint": "0549c0530468",
-   "verified_on": "2026-11-10"
+   "verified_fingerprint": "561f82d9c5ed",
+   "verified_on": "2026-11-11"
   }
  },
  "updated": "2026-11-11",
  "zenodo": {
   "concept_doi": "10.5281/zenodo.24122875",
   "doi": "10.5281/zenodo.24140149",
+  "draft": {
+   "doi": "10.5281/zenodo.24141732",
+   "html": "https://zenodo.org/deposit/24141732",
+   "id": 24141732,
+   "reserved_on": "2026-11-11",
+   "version": "1.1.3"
+  },
   "html": "https://zenodo.org/records/24140149",
   "latest_id": 24140149,
   "tag": "v1.1.2",

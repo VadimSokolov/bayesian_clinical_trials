@@ -40,7 +40,7 @@ k <- c(1, 2, 3, 5, 6, 10, 20, 50)
 knitr::kable(data.frame(k, 1 - (1 - alpha)^k, k * alpha), digits = 3, col.names = c("Number of tests", "Familywise error", "Bonferroni bound k alpha"), align = "r")
 ```
 
-With twenty independent tests of a useless drug the chance of at least one "significant" result is about $0.40$. The book's companion online lab (module 04, https://nytel.ai/testing/04-multiplicity.html) makes the same point with twenty drugs that are exactly as good as placebo. The right-hand column, $k\alpha$, is the upper bound used by Bonferroni and it is a good approximation while $k\alpha$ is small.
+With twenty independent tests of a useless drug the chance of at least one "significant" result is about $0.40$. The book's companion online lab (module 04, https://vsokolov.org/bayesian_trials_lab/04-multiplicity.html) makes the same point with twenty drugs that are exactly as good as placebo. The right-hand column, $k\alpha$, is the upper bound used by Bonferroni and it is a good approximation while $k\alpha$ is small.
 
 There are two further points before the procedures. First, independence is neither the best nor the worst case: dependence can make the probability of at least one false positive either larger or smaller than @eq-fwer, depending on its structure. If the tests share a control group or the endpoints are positively correlated, it is typically smaller, but the number of false positives, when there is one, tends to be larger: the errors come in clumps. Second, the formula is about a drug that does nothing. What a regulator wants to prevent is a false claim, and a claim is made on one result or on a combination of results. The family is therefore defined by the claims the sponsor may make, not by the number of tests the statistician happens to run. A statistician who runs forty tests to understand the data but whose protocol says the claim rests on one prespecified comparison has a family of one.
 
@@ -370,11 +370,11 @@ The consequences are two. First, in a platform with several drugs the multiplici
 ## Seeing it in the lab {#sec-mult-lab}
 
 ::: {.callout-tip title="Try it in the lab: module 04, many tests, false alarms"}
-Go to <https://nytel.ai/testing/04-multiplicity.html>. Before you press anything, predict how many false alarms you will see in 1,000 trials of a useless drug with 5 tests at the unadjusted cutoff, then run it. Repeat with Bonferroni and with the fixed order, and compare the climb curve with @tbl-fwer. The package function `mult_simulate()` runs the same experiment in R.
+Go to <https://vsokolov.org/bayesian_trials_lab/04-multiplicity.html>. Before you press anything, predict how many false alarms you will see in 1,000 trials of a useless drug with 5 tests at the unadjusted cutoff, then run it. Repeat with Bonferroni and with the fixed order, and compare the climb curve with @tbl-fwer. The package function `mult_simulate()` runs the same experiment in R.
 :::
 
 ::: {.callout-tip title="Try it in the lab: module 05, the ulcer trial"}
-Go to <https://nytel.ai/testing/05-ulcer-trial.html>. Pick the best and worst treatments in the table, predict whether the chi-square test and the pairwise comparison agree, and then check. Note that the lab uses its own three-outcome table for the trial, so the numbers differ from @tbl-ulcer-data; the lesson, that picking the extreme pair after the fact fools you far more often than the nominal level suggests, is the same.
+Go to <https://vsokolov.org/bayesian_trials_lab/05-ulcer-trial.html>. Pick the best and worst treatments in the table, predict whether the chi-square test and the pairwise comparison agree, and then check. Note that the lab uses its own three-outcome table for the trial, so the numbers differ from @tbl-ulcer-data; the lesson, that picking the extreme pair after the fact fools you far more often than the nominal level suggests, is the same.
 :::
 
 ## In practice: multiplicity handled by modeling {#sec-mult-practice}

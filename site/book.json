@@ -29,10 +29,10 @@
  "credit_names": "Sokolova, Sokolov and Polson",
  "year": "2026",
  "edition": "1",
- "version": "1.1.2",
+ "version": "1.1.3",
  "date_released": "2026-11-11",
  "publisher": "Independently published",
- "doi": "10.5281/zenodo.24140149",
+ "doi": "10.5281/zenodo.24141732",
  "concept_doi": "10.5281/zenodo.24122875",
  "language": "en",
  "keywords": [
@@ -50,7 +50,7 @@
   "R package"
  ],
  "short_description": "Volume I of a two volume series. Bayesian clinical trials built up from the traditional trial and tied to regulation: calibration, monitoring, safety, borrowing, adaptive designs, and reanalyses of landmark trials, with an R package and an online lab.",
- "description": "This book is for the people who run clinical trials: investigators, physicians, biostatisticians at sponsors and contract research organizations, data monitoring committee members, and regulatory reviewers. It assumes an introductory statistics course and nothing more.\n\nThe book starts from the traditional trial, with a fixed sample size, equal randomization, alpha spending for interim looks, and a p value and confidence interval in the study report. It then shows the Bayesian version of the same decision on the same numbers, and says plainly where the traditional design is the better choice. Regulation is the spine: each chapter names the statute, regulation or guidance that governs its topic, with its status and date.\n\nOur main claim is that a Bayesian adaptive design reaches the regulatory standard of evidence sooner without lowering the bar. Against a single unadjusted look the Bayesian bar is never lower without an informative prior. The saving comes from monitoring, from the handling of multiple arms, and from prior information, and we price each one with calibrated rules and simulated operating characteristics.\n\nWe test this on real trials. In our reconstruction of the semaglutide trial SELECT, simulated at a true hazard ratio of 0.80, a calibrated Bayesian rule stops at a median of 486 events over all simulated trials (464 among those that declare efficacy), against 817 for SELECT's planned design (one interim analysis with Lan-DeMets spending, then the final), with power of 95 percent against 97 percent; an anytime valid evidence rule is slower and less powerful. The reconstruction is ours, not the sponsor's. We also put the cost of waiting in three currencies, the trial cost avoided, the cardiovascular label reached earlier inside a fixed patent life, and the health value inside and outside the trial, each a modeled counterfactual with its assumptions stated. A scheduled design can win when the effect is modest, as the dulaglutide trial REWIND shows.\n\nBeyond design and monitoring, the book follows a drug from first in human to postmarketing, with recruitment and the value of speed told through the 1995 Larry King appeal for prostate cancer families, covers covariate adjustment, safety signals (rofecoxib, the gamma Poisson shrinker, toxicity stopping rules), time to event endpoints, noninferiority, Bayesian reanalyses of GUSTO, EOLIA, ANDROMEDA SHOCK and RECOVERY, and trials running now, among them TRIUMPH 3 and Lp(a)HORIZON. Volume II of the series turns to personalized medicine.\n\nEvery number comes from the companion R package bayestrials (https://github.com/VadimSokolov/bayestrials), and an interactive lab at https://nytel.ai/testing/ lets readers run the trials themselves.",
+ "description": "This book is for the people who run clinical trials: investigators, physicians, biostatisticians at sponsors and contract research organizations, data monitoring committee members, and regulatory reviewers. It assumes an introductory statistics course and nothing more.\n\nThe book starts from the traditional trial, with a fixed sample size, equal randomization, alpha spending for interim looks, and a p value and confidence interval in the study report. It then shows the Bayesian version of the same decision on the same numbers, and says plainly where the traditional design is the better choice. Regulation is the spine: each chapter names the statute, regulation or guidance that governs its topic, with its status and date.\n\nOur main claim is that a Bayesian adaptive design reaches the regulatory standard of evidence sooner without lowering the bar. Against a single unadjusted look the Bayesian bar is never lower without an informative prior. The saving comes from monitoring, from the handling of multiple arms, and from prior information, and we price each one with calibrated rules and simulated operating characteristics.\n\nWe test this on real trials. In our reconstruction of the semaglutide trial SELECT, simulated at a true hazard ratio of 0.80, a calibrated Bayesian rule stops at a median of 486 events over all simulated trials (464 among those that declare efficacy), against 817 for SELECT's planned design (one interim analysis with Lan-DeMets spending, then the final), with power of 95 percent against 97 percent; an anytime valid evidence rule is slower and less powerful. The reconstruction is ours, not the sponsor's. We also put the cost of waiting in three currencies, the trial cost avoided, the cardiovascular label reached earlier inside a fixed patent life, and the health value inside and outside the trial, each a modeled counterfactual with its assumptions stated. A scheduled design can win when the effect is modest, as the dulaglutide trial REWIND shows.\n\nBeyond design and monitoring, the book follows a drug from first in human to postmarketing, with recruitment and the value of speed told through the 1995 Larry King appeal for prostate cancer families, covers covariate adjustment, safety signals (rofecoxib, the gamma Poisson shrinker, toxicity stopping rules), time to event endpoints, noninferiority, Bayesian reanalyses of GUSTO, EOLIA, ANDROMEDA SHOCK and RECOVERY, and trials running now, among them TRIUMPH 3 and Lp(a)HORIZON. Volume II of the series turns to personalized medicine.\n\nEvery number comes from the companion R package bayestrials (https://github.com/VadimSokolov/bayestrials), an interactive lab at https://vsokolov.org/bayesian_trials_lab/ lets readers run the trials themselves, and an online encyclopedia at https://vsokolov.org/bayesian_trials_lab/encyclopedia/ links the methods, trials and documents to the sections of the book that treats it.",
  "license_text": {
   "id": "CC-BY-4.0",
   "name": "CC BY 4.0",
@@ -62,21 +62,19 @@
   "url": "https://opensource.org/license/mit"
  },
  "release": {
-  "tag": "v1.1.2",
-  "url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/tag/v1.1.2"
+  "tag": "v1.1.3",
+  "url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/tag/v1.1.3"
  },
  "links": {
   "page": "https://vsokolov.org/books/bayesian_clinical_trials_v1/",
   "page_markdown": "https://vsokolov.org/books/bayesian_clinical_trials_v1/index.html.md",
   "results": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html",
   "results_markdown": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html.md",
-  "pdf": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/download/v1.1.2/bayesian_clinical_trials_v1.pdf",
+  "pdf": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/download/v1.1.3/bayesian_clinical_trials_v1.pdf",
   "repository": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1",
-  "source": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/tree/v1.1.2",
-  "doi": "https://doi.org/10.5281/zenodo.24140149",
+  "source": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/tree/v1.1.3",
+  "doi": "https://doi.org/10.5281/zenodo.24141732",
   "concept_doi": "https://doi.org/10.5281/zenodo.24122875",
-  "zenodo": "https://zenodo.org/records/24140149",
-  "doi_badge": "https://zenodo.org/badge/DOI/10.5281/zenodo.24140149.svg",
   "icon_pdf": "https://vsokolov.org/books/icon-pdf.svg",
   "icon_github": "https://vsokolov.org/books/icon-github.svg",
   "icon_web": "https://vsokolov.org/books/icon-web.svg",
@@ -84,16 +82,16 @@
   "cover": "https://vsokolov.org/books/bayesian_clinical_trials_v1/cover.jpg"
  },
  "citation": {
-  "text": "Sokolova, Sokolov and Polson (2026), Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials, edition 1, https://doi.org/10.5281/zenodo.24140149.",
-  "bibtex": "@book{sokolovasokolovpolson2026bayesian_clinical_trials_v1,\n  author = {Sokolova, Alexandra and Sokolov, Vadim and Polson, Nicholas G.},\n  title = {{Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials}},\n  year = {2026},\n  publisher = {Independently published},\n  doi = {10.5281/zenodo.24140149},\n  url = {https://vsokolov.org/books/bayesian_clinical_trials_v1/}\n}",
+  "text": "Sokolova, Sokolov and Polson (2026), Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials, edition 1, https://doi.org/10.5281/zenodo.24141732.",
+  "bibtex": "@book{sokolovasokolovpolson2026bayesian_clinical_trials_v1,\n  author = {Sokolova, Alexandra and Sokolov, Vadim and Polson, Nicholas G.},\n  title = {{Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials}},\n  year = {2026},\n  publisher = {Independently published},\n  doi = {10.5281/zenodo.24141732},\n  url = {https://vsokolov.org/books/bayesian_clinical_trials_v1/}\n}",
   "bibkey": "sokolovasokolovpolson2026bayesian_clinical_trials_v1",
   "example": "Sokolova, Sokolov and Polson (2026), Section 11.9.2"
  },
  "pdf": {
   "file": "bayesian_clinical_trials_v1.pdf",
   "pages": 612,
-  "bytes": 7079081,
-  "sha256": "bd56701d6238be0cbcd90d4894cdf41bec3039248b438783d286682d7cf3676d"
+  "bytes": 7082131,
+  "sha256": "71f019b6f94a3dff9c8056a2f9e2c09ae753c7e422c8f0e7a3cf49a637ec3ac5"
  },
  "bundle": {
   "page": "site/index.md",
@@ -105,7 +103,7 @@
  "serve": [
   {
    "path": "cover.jpg",
-   "url": "https://raw.githubusercontent.com/VadimSokolov/bayesian_clinical_trials_v1/v1.1.2/pdf/cover.jpg"
+   "url": "https://raw.githubusercontent.com/VadimSokolov/bayesian_clinical_trials_v1/v1.1.3/pdf/cover.jpg"
   }
  ],
  "chapters": [
@@ -413,7 +411,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#bnt162b2_beta_binomial_reproduction",
    "source": "05-bayes.qmd",
    "label": "res-bnt162b2-reproduction",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/05-bayes.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/05-bayes.qmd"
   },
   {
    "id": "bayes_bar_crossing_46",
@@ -431,7 +429,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#bayes_bar_crossing_46",
    "source": "06-evidence.qmd",
    "label": "res-bayes-bar-crossing",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/06-evidence.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/06-evidence.qmd"
   },
   {
    "id": "moderate_deviation_sample_size",
@@ -449,7 +447,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#moderate_deviation_sample_size",
    "source": "08-power.qmd",
    "label": "res-md-sample-size",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/08-power.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/08-power.qmd"
   },
   {
    "id": "moderate_deviation_select_comparison",
@@ -467,7 +465,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#moderate_deviation_select_comparison",
    "source": "08-power.qmd",
    "label": "res-md-select-prediction",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/08-power.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/08-power.qmd"
   },
   {
    "id": "ulcer_bonferroni_vs_posterior",
@@ -485,7 +483,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#ulcer_bonferroni_vs_posterior",
    "source": "09-multiplicity.qmd",
    "label": "res-ulcer-reading",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/09-multiplicity.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/09-multiplicity.qmd"
   },
   {
    "id": "evidence_tolls_three_scales",
@@ -503,7 +501,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#evidence_tolls_three_scales",
    "source": "10-sequential.qmd",
    "label": "res-evidence-tolls",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/10-sequential.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/10-sequential.qmd"
   },
   {
    "id": "surcharge_seventy_percent",
@@ -521,7 +519,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#surcharge_seventy_percent",
    "source": "10-sequential.qmd",
    "label": "res-seventy-percent",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/10-sequential.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/10-sequential.qmd"
   },
   {
    "id": "null_maximum_calibration",
@@ -539,7 +537,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#null_maximum_calibration",
    "source": "12-simulation.qmd",
    "label": "res-null-max-calibration",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/12-simulation.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/12-simulation.qmd"
   },
   {
    "id": "backward_induction_states",
@@ -557,7 +555,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#backward_induction_states",
    "source": "13-predictive.qmd",
    "label": "res-backward-induction-states",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/13-predictive.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/13-predictive.qmd"
   },
   {
    "id": "utility_only_rule_null_declaration",
@@ -575,7 +573,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#utility_only_rule_null_declaration",
    "source": "13-predictive.qmd",
    "label": "res-utility-only-null",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/13-predictive.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/13-predictive.qmd"
   },
   {
    "id": "shared_control_false_positive_counts",
@@ -593,7 +591,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#shared_control_false_positive_counts",
    "source": "17-platform.qmd",
    "label": "res-shared-control-counts",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/17-platform.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/17-platform.qmd"
   },
   {
    "id": "select_reconstruction_medians",
@@ -611,7 +609,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#select_reconstruction_medians",
    "source": "18-cases.qmd",
    "label": "res-select-reconstruction",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.2/18-cases.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.3/18-cases.qmd"
   }
  ]
 }

@@ -78,7 +78,7 @@ A full treatment, including the proof and the connection to subjective probabili
 
 ## The coin and the Beta family {#sec-beta}
 
-The simplest trial has one arm and a binary outcome, and the simplest model for it is the coin. The prior-and-posterior module of the book's companion online lab (<https://nytel.ai/testing/01-prior-posterior.html>, described in the Preface) uses a coin of unknown bias. After 10 tosses, 7 are heads. The traditional estimate of the heads probability is $7/10 = 0.70$, with a standard error of about $\sqrt{0.7 \times 0.3 / 10} = 0.145$. The Bayesian analysis starts with a prior distribution over the bias $\theta$, which @fig-bayes-grid shows at work on a coarse grid of values. (In this and the next two sections $\theta$ is the success probability of a single arm, which the two-group sections call $p_j$.)
+The simplest trial has one arm and a binary outcome, and the simplest model for it is the coin. The prior-and-posterior module of the book's companion online lab (<https://vsokolov.org/bayesian_trials_lab/01-prior-posterior.html>, described in the Preface) uses a coin of unknown bias. After 10 tosses, 7 are heads. The traditional estimate of the heads probability is $7/10 = 0.70$, with a standard error of about $\sqrt{0.7 \times 0.3 / 10} = 0.145$. The Bayesian analysis starts with a prior distribution over the bias $\theta$, which @fig-bayes-grid shows at work on a coarse grid of values. (In this and the next two sections $\theta$ is the success probability of a single arm, which the two-group sections call $p_j$.)
 
 ```{r}
 #| label: fig-bayes-grid
@@ -514,7 +514,7 @@ Starting from the traditional two-group comparison, the Bayesian version changed
 The regulator's position, stated in ICH E9 and reaffirmed in the FDA draft and E20, is that the Bayesian approach is acceptable when the reasons for its use are clear and the conclusions are robust. Robust here is a technical word: the conclusion should survive a reasonable change of prior, and the design should have operating characteristics, demonstrated by simulation, that a regulator can read in the language of error rates. @sec-evidence takes up the weighing of evidence, @sec-priors the choice of priors, and @sec-sequential and @sec-predictive the use of the posterior and the predictive distribution in monitoring.
 
 ::: {.callout-tip title="Try it in the lab"}
-Open module 01 of the companion lab, [Prior and posterior](https://nytel.ai/testing/01-prior-posterior.html). Before pressing "Toss 10," predict where the posterior will peak after 7 heads and 3 tails starting from a flat prior and from the Beta(2,2) prior (the modes are 7/10 = 0.70 and 8/12 = 0.667; the means are 8/12 = 0.667 and 9/14 = 0.643, as in @sec-beta). Then load the "Newborn trial (real)" example and note how a single arm of 11 successes concentrates the posterior near 1 even from a flat start.
+Open module 01 of the companion lab, [Prior and posterior](https://vsokolov.org/bayesian_trials_lab/01-prior-posterior.html). Before pressing "Toss 10," predict where the posterior will peak after 7 heads and 3 tails starting from a flat prior and from the Beta(2,2) prior (the modes are 7/10 = 0.70 and 8/12 = 0.667; the means are 8/12 = 0.667 and 9/14 = 0.643, as in @sec-beta). Then load the "Newborn trial (real)" example and note how a single arm of 11 successes concentrates the posterior near 1 even from a flat start.
 :::
 
 ## Key points {.unnumbered}

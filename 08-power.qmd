@@ -57,7 +57,7 @@ $$
 n_{\text{per arm}} = \frac{2\,\sigma^2 (z_\alpha+z_\beta)^2}{\Delta^2}.
 $$ {#eq-ss-cont}
 
-The standardized effect is $\Delta/\sigma$. This is the calculation behind the worked design of the book's companion online lab (module 03, https://nytel.ai/testing/03-errors-power.html) (an improvement of 3 points on a score with patient-to-patient standard deviation of 10 gives a standardized effect of 0.3): 10.51 times 4 over 0.09 is 467 patients in total at 90% power.
+The standardized effect is $\Delta/\sigma$. This is the calculation behind the worked design of the book's companion online lab (module 03, https://vsokolov.org/bayesian_trials_lab/03-errors-power.html) (an improvement of 3 points on a score with patient-to-patient standard deviation of 10 gives a standardized effect of 0.3): 10.51 times 4 over 0.09 is 467 patients in total at 90% power.
 
 *Binary endpoint.* For response probabilities $p_0$ and $p_1$ the variance of the difference in observed proportions is $p_0(1-p_0)/n + p_1(1-p_1)/n$ and
 
@@ -507,7 +507,7 @@ Saville and Berry simulated 5,000 drug-development programs under stated assumpt
 :::
 
 ::: {.callout-tip title="Try it in the lab"}
-Open [module 03, Errors and power](https://nytel.ai/testing/03-errors-power.html), go to the worked design (effect 3 points, standard deviation 10) and write down the number of patients you expect for half the effect before moving the slider; then check it, and repeat for the hazard ratio of 0.8 in the events panel.
+Open [module 03, Errors and power](https://vsokolov.org/bayesian_trials_lab/03-errors-power.html), go to the worked design (effect 3 points, standard deviation 10) and write down the number of patients you expect for half the effect before moving the slider; then check it, and repeat for the hazard ratio of 0.8 in the events panel.
 :::
 
 ::: {.callout-note title="Discussion questions"}
