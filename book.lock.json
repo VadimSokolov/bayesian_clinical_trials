@@ -202,7 +202,7 @@
     "title": "Appendix C. Software and Code"
    }
   ],
-  "sha256": "6ce072a617e580fd29a1845d4247138c508534b4ffe0aa0ef97630059fd1b49f"
+  "sha256": "bd56701d6238be0cbcd90d4894cdf41bec3039248b438783d286682d7cf3676d"
  },
  "results": {
   "backward_induction_states": {
@@ -342,6 +342,13 @@
  "zenodo": {
   "concept_doi": "10.5281/zenodo.24122875",
   "doi": "10.5281/zenodo.24139858",
+  "draft": {
+   "doi": "10.5281/zenodo.24140149",
+   "html": "https://zenodo.org/deposit/24140149",
+   "id": 24140149,
+   "reserved_on": "2026-11-11",
+   "version": "1.1.2"
+  },
   "html": "https://zenodo.org/records/24139858",
   "latest_id": 24139858,
   "tag": "v1.1.1",
