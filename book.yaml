@@ -2,7 +2,7 @@
 # bookrepo.py generates RESULTS.md, CITATION.cff, the README block and the summary blocks from this file and results.yaml.
 # The books website reads it too. Guide: references/repository.md of the book-writing skill.
 
-slug: bayesian_clinical_trials_v1                    # lowercase letters, digits and underscores; also the name of the book's page on the site
+slug: bayesian_clinical_trials                    # lowercase letters, digits and underscores; also the name of the book's page on the site
 title: "Bayesian Clinical Trials and Personalized Medicine"
 subtitle: "Volume I: Bayesian Clinical Trials"
 authors:
