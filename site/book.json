@@ -29,10 +29,10 @@
  "credit_names": "Sokolova, Sokolov and Polson",
  "year": "2026",
  "edition": "1",
- "version": "1.1.0",
+ "version": "1.1.1",
  "date_released": "2026-11-11",
  "publisher": "Independently published",
- "doi": "10.5281/zenodo.24138413",
+ "doi": "10.5281/zenodo.24139858",
  "concept_doi": "10.5281/zenodo.24122875",
  "language": "en",
  "keywords": [
@@ -62,21 +62,19 @@
   "url": "https://opensource.org/license/mit"
  },
  "release": {
-  "tag": "v1.1.0",
-  "url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/tag/v1.1.0"
+  "tag": "v1.1.1",
+  "url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/tag/v1.1.1"
  },
  "links": {
   "page": "https://vsokolov.org/books/bayesian_clinical_trials_v1/",
   "page_markdown": "https://vsokolov.org/books/bayesian_clinical_trials_v1/index.html.md",
   "results": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html",
   "results_markdown": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html.md",
-  "pdf": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/download/v1.1.0/bayesian_clinical_trials_v1.pdf",
+  "pdf": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/download/v1.1.1/bayesian_clinical_trials_v1.pdf",
   "repository": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1",
-  "source": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/tree/v1.1.0",
-  "doi": "https://doi.org/10.5281/zenodo.24138413",
+  "source": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/tree/v1.1.1",
+  "doi": "https://doi.org/10.5281/zenodo.24139858",
   "concept_doi": "https://doi.org/10.5281/zenodo.24122875",
-  "zenodo": "https://zenodo.org/records/24138413",
-  "doi_badge": "https://zenodo.org/badge/DOI/10.5281/zenodo.24138413.svg",
   "icon_pdf": "https://vsokolov.org/books/icon-pdf.svg",
   "icon_github": "https://vsokolov.org/books/icon-github.svg",
   "icon_web": "https://vsokolov.org/books/icon-web.svg",
@@ -84,16 +82,16 @@
   "cover": "https://vsokolov.org/books/bayesian_clinical_trials_v1/cover.jpg"
  },
  "citation": {
-  "text": "Sokolova, Sokolov and Polson (2026), Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials, edition 1, https://doi.org/10.5281/zenodo.24138413.",
-  "bibtex": "@book{sokolovasokolovpolson2026bayesian_clinical_trials_v1,\n  author = {Sokolova, Alexandra and Sokolov, Vadim and Polson, Nicholas G.},\n  title = {{Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials}},\n  year = {2026},\n  publisher = {Independently published},\n  doi = {10.5281/zenodo.24138413},\n  url = {https://vsokolov.org/books/bayesian_clinical_trials_v1/}\n}",
+  "text": "Sokolova, Sokolov and Polson (2026), Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials, edition 1, https://doi.org/10.5281/zenodo.24139858.",
+  "bibtex": "@book{sokolovasokolovpolson2026bayesian_clinical_trials_v1,\n  author = {Sokolova, Alexandra and Sokolov, Vadim and Polson, Nicholas G.},\n  title = {{Bayesian Clinical Trials and Personalized Medicine: Volume I: Bayesian Clinical Trials}},\n  year = {2026},\n  publisher = {Independently published},\n  doi = {10.5281/zenodo.24139858},\n  url = {https://vsokolov.org/books/bayesian_clinical_trials_v1/}\n}",
   "bibkey": "sokolovasokolovpolson2026bayesian_clinical_trials_v1",
   "example": "Sokolova, Sokolov and Polson (2026), Section 11.9.2"
  },
  "pdf": {
   "file": "bayesian_clinical_trials_v1.pdf",
   "pages": 612,
-  "bytes": 7078819,
-  "sha256": "9d8ae5a323a106d57943fa60fe2ce8f80ce484d2f8f53e3cda33b03ac5b08795"
+  "bytes": 7079081,
+  "sha256": "6ce072a617e580fd29a1845d4247138c508534b4ffe0aa0ef97630059fd1b49f"
  },
  "bundle": {
   "page": "site/index.md",
@@ -105,7 +103,7 @@
  "serve": [
   {
    "path": "cover.jpg",
-   "url": "https://raw.githubusercontent.com/VadimSokolov/bayesian_clinical_trials_v1/v1.1.0/pdf/cover.jpg"
+   "url": "https://raw.githubusercontent.com/VadimSokolov/bayesian_clinical_trials_v1/v1.1.1/pdf/cover.jpg"
   }
  ],
  "chapters": [
@@ -413,7 +411,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#bnt162b2_beta_binomial_reproduction",
    "source": "05-bayes.qmd",
    "label": "res-bnt162b2-reproduction",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/05-bayes.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/05-bayes.qmd"
   },
   {
    "id": "bayes_bar_crossing_46",
@@ -431,7 +429,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#bayes_bar_crossing_46",
    "source": "06-evidence.qmd",
    "label": "res-bayes-bar-crossing",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/06-evidence.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/06-evidence.qmd"
   },
   {
    "id": "moderate_deviation_sample_size",
@@ -449,7 +447,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#moderate_deviation_sample_size",
    "source": "08-power.qmd",
    "label": "res-md-sample-size",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/08-power.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/08-power.qmd"
   },
   {
    "id": "moderate_deviation_select_comparison",
@@ -467,7 +465,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#moderate_deviation_select_comparison",
    "source": "08-power.qmd",
    "label": "res-md-select-prediction",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/08-power.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/08-power.qmd"
   },
   {
    "id": "ulcer_bonferroni_vs_posterior",
@@ -485,7 +483,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#ulcer_bonferroni_vs_posterior",
    "source": "09-multiplicity.qmd",
    "label": "res-ulcer-reading",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/09-multiplicity.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/09-multiplicity.qmd"
   },
   {
    "id": "evidence_tolls_three_scales",
@@ -503,7 +501,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#evidence_tolls_three_scales",
    "source": "10-sequential.qmd",
    "label": "res-evidence-tolls",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/10-sequential.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/10-sequential.qmd"
   },
   {
    "id": "surcharge_seventy_percent",
@@ -521,7 +519,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#surcharge_seventy_percent",
    "source": "10-sequential.qmd",
    "label": "res-seventy-percent",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/10-sequential.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/10-sequential.qmd"
   },
   {
    "id": "null_maximum_calibration",
@@ -539,7 +537,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#null_maximum_calibration",
    "source": "12-simulation.qmd",
    "label": "res-null-max-calibration",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/12-simulation.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/12-simulation.qmd"
   },
   {
    "id": "backward_induction_states",
@@ -557,7 +555,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#backward_induction_states",
    "source": "13-predictive.qmd",
    "label": "res-backward-induction-states",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/13-predictive.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/13-predictive.qmd"
   },
   {
    "id": "utility_only_rule_null_declaration",
@@ -575,7 +573,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#utility_only_rule_null_declaration",
    "source": "13-predictive.qmd",
    "label": "res-utility-only-null",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/13-predictive.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/13-predictive.qmd"
   },
   {
    "id": "shared_control_false_positive_counts",
@@ -593,7 +591,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#shared_control_false_positive_counts",
    "source": "17-platform.qmd",
    "label": "res-shared-control-counts",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/17-platform.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/17-platform.qmd"
   },
   {
    "id": "select_reconstruction_medians",
@@ -611,7 +609,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials_v1/results.html#select_reconstruction_medians",
    "source": "18-cases.qmd",
    "label": "res-select-reconstruction",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.0/18-cases.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/blob/v1.1.1/18-cases.qmd"
   }
  ]
 }

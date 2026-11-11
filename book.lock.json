@@ -1,7 +1,7 @@
 {
  "edition": "1",
  "pdf": {
-  "bytes": 7078819,
+  "bytes": 7079081,
   "file": "pdf/bayesian_clinical_trials_v1.pdf",
   "pages": 612,
   "parts": [
@@ -202,7 +202,7 @@
     "title": "Appendix C. Software and Code"
    }
   ],
-  "sha256": "9d8ae5a323a106d57943fa60fe2ce8f80ce484d2f8f53e3cda33b03ac5b08795"
+  "sha256": "6ce072a617e580fd29a1845d4247138c508534b4ffe0aa0ef97630059fd1b49f"
  },
  "results": {
   "backward_induction_states": {
@@ -342,6 +342,13 @@
  "zenodo": {
   "concept_doi": "10.5281/zenodo.24122875",
   "doi": "10.5281/zenodo.24138413",
+  "draft": {
+   "doi": "10.5281/zenodo.24139858",
+   "html": "https://zenodo.org/deposit/24139858",
+   "id": 24139858,
+   "reserved_on": "2026-11-11",
+   "version": "1.1.1"
+  },
   "html": "https://zenodo.org/records/24138413",
   "latest_id": 24138413,
   "tag": "v1.1.0",

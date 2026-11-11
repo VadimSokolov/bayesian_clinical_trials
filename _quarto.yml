@@ -113,6 +113,7 @@ format:
     code-summary: "Show the R code"
     code-tools: false
     number-depth: 2
+    toc: false
   pdf:
     documentclass: scrbook
     classoption: [fontsize=10pt]
