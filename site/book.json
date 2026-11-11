@@ -33,6 +33,7 @@
  "date_released": "2026-11-10",
  "publisher": "Independently published",
  "doi": "10.5281/zenodo.24122876",
+ "concept_doi": "10.5281/zenodo.24122875",
  "language": "en",
  "keywords": [
   "Bayesian clinical trials",
@@ -73,6 +74,9 @@
   "repository": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1",
   "source": "https://github.com/VadimSokolov/bayesian_clinical_trials_v1/tree/v1.0.0",
   "doi": "https://doi.org/10.5281/zenodo.24122876",
+  "concept_doi": "https://doi.org/10.5281/zenodo.24122875",
+  "zenodo": "https://zenodo.org/records/24122876",
+  "doi_badge": "https://zenodo.org/badge/DOI/10.5281/zenodo.24122876.svg",
   "icon_pdf": "https://vsokolov.org/books/icon-pdf.svg",
   "icon_github": "https://vsokolov.org/books/icon-github.svg",
   "icon_web": "https://vsokolov.org/books/icon-web.svg",

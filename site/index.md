@@ -2,7 +2,7 @@
 
 By Alexandra Sokolova, [Vadim Sokolov](https://orcid.org/0000-0002-6618-2965) and Nicholas G. Polson.
 
-[![PDF](https://vsokolov.org/books/icon-pdf.svg)](https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/download/v1.0.0/bayesian_clinical_trials_v1.pdf "PDF") [![Online edition](https://vsokolov.org/books/icon-web.svg)](https://vsokolov.org/bayesian_clinical_trials_v1/ "Online edition") [![Source on GitHub](https://vsokolov.org/books/icon-github.svg)](https://github.com/VadimSokolov/bayesian_clinical_trials_v1/tree/v1.0.0 "Source on GitHub")
+[![PDF](https://vsokolov.org/books/icon-pdf.svg)](https://github.com/VadimSokolov/bayesian_clinical_trials_v1/releases/download/v1.0.0/bayesian_clinical_trials_v1.pdf "PDF") [![Online edition](https://vsokolov.org/books/icon-web.svg)](https://vsokolov.org/bayesian_clinical_trials_v1/ "Online edition") [![Source on GitHub](https://vsokolov.org/books/icon-github.svg)](https://github.com/VadimSokolov/bayesian_clinical_trials_v1/tree/v1.0.0 "Source on GitHub") [![DOI 10.5281/zenodo.24122876](https://zenodo.org/badge/DOI/10.5281/zenodo.24122876.svg)](https://doi.org/10.5281/zenodo.24122876)
 
 ## Description
 
