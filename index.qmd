@@ -1,0 +1,42 @@
+# Preface {.unnumbered}
+
+::: {.callout-tip title="Companion resources"}
+- **R package bayestrials**, which computes the worked calculations and figures in the book (numbers quoted from cited publications are taken from those sources): <https://github.com/VadimSokolov/bayestrials> (install with `remotes::install_github("VadimSokolov/bayestrials")`).
+- **Interactive lab**, fifteen short browser modules that let you run the trials yourself, from "are these two groups different?" to a Bayesian trial simulator: <https://nytel.ai/testing/>.
+:::
+
+This book is for the people who run clinical trials: clinical investigators, physicians, biostatisticians at sponsors and contract research organizations, members of data monitoring committees, and the regulatory reviewers who decide whether the evidence a trial produces is enough to approve a drug. Most of them were trained on the traditional trial: a sample size fixed by a power calculation, equal randomization, a significance level of 2.5 percent one-sided, interim looks paid for with an alpha-spending function, and a p-value and confidence interval in the clinical study report. That is where the book starts.
+
+The book's argument is that a Bayesian adaptive design is the same trial with a different set of decision rules, and that the rules can be written into a protocol, simulated, and defended before a regulator in the same terms the traditional design is defended. The Bayesian design can decide sooner, exposes fewer patients to inferior arms, and uses information the traditional design discards. Against a single unadjusted analysis it does not lower the bar without an informative prior. The saving comes from how the trial is monitored, how several arms are handled, and how prior information is used, and each of those gains has a price that we itemize.
+
+Regulation is the spine of the book. Drugs are approved on substantial evidence from adequate and well-controlled investigations, and every method here is tied to the statute, regulation or guidance that governs it, with its status (final or draft) and date as of November 2026. @sec-regulatory is the map; each later chapter opens with a "Regulatory anchor" box naming the documents that apply.
+
+## How to read this book
+
+Part I sets the question and the rules. Part II rebuilds the basics from the ground up: how to tell whether two groups differ, why and how we randomize, and how a Bayesian updates beliefs. Part III revisits the standard apparatus (power, multiplicity, interim looks, anytime-valid inference) and shows what each piece costs. Part IV covers the Bayesian adaptive designs in use today, and Part V works through real trials and the protocol a sponsor submits.
+
+Boxes marked "Technical note" contain derivations that a clinical reader can skip. Boxes marked "In the protocol" give language of the kind that goes into a protocol or statistical analysis plan.
+
+## The companion laboratory
+
+An interactive tutorial at <https://nytel.ai/testing/> accompanies the book. Its modules let the reader predict an outcome, run the trial many times, and check the prediction, and it includes a Bayesian trial simulator for designing and calibrating a two-arm adaptive trial in the browser. Chapters point to the matching module in a "Try it in the lab" box.
+
+## Code
+
+The worked calculations and figures are produced by short R snippets that call the companion package `bayestrials`, which implements the methods used in the book and is tested against published values where they exist (numbers quoted from cited publications are taken from those sources, not computed); see @sec-software.
+
+The figures are in color in the digital editions (the PDF linked from the book's DOI and the HTML edition). In the printed book they appear in grayscale, and where a caption names a color, the digital edition shows it.
+
+# Copyright and license {.unnumbered}
+
+Copyright © {{< meta book-year >}} Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson. First edition, {{< meta book-year >}}.
+
+::: {.content-visible when-meta="book-has-isbn"}
+Paperback ISBN: {{< meta book-isbn >}}
+:::
+
+::: {.content-visible when-meta="book-has-doi"}
+Digital Object Identifier (DOI): [{{< meta book-doi >}}](https://doi.org/{{< meta book-doi >}})
+:::
+
+License: distributed under the Creative Commons Attribution 4.0 International License (CC BY 4.0), <https://creativecommons.org/licenses/by/4.0/>: you may copy, share and adapt this book for any purpose, provided you credit the authors. The code is released under the MIT License.

@@ -1,0 +1,51 @@
+=== NCT06184906 | Preventing Celiac Disease by Weaning With Mediterranean Diet
+[briefSummary] ...e control group will follow standard regional dietary guidelines. Dietary adherence and health outcomes are to be periodically monitored, and genetic and microbiome analyses will be conducted using collected saliva and stool samples. Incorporating a Bayesian group sequential design, this trial is structured to conduct interim analyses for efficacy, aligning with local healthcare systems for optimal resource allocation.
+
+Conclusion: The study is poised to be methodologically innovative and socially im...
+[detailedDescription] ...researched, its potential protective role against diseases like celiac and inflammatory bowel diseases has been suggested. The PEMED trial, designed to promote MD nutrition among children in Scampia, represents a groundbreaking approach, utilizing a Bayesian cluster randomized clinical trial and the Italian family pediatrician system.
+
+This study is unique in its exploration of introducing natural MD foods during infancy and assessing their impact on the establishment of lasting dietary preferences. ...
+=== NCT04128748 | Liposomal Cytarabine and Daunorubicin (CPX-351) and Quizartinib for the Treatment of Acute Myeloid Leukemia and High Risk Myelodysplastic Syndrome
+[no Bayes match in description fields; matched elsewhere]
+=== NCT05078073 | HBOT in the Treatment and Prevention of aGVHD
+[no Bayes match in description fields; matched elsewhere]
+=== NCT06799637 | Study of XNW28012 in Subjects With Advanced Solid Tumors Who Failed Standard Treatments
+[no Bayes match in description fields; matched elsewhere]
+=== NCT04745949 | PACIFIC: Primary Mediastinal Large B-cell Lymphoma Treated With Antibody Therapy, Checkpoint Inhibitor in Frontline With ImmunoChemotherapy
+[no Bayes match in description fields; matched elsewhere]
+=== NCT06771050 | ROADMAP Clinical Trial
+[detailedDescription] ...ring Committee (DSMC) will have access to unblinded results, with other trial investigators and staff remaining blinded to the aggregate results until completion of final analysis for a domain or cell.
+
+ANALYSIS The ROADMAP trial will repeatedly fit Bayesian hierarchical logistic models to the accumulating data (interim analyses), over the life of the trial, to estimate model parameters and evaluate pre-specified decision criteria either within a cell or a whole domain.
+
+CORE PRIMARY OUTCOME MEASURE ...
+=== NCT00614744 | Late Hypothermia for Hypoxic-Ischemic Encephalopathy
+[no Bayes match in description fields; matched elsewhere]
+=== NCT01363232 | Safety, Pharmacokinetics and Pharmacodynamics of BKM120 Plus MEK162 in Selected Advanced Solid Tumor Patients
+[briefSummary] ... progressed on EGFR inhibitors and triple negative breast cancer, as well as pancreatic cancer, colorectal cancer, malignant melanoma, NSCLC, and other advanced solid tumors with KRAS, NRAS, and/or BRAF mutations. Dose escalation will be guided by a Bayesian logistic regression model with overdose control. At MTD or RP2D, two expansion arms will be opened in order to further assess safety and preliminary anti-tumor activity of the combination of BKM120 and MEK162.
+
+Study drugs will be administered on...
+=== NCT07616167 | This Study Evaluates the Use of a Data-driven Lower Limb Exoskeleton Controller for Stroke Rehabilitation.
+[no Bayes match in description fields; matched elsewhere]
+=== NCT06559189 | CD19x22 Chimeric Antigen Receptor T-cell Therapy (CAR T) in Pediatric B-ALL
+[detailedDescription] ...row lymphoblasts and/or non-CNS extramedullary disease, and Cohort 2: low disease burden cohort: defined as \<25% bone marrow lymphoblasts and no non-CNS extramedullary disease. Dose escalation will proceed independently within each cohort using the Bayesian Optimal Interval (BOIN) design. This trial will enroll up to 53 patients with 21 patients in each cohort receiving treatment with lymphodepleting chemotherapy followed by CD19x22 CAR T cell infusion, with a total of up to 42 treated patients over...
+=== NCT06189157 | MB-CART19.1 in Refractory SLE
+[no Bayes match in description fields; matched elsewhere]
+=== NCT02629809 | Ibrutinib, Fludarabine Phosphate, Cyclophosphamide, and Obinutuzumab in Treating Patients With Chronic Lymphocytic Leukemia
+[no Bayes match in description fields; matched elsewhere]
+=== NCT05009927 | Efficiency of Imatinib Treatment After 10 Years of Treatment in Patients With Gastrointestinal Stromal Tumours (GIST) (Gist-Ten)
+[no Bayes match in description fields; matched elsewhere]
+=== NCT00976560 | Clinical Study to Test a New Drug to Treat Major Depression
+[no Bayes match in description fields; matched elsewhere]
+=== NCT04566991 | Deferoxamine In the Treatment of Aneurysmal Subarachnoid Hemorrhage (aSAH)
+[no Bayes match in description fields; matched elsewhere]
+=== NCT07195344 | Study Aiming to Compare the Plasma Exposure of the Payload (Free-DXd) in Patients Treated by T-DXd for Locally Advanced or Metastatic Breast Cancer According to Their BMI.
+[no Bayes match in description fields; matched elsewhere]
+=== NCT04879121 | Larotrectinib for the Treatment of NTRK Amplification Positive, Locally Advanced or Metastatic Solid Tumors
+[no Bayes match in description fields; matched elsewhere]
+=== NCT02423915 | Fucosylated T Cells for Graft Versus Host Disease (GVHD) Prevention
+[no Bayes match in description fields; matched elsewhere]
+=== NCT03824327 | Papaverine and Stereotactic Body Radiotherapy (SBRT) for Non Small Cell Lung Cancer (NSCLC) or Lung Metastases
+[no Bayes match in description fields; matched elsewhere]
+=== NCT03128879 | Venetoclax With Ibrutinib or Acalabrutinib in Pts. With High-risk CLL
+[no Bayes match in description fields; matched elsewhere]

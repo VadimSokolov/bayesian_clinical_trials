@@ -1,0 +1,351 @@
+{
+ "edition": "1",
+ "pdf": {
+  "bytes": 7032841,
+  "file": "pdf/bayesian_clinical_trials_v1.pdf",
+  "pages": 600,
+  "parts": [
+   {
+    "first_page": "i",
+    "key": "",
+    "last_page": "4",
+    "pages": 20,
+    "title": "Front matter"
+   },
+   {
+    "first_page": "7",
+    "key": "1",
+    "last_page": "24",
+    "pages": 18,
+    "title": "Chapter 1. A Trial Is a Decision"
+   },
+   {
+    "first_page": "25",
+    "key": "2",
+    "last_page": "32",
+    "pages": 8,
+    "title": "Chapter 2. The Life of a Drug: Phases I to IV"
+   },
+   {
+    "first_page": "33",
+    "key": "3",
+    "last_page": "58",
+    "pages": 26,
+    "title": "Chapter 3. The Regulatory Framework"
+   },
+   {
+    "first_page": "61",
+    "key": "4",
+    "last_page": "80",
+    "pages": 20,
+    "title": "Chapter 4. Are They Different? Testing From the Ground Up"
+   },
+   {
+    "first_page": "81",
+    "key": "5",
+    "last_page": "110",
+    "pages": 30,
+    "title": "Chapter 5. Randomization From the Ground Up"
+   },
+   {
+    "first_page": "111",
+    "key": "6",
+    "last_page": "134",
+    "pages": 24,
+    "title": "Chapter 6. Prior, Likelihood, Posterior"
+   },
+   {
+    "first_page": "135",
+    "key": "7",
+    "last_page": "160",
+    "pages": 26,
+    "title": "Chapter 7. Weighing Evidence: p-values, Bayes Factors, and Posterior Probabilities"
+   },
+   {
+    "first_page": "161",
+    "key": "8",
+    "last_page": "182",
+    "pages": 22,
+    "title": "Chapter 8. Choosing and Defending Priors"
+   },
+   {
+    "first_page": "185",
+    "key": "9",
+    "last_page": "210",
+    "pages": 26,
+    "title": "Chapter 9. Error Rates, Power, and Sample Size"
+   },
+   {
+    "first_page": "211",
+    "key": "10",
+    "last_page": "234",
+    "pages": 24,
+    "title": "Chapter 10. Multiplicity and Shrinkage"
+   },
+   {
+    "first_page": "235",
+    "key": "11",
+    "last_page": "262",
+    "pages": 28,
+    "title": "Chapter 11. Interim Looks and the Three Deviation Scales"
+   },
+   {
+    "first_page": "263",
+    "key": "12",
+    "last_page": "282",
+    "pages": 20,
+    "title": "Chapter 12. Anytime-Valid Inference and E-values"
+   },
+   {
+    "first_page": "283",
+    "key": "13",
+    "last_page": "296",
+    "pages": 14,
+    "title": "Chapter 13. Safety Signals and Safety Monitoring"
+   },
+   {
+    "first_page": "299",
+    "key": "14",
+    "last_page": "322",
+    "pages": 24,
+    "title": "Chapter 14. Operating Characteristics by Simulation"
+   },
+   {
+    "first_page": "323",
+    "key": "15",
+    "last_page": "350",
+    "pages": 28,
+    "title": "Chapter 15. Predictive Probability, Interim Monitoring, and Stopping"
+   },
+   {
+    "first_page": "351",
+    "key": "16",
+    "last_page": "378",
+    "pages": 28,
+    "title": "Chapter 16. Response-Adaptive Randomization and Bandits"
+   },
+   {
+    "first_page": "379",
+    "key": "17",
+    "last_page": "400",
+    "pages": 22,
+    "title": "Chapter 17. Dose Finding and Dose Optimization"
+   },
+   {
+    "first_page": "401",
+    "key": "18",
+    "last_page": "412",
+    "pages": 12,
+    "title": "Chapter 18. Time-to-Event Endpoints"
+   },
+   {
+    "first_page": "413",
+    "key": "19",
+    "last_page": "440",
+    "pages": 28,
+    "title": "Chapter 19. Borrowing Information"
+   },
+   {
+    "first_page": "441",
+    "key": "20",
+    "last_page": "464",
+    "pages": 24,
+    "title": "Chapter 20. Master Protocols and Platform Trials"
+   },
+   {
+    "first_page": "467",
+    "key": "21",
+    "last_page": "492",
+    "pages": 26,
+    "title": "Chapter 21. Case Studies: Cardiovascular, Alzheimer's and Vaccine Trials"
+   },
+   {
+    "first_page": "493",
+    "key": "22",
+    "last_page": "504",
+    "pages": 12,
+    "title": "Chapter 22. Bayesian Reanalyses of Landmark Trials"
+   },
+   {
+    "first_page": "505",
+    "key": "23",
+    "last_page": "526",
+    "pages": 22,
+    "title": "Chapter 23. Writing the Bayesian Protocol and Working With Regulators"
+   },
+   {
+    "first_page": "527",
+    "key": "",
+    "last_page": "566",
+    "pages": 40,
+    "title": "References"
+   },
+   {
+    "first_page": "567",
+    "key": "A",
+    "last_page": "572",
+    "pages": 6,
+    "title": "Appendix A. Notation"
+   },
+   {
+    "first_page": "573",
+    "key": "B",
+    "last_page": "578",
+    "pages": 6,
+    "title": "Appendix B. Regulatory Documents and Programs"
+   },
+   {
+    "first_page": "579",
+    "key": "C",
+    "last_page": "584",
+    "pages": 6,
+    "title": "Appendix C. Software and Code"
+   }
+  ],
+  "sha256": "c9030e1fca62df1edef50cde276464baa501b7cf3dc095e84213e26567a882b1"
+ },
+ "results": {
+  "backward_induction_states": {
+   "environment": "res",
+   "file": "13-predictive.qmd",
+   "fingerprint": "91681c01968e",
+   "label": "res-backward-induction-states",
+   "number": "15.6.2",
+   "page": "338",
+   "printed": "Section 15.6.2",
+   "verified_fingerprint": "91681c01968e",
+   "verified_on": "2026-11-10"
+  },
+  "bayes_bar_crossing_46": {
+   "environment": "res",
+   "file": "06-evidence.qmd",
+   "fingerprint": "8df88c0e5d8e",
+   "label": "res-bayes-bar-crossing",
+   "number": "7.5.1",
+   "page": "144",
+   "printed": "Section 7.5.1",
+   "verified_fingerprint": "8df88c0e5d8e",
+   "verified_on": "2026-11-10"
+  },
+  "bnt162b2_beta_binomial_reproduction": {
+   "environment": "res",
+   "file": "05-bayes.qmd",
+   "fingerprint": "104bec12ccf3",
+   "label": "res-bnt162b2-reproduction",
+   "number": "6.12.1",
+   "page": "132",
+   "printed": "Section 6.12.1",
+   "verified_fingerprint": "104bec12ccf3",
+   "verified_on": "2026-11-10"
+  },
+  "evidence_tolls_three_scales": {
+   "environment": "res",
+   "file": "10-sequential.qmd",
+   "fingerprint": "b1988753a6ab",
+   "label": "res-evidence-tolls",
+   "number": "11.9.2",
+   "page": "249",
+   "printed": "Section 11.9.2",
+   "verified_fingerprint": "b1988753a6ab",
+   "verified_on": "2026-11-10"
+  },
+  "moderate_deviation_sample_size": {
+   "environment": "res",
+   "file": "08-power.qmd",
+   "fingerprint": "c46c42adaaba",
+   "label": "res-md-sample-size",
+   "number": "9.3.2",
+   "page": "198",
+   "printed": "Section 9.3.2",
+   "verified_fingerprint": "c46c42adaaba",
+   "verified_on": "2026-11-10"
+  },
+  "moderate_deviation_select_comparison": {
+   "environment": "res",
+   "file": "08-power.qmd",
+   "fingerprint": "4ffbb2e560e8",
+   "label": "res-md-select-prediction",
+   "number": "9.3.6",
+   "page": "203",
+   "printed": "Section 9.3.6",
+   "verified_fingerprint": "4ffbb2e560e8",
+   "verified_on": "2026-11-10"
+  },
+  "null_maximum_calibration": {
+   "environment": "res",
+   "file": "12-simulation.qmd",
+   "fingerprint": "c95a4a5edb6f",
+   "label": "res-null-max-calibration",
+   "number": "14.4.1",
+   "page": "305",
+   "printed": "Section 14.4.1",
+   "verified_fingerprint": "c95a4a5edb6f",
+   "verified_on": "2026-11-10"
+  },
+  "select_reconstruction_medians": {
+   "environment": "res",
+   "file": "18-cases.qmd",
+   "fingerprint": "8281db0e9af9",
+   "label": "res-select-reconstruction",
+   "number": "21.1.2",
+   "page": "472",
+   "printed": "Section 21.1.2",
+   "verified_fingerprint": "8281db0e9af9",
+   "verified_on": "2026-11-10"
+  },
+  "shared_control_false_positive_counts": {
+   "environment": "res",
+   "file": "17-platform.qmd",
+   "fingerprint": "b53a66b6318d",
+   "label": "res-shared-control-counts",
+   "number": "20.4.1",
+   "page": "448",
+   "printed": "Section 20.4.1",
+   "verified_fingerprint": "b53a66b6318d",
+   "verified_on": "2026-11-10"
+  },
+  "surcharge_seventy_percent": {
+   "environment": "res",
+   "file": "10-sequential.qmd",
+   "fingerprint": "5fb18b34074c",
+   "label": "res-seventy-percent",
+   "number": "11.9.4",
+   "page": "252",
+   "printed": "Section 11.9.4",
+   "verified_fingerprint": "5fb18b34074c",
+   "verified_on": "2026-11-10"
+  },
+  "ulcer_bonferroni_vs_posterior": {
+   "environment": "res",
+   "file": "09-multiplicity.qmd",
+   "fingerprint": "b2e21c9d8e91",
+   "label": "res-ulcer-reading",
+   "number": "10.5.3",
+   "page": "228",
+   "printed": "Section 10.5.3",
+   "verified_fingerprint": "b2e21c9d8e91",
+   "verified_on": "2026-11-10"
+  },
+  "utility_only_rule_null_declaration": {
+   "environment": "res",
+   "file": "13-predictive.qmd",
+   "fingerprint": "0549c0530468",
+   "label": "res-utility-only-null",
+   "number": "15.6.3",
+   "page": "341",
+   "printed": "Section 15.6.3",
+   "verified_fingerprint": "0549c0530468",
+   "verified_on": "2026-11-10"
+  }
+ },
+ "updated": "2026-11-10",
+ "zenodo": {
+  "draft": {
+   "doi": "10.5281/zenodo.24122876",
+   "html": "https://zenodo.org/deposit/24122876",
+   "id": 24122876,
+   "reserved_on": "2026-11-10",
+   "version": "1.0.0"
+  }
+ }
+}

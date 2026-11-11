@@ -1,0 +1,80 @@
+# Regulatory Documents and Programs {#sec-documents}
+
+This appendix lists, in one place, each regulatory document and program the book relies on. Status is as of November 2026. A draft guidance is not binding: it proposes recommendations that may change before they are finalized, and it does not represent finalized agency thinking. Final FDA guidances also generally contain nonbinding recommendations. Dates are those printed on the document. Where this book has not confirmed an official address, the entry says "URL: see issuer website". @sec-regulatory is the map that explains how the documents fit together; the cross-references below say where each is used.
+
+## Documents
+
+**FDA, Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products.** Draft guidance, January 2026. URL: <https://www.fda.gov/media/190505/download>. It sets out when Bayesian primary inference is acceptable, how priors and borrowing should be justified, and how success criteria such as $\Pr(\delta > a \mid \text{data}) > c$ may be calibrated to a type I error target or justified on other grounds. It expects a simulation report of operating characteristics. Used in @sec-decision to @sec-testing, @sec-bayes to @sec-power, @sec-evalues, @sec-simulation, @sec-dose to @sec-protocol.
+
+**ICH E20, Adaptive Designs for Clinical Trials.** Step 2 draft, endorsed 25 June 2025. URL: <https://www.fda.gov/media/188961/download> (FDA-hosted). It gives principles for confirmatory adaptive designs: pre-specification, control of the type I error rate, reliable estimation, and simulation to show operating characteristics. Not final. Used in @sec-regulatory, @sec-bayes, @sec-priors, @sec-evalues, @sec-simulation, @sec-protocol (cited by key; @sec-sequential, @sec-predictive and @sec-rar discuss it in text).
+
+**FDA, Adaptive Designs for Clinical Trials of Drugs and Biologics.** Final guidance, November 2019. URL: <https://www.fda.gov/media/78495/download>. It states principles for adaptive designs and says that simulation may be needed to estimate error rates when analytic methods are unavailable. It also covers confidentiality of interim data. Used in @sec-decision, @sec-regulatory, @sec-evalues, @sec-simulation, @sec-dose, @sec-platform, @sec-cases, @sec-protocol.
+
+**FDA, Master Protocols for Drug and Biological Product Development.** Revised draft guidance, June 2026 (it replaces the draft of December 2023). URL: <https://www.fda.gov/media/174976/download>. It covers umbrella, basket and platform protocols, including shared controls and the handling of multiplicity across substudies. Used in @sec-regulatory, @sec-platform.
+
+**FDA, Demonstrating Substantial Evidence of Effectiveness for Human Drug and Biological Products.** Revised draft guidance, June 2026 (it revises the draft of December 2019). URL: <https://www.fda.gov/media/133660/download>. It explains how the statutory standard can be met, including with one adequate and well-controlled trial plus confirmatory evidence. Used in @sec-regulatory, @sec-cases, @sec-protocol.
+
+**ICH E8(R1), General Considerations for Clinical Studies.** Final (Step 4), 6 October 2021. URL: <https://database.ich.org/sites/default/files/E8-R1_Guideline_Step4_2021_1006.pdf>. It describes quality by design, the role of randomization and control groups, and states that adaptive designs are acceptable when prospectively planned. Used in @sec-decision, @sec-regulatory.
+
+**ICH E9, Statistical Principles for Clinical Trials.** Final (Step 4), 5 February 1998. URL: <https://database.ich.org/sites/default/files/E9_Guideline.pdf>. It covers randomization, blinding, the intention-to-treat principle, multiplicity and interim analysis. Used in @sec-decision to @sec-testing, @sec-bayes, @sec-power, @sec-multiplicity, @sec-cases, @sec-protocol.
+
+**ICH E9(R1), Addendum on Estimands and Sensitivity Analysis.** Final (Step 4), 20 November 2019. URL: <https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf>. It introduces the estimand framework and intercurrent events. Used in @sec-decision, @sec-regulatory, @sec-power, @sec-protocol.
+
+**ICH M15, General Principles for Model-Informed Drug Development.** Final (Step 4), endorsed January 2026; the FDA edition is dated June 2026. URL: <https://www.fda.gov/media/184747/download>. It sets general principles for planning, documenting and assessing model-informed evidence. Used in @sec-regulatory, @sec-dose, @sec-protocol.
+
+**FDA, Considerations for the Use of Artificial Intelligence to Support Regulatory Decision-Making for Drug and Biological Products.** Draft guidance, January 2025. URL: <https://www.fda.gov/media/184830/download>. It proposes a risk-based framework for credibility of AI models used in regulatory submissions. Used in @sec-regulatory.
+
+**FDA, General Considerations for the Use of New Approach Methodologies in Drug Development.** Draft guidance, March 2026. URL: <https://www.fda.gov/media/191589/download>. It gives general considerations for non-animal and other new methods in drug development. Used in @sec-regulatory.
+
+**FDA, Formal Meetings Between the FDA and Sponsors or Applicants of PDUFA Products.** Final procedural guidance, August 2026 (it withdraws the December 2017 guidance and a June 2018 guidance). URL: <https://www.fda.gov/media/172311/download>. It describes meeting types (A, B, C and others) and how to request them. Used in @sec-regulatory, @sec-protocol.
+
+**ICH E10, Choice of Control Group and Related Issues in Clinical Trials.** Final (Step 4), 20 July 2000. URL: <https://database.ich.org/sites/default/files/E10_Guideline.pdf>. It describes the types of control and when each is suitable, including the limits of external controls. Used in @sec-borrowing (@sec-randomization does not cite it by key).
+
+**ICH E11A, Pediatric Extrapolation.** Final (Step 4), adopted 21 August 2024. URL: <https://database.ich.org/sites/default/files/ICH_E11A_Guideline_Step4_2024_0821.pdf>. It sets out how evidence from adults or other sources may be extended to children, including the use of Bayesian methods. Used in @sec-regulatory, @sec-borrowing.
+
+**ICH E4, Dose-Response Information to Support Drug Registration.** Final (Step 4), 10 March 1994. URL: <https://database.ich.org/sites/default/files/E4_Guideline.pdf>. It describes how dose-response data should be obtained and used. Used in @sec-dose.
+
+**FDA, Multiple Endpoints in Clinical Trials.** Final guidance, October 2022. URL: <https://www.fda.gov/media/162416/download>. It sets out strategies for controlling the familywise error rate with several endpoints. Used in @sec-regulatory, @sec-multiplicity.
+
+**FDA, Optimizing the Dosage of Human Prescription Drugs and Biological Products for the Treatment of Oncologic Diseases.** Final guidance, August 2024. URL: <https://www.fda.gov/regulatory-information/search-fda-guidance-documents/optimizing-dosage-human-prescription-drugs-and-biological-products-treatment-oncologic-diseases>. It recommends comparing multiple doses before pivotal trials rather than relying on the maximum tolerated dose. Used in @sec-regulatory, @sec-dose. Background on the initiative: <https://www.fda.gov/about-fda/oncology-center-excellence/project-optimus>.
+
+**FDA, Establishment and Operation of Clinical Trial Data Monitoring Committees.** Final guidance, March 2006; a draft revision, Use of Data Monitoring Committees in Clinical Trials, was issued in February 2024. URL: <https://www.fda.gov/media/75398/download> (2006 text). It describes when a DMC is needed, its independence and the confidentiality of interim data. Used in @sec-regulatory, @sec-protocol.
+
+**FDA, Considerations for the Design and Conduct of Externally Controlled Trials for Drug and Biological Products.** Draft guidance, February 2023. URL: <https://www.fda.gov/regulatory-information/search-fda-guidance-documents/considerations-design-and-conduct-externally-controlled-trials-drug-and-biological-products>. It gives recommendations on external control arms built from real-world or earlier trial data. Used in @sec-regulatory, @sec-borrowing.
+
+**FDA, Guidance for the Use of Bayesian Statistics in Medical Device Clinical Trials.** Final guidance, February 2010. URL: <https://www.fda.gov/media/71512/download>. It is the long-standing precedent for Bayesian primary analysis in device trials, covering priors, borrowing and simulation of error rates. Used in @sec-regulatory, @sec-priors, @sec-borrowing.
+
+**EC, EMA and HMA, Complex Clinical Trials: Questions and Answers.** Final, EMA/298712/2022, version of 23 May 2022, published June 2022. URL: <https://health.ec.europa.eu/system/files/2022-06/medicinal_qa_complex_clinical-trials_en.pdf>. It addresses the authorization and conduct of trials with complex designs in the European Union. Used in @sec-regulatory, @sec-platform, @sec-protocol.
+
+**EMA, Reflection Paper on Methodological Aspects in Confirmatory Platform Trials.** Draft, EMA/217509/2026, public consultation 19 October 2026 to 31 January 2027. URL: <https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-methodological-aspects-confirmatory-platform-trials_en.pdf>. It covers pre-specification, randomization, controls including non-concurrent controls, type I error control and estimands for platform trials. Used in @sec-regulatory, @sec-platform, @sec-protocol.
+
+**MHRA, Draft Guideline on the Use of External Control Arms Based on Real-World Data to Support Regulatory Decisions.** Draft, 2025. URL: <https://www.gov.uk/government/consultations/mhra-draft-guideline-on-the-use-of-external-control-arms-based-on-real-world-data-to-support-regulatory-decisions>. It states the United Kingdom regulator's expectations for external control arms. Used in @sec-regulatory, @sec-borrowing.
+
+**FDA, Diabetes Mellitus: Evaluating Cardiovascular Risk in New Antidiabetic Therapies to Treat Type 2 Diabetes.** Final guidance, December 2008; withdrawn in March 2020 and replaced by the draft guidance "Type 2 Diabetes Mellitus: Evaluating the Safety of New Drugs for Improving Glycemic Control" (March 2020, draft; Federal Register 10 March 2020, <https://www.govinfo.gov/content/pkg/FR-2020-03-10/html/2020-04877.htm>). URL: <https://www.federalregister.gov/documents/2008/12/19/E8-30086/guidance-for-industry-on-diabetes-mellitus-evaluating-cardiovascular-risk-in-new-antidiabetic> (Federal Register availability notice). It asks sponsors to show that the upper bound of the 95 percent confidence interval for the cardiovascular risk ratio lies below 1.8 (and, where it lies between 1.3 and 1.8, to show it below 1.3 after approval). This is why cardiovascular outcomes trials such as REWIND are large. Used in @sec-cases.
+
+**FDA, Special Protocol Assessment.** Guidance for industry, April 2018 (Revision 1). URL: <https://www.fda.gov/regulatory-information/search-fda-guidance-documents/special-protocol-assessment-guidance-industry>. It describes the written agreement between FDA and a sponsor on the design, endpoints and statistical analysis of certain phase 3 protocols, and when FDA may change its position. Used in @sec-protocol.
+
+**ICH M11, Clinical Electronic Structured Harmonised Protocol (CeSHarP).** Final (Step 4), November 2025. URL: <https://database.ich.org/sites/default/files/ICH_Step4_M11_Final_Guideline_2025_1119.pdf>. It gives a harmonized protocol template and a technical specification so that protocols present the same information in the same place. Used in @sec-protocol.
+
+## Products and trials named in FDA's January 2026 Bayesian draft guidance {#sec-documents-named}
+
+Section III of the January 2026 draft guidance (printed pages 3 to 5) lists situations where Bayesian methods have been used and names the following products and trials. This list is of what the draft names, not an assessment of each case. Where the book has read a primary FDA document on a case, that source is given.
+
+- **REBYOTA (RBX2660), phase 3 trial.** Borrowing from a previous phase 2 placebo-controlled study of the same product (Section III.A). The draft says the Bayesian analysis supported effectiveness and that REBYOTA was approved in 2022. The FDA briefing document for the advisory committee meeting of 22 September 2022 describes the hierarchical model with dynamic borrowing and its two success thresholds [@fda_rebyota_briefing_2022].
+- **GBM AGILE (NCT03970447) and Precision Promise (NCT04229004).** Oncology platform trials that augment the concurrent control with external or nonconcurrent control data, using Bayesian models for temporal shifts (Section III.B).
+- **A pediatric multiple sclerosis non-inferiority study** run through the CID program, with a prespecified Bayesian analysis that borrows historical active-comparator data (Section III.B, revisited in Section V). It is described in an FDA CID case study (<https://www.fda.gov/media/172313/download>).
+- **Empagliflozin and linagliptin in pediatric type 2 diabetes.** Supportive Bayesian analyses in supplements, with borrowing from adult data (Section III.C).
+- **An epilepsy trial in epilepsy with myoclonic-atonic seizures (EMAS)**, proposed through the CID program, with a Bayesian hierarchical model that borrows from trials in other epilepsy types (Section III.D; CID case study <https://www.fda.gov/media/172312/download>).
+- **Liraglutide, LEADER trial.** A Bayesian hierarchical model for regional effects, and Bayesian hierarchical subgroup analyses in FDA Drug Trials Snapshots, with the Rinvoq snapshot as the example (Section III.E).
+
+Oncology dose finding is discussed in Section III.F by method (CRM, BLRM, BOIN, mTPI) without a named product. Belimumab (Benlysta) in pediatric lupus is not named in the draft, but FDA's own case study on that approval shows a post hoc Bayesian analysis with a robust mixture prior borrowed from adult trials [@fda_belimumab_leader_2025], and it is used in @sec-borrowing as a related example.
+
+## FDA programs
+
+**Complex Innovative Trial Design (CID) Meeting Program.** Active, a PDUFA commitment. URL: <https://www.fda.gov/drugs/development-resources/complex-innovative-trial-design-meeting-program>. It offers sponsors additional meetings with FDA on novel designs, including Bayesian and simulation-heavy ones. The final guidance Interacting with the FDA on Complex Innovative Trial Designs (December 2020) describes the process. Used in @sec-regulatory, @sec-simulation, @sec-protocol.
+
+**Model-Informed Drug Development (MIDD) Paired Meeting Program.** Active. URL: <https://www.fda.gov/drugs/development-resources/model-informed-drug-development-paired-meeting-program>. It offers paired meetings on modeling and simulation approaches for a specific development program. Used in @sec-regulatory, @sec-protocol.
+
+**Critical Path Innovation Meetings (CPIM).** Active. URL: <https://www.fda.gov/drugs/novel-drug-approvals-fda/critical-path-innovation-meetings-cpim>. These are nonbinding, product-independent discussions of methods and technologies. Used in @sec-regulatory, @sec-protocol.
+
+**Drug Development Tool (DDT) Qualification Programs.** Active. URL: <https://www.fda.gov/drugs/development-approval-process-drugs/drug-development-tool-ddt-qualification-programs>. They qualify a tool for a stated context of use that can then be used across development programs. Used in @sec-regulatory.

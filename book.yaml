@@ -1,0 +1,162 @@
+# book.yaml: the facts about the book, kept in one place.
+# bookrepo.py generates RESULTS.md, CITATION.cff, the README block and the summary blocks from this file and results.yaml.
+# The books website reads it too. Guide: references/repository.md of the book-writing skill.
+
+slug: bayesian_clinical_trials_v1                    # lowercase letters, digits and underscores; also the name of the book's page on the site
+title: "Bayesian Clinical Trials and Personalized Medicine"
+subtitle: "Volume I: Bayesian Clinical Trials"
+authors:
+  - given: "Alexandra"
+    family: "Sokolova"
+    orcid: ""
+    affiliation: "Oregon Health & Science University"
+  - given: "Vadim"
+    family: "Sokolov"
+    orcid: "0000-0002-6618-2965"
+    affiliation: "Department of Systems Engineering and Operations Research, George Mason University"
+  - given: "Nicholas G."
+    family: "Polson"
+    orcid: ""
+    affiliation: "Booth School of Business, University of Chicago"
+credit_names: "Sokolova, Sokolov and Polson"                 # how a citation names the authors, e.g. "Polson and Sokolov"; empty: built from the family names
+year: 2026
+edition: "1"
+version: "1.0.0"                 # the release tag is v<version>
+date_released: "2026-11-10"                # YYYY-MM-DD, set at release
+publisher: "Independently published"                    # "Independently published" (the imprint KDP shows for a free KDP ISBN)
+# no isbn: a free KDP ISBN may be used only on KDP, so it goes on the ISBN line of kdp.md (private) and is not printed in
+# the PDF unless kdp.md says "ISBN on the copyright page: yes" (kdp.py interior); this file is published (references/publishing.md)
+doi: "10.5281/zenodo.24122876" # this edition's DOI; zenodo.py reserve writes it before the final build
+license_text: CC-BY-4.0          # text, figures and PDF
+license_code: MIT
+repository: https://github.com/VadimSokolov/bayesian_clinical_trials_v1   # the public repository; its name is the slug
+site_page: https://vsokolov.org/books/bayesian_clinical_trials_v1/    # the book page on the website; its PDF link is the GitHub release asset
+language: en
+print_url: ""                    # where to buy the printed book (optional)
+html_url: "https://vsokolov.org/bayesian_clinical_trials_v1/"                     # Quarto books only: where the HTML edition (the book as a website) is served, https://vsokolov.org/<repository>/
+cover_image: pdf/cover.jpg                  # front cover image (PNG or JPEG, about 1600 px tall) in the repository, e.g. pdf/cover.png
+pdf: pdf/bayesian_clinical_trials_v1.pdf              # the released PDF; bookrepo.py pdf copies the build here
+keywords: ["Bayesian clinical trials", "adaptive trial design", "group sequential design", "interim monitoring", "type I error calibration", "FDA Bayesian guidance", "multiplicity and shrinkage", "informative priors", "e-values", "operating characteristics simulation", "biostatistics", "R package"]                     # 5 to 12 search terms
+short_description: "Volume I of a two volume series. Bayesian clinical trials built up from the traditional trial and tied to regulation: calibration, monitoring, safety, borrowing, adaptive designs, and reanalyses of landmark trials, with an R package and an online lab."
+description: |
+  This book is for the people who run clinical trials: investigators, physicians, biostatisticians at sponsors and contract research organizations, data monitoring committee members, and regulatory reviewers. It assumes an introductory statistics course and nothing more.
+
+  The book starts from the traditional trial, with a fixed sample size, equal randomization, alpha spending for interim looks, and a p value and confidence interval in the study report. It then shows the Bayesian version of the same decision on the same numbers, and says plainly where the traditional design is the better choice. Regulation is the spine: each chapter names the statute, regulation or guidance that governs its topic, with its status and date.
+
+  Our main claim is that a Bayesian adaptive design reaches the regulatory standard of evidence sooner without lowering the bar. Against a single unadjusted look the Bayesian bar is never lower without an informative prior. The saving comes from monitoring, from the handling of multiple arms, and from prior information, and we price each one with calibrated rules and simulated operating characteristics.
+
+  We test this on real trials. In our reconstruction of the semaglutide trial SELECT, simulated at a true hazard ratio of 0.80, a calibrated Bayesian rule stops at a median of 486 events over all simulated trials (464 among those that declare efficacy), against 817 for SELECT's planned design (one interim analysis with Lan-DeMets spending, then the final), with power of 95 per cent against 97 per cent; an anytime valid evidence rule is slower and less powerful. The reconstruction is ours, not the sponsor's, and the savings it implies are modeled counterfactuals. A scheduled design can win when the effect is modest, as the dulaglutide trial REWIND shows.
+
+  Beyond design and monitoring, the book follows a drug from first in human to postmarketing, covers safety signals (rofecoxib, the gamma Poisson shrinker, toxicity stopping rules), time to event endpoints, noninferiority, and Bayesian reanalyses of GUSTO, EOLIA, ANDROMEDA SHOCK and RECOVERY. Volume II of the series turns to personalized medicine.
+
+  Every number comes from the companion R package bayestrials (https://github.com/VadimSokolov/bayestrials), and an interactive lab at https://nytel.ai/testing/ lets readers run the trials themselves.
+source:
+  format: quarto
+  dir: .
+  main: index.qmd
+  aux: index.aux       # kept by the PDF build when _quarto.yml sets latex-clean: false
+  toc: index.toc
+  pdf: _book/Bayesian-Clinical-Trials-and-Personalized-Medicine.pdf  # the built PDF; its name follows the book title or output-file
+  meta: bookmeta.yml   # generated: book-doi, book-version ...; list it under metadata-files in _quarto.yml
+macros: ""                       # the file that defines the book's macros, e.g. source/main.tex
+code_dir: ""             # empty if the book has no code
+environments: {res: Section}                 # printed names that \newtheorem does not declare, e.g. {thm: Theorem}
+related_papers:
+  - key: polson2026bayesstandard
+    citation: "Polson and Sokolov (2026), Bayesian versus Standard Clinical Trial Design: Theory, Evidence, and Protocol, working paper"
+    url: ""
+  - key: polson2026simbayes
+    citation: "Polson and Sokolov (2026), Bayesian Adaptive Clinical Trials: Priors, Thompson Sampling, Predictive Stopping and Backward Induction, manuscript submitted to Statistics in Medicine"
+    url: ""
+  - key: polson2026evaluesbayesrisk
+    citation: "Polson and Sokolov (2026), Sequential and Large-Scale Decision-Making in Clinical Trials: E-Values versus Bayes Risk, working paper"
+    url: ""
+  - key: polson2026evaluesmdp
+    citation: "Polson and Sokolov (2026), E-Values on the Moderate Deviation Scale, working paper"
+    url: ""
+  - key: sokolova2026bayesian
+    citation: "Sokolova, Sokolov and Polson (2026), Some Bayesian Perspectives on Clinical Trials, arXiv:2602.09208"
+    url: https://arxiv.org/abs/2602.09208
+chapters:
+  - key: "1"
+    title: "A Trial Is a Decision"
+    stem: 01_a_trial_is_a_decision
+  - key: "2"
+    title: "The Life of a Drug: Phases I to IV"
+    stem: 02_the_life_of_a_drug_phases_i_to_iv
+  - key: "3"
+    title: "The Regulatory Framework"
+    stem: 03_the_regulatory_framework
+  - key: "4"
+    title: "Are They Different? Testing From the Ground Up"
+    stem: 04_are_they_different_testing_from_the_ground_up
+  - key: "5"
+    title: "Randomization From the Ground Up"
+    stem: 05_randomization_from_the_ground_up
+  - key: "6"
+    title: "Prior, Likelihood, Posterior"
+    stem: 06_prior_likelihood_posterior
+  - key: "7"
+    title: "Weighing Evidence: p-values, Bayes Factors, and Posterior Probabilities"
+    stem: 07_weighing_evidence_p_values_bayes_factors_and_posterior
+  - key: "8"
+    title: "Choosing and Defending Priors"
+    stem: 08_choosing_and_defending_priors
+  - key: "9"
+    title: "Error Rates, Power, and Sample Size"
+    stem: 09_error_rates_power_and_sample_size
+  - key: "10"
+    title: "Multiplicity and Shrinkage"
+    stem: 10_multiplicity_and_shrinkage
+  - key: "11"
+    title: "Interim Looks and the Three Deviation Scales"
+    stem: 11_interim_looks_and_the_three_deviation_scales
+  - key: "12"
+    title: "Anytime-Valid Inference and E-values"
+    stem: 12_anytime_valid_inference_and_e_values
+  - key: "13"
+    title: "Safety Signals and Safety Monitoring"
+    stem: 13_safety_signals_and_safety_monitoring
+  - key: "14"
+    title: "Operating Characteristics by Simulation"
+    stem: 14_operating_characteristics_by_simulation
+  - key: "15"
+    title: "Predictive Probability, Interim Monitoring, and Stopping"
+    stem: 15_predictive_probability_interim_monitoring_and_stopping
+  - key: "16"
+    title: "Response-Adaptive Randomization and Bandits"
+    stem: 16_response_adaptive_randomization_and_bandits
+  - key: "17"
+    title: "Dose Finding and Dose Optimization"
+    stem: 17_dose_finding_and_dose_optimization
+  - key: "18"
+    title: "Time-to-Event Endpoints"
+    stem: 18_time_to_event_endpoints
+  - key: "19"
+    title: "Borrowing Information"
+    stem: 19_borrowing_information
+  - key: "20"
+    title: "Master Protocols and Platform Trials"
+    stem: 20_master_protocols_and_platform_trials
+  - key: "21"
+    title: "Case Studies: Cardiovascular, Alzheimer's and Vaccine Trials"
+    stem: 21_case_studies_cardiovascular_alzheimers_and_vaccine_trials
+  - key: "22"
+    title: "Bayesian Reanalyses of Landmark Trials"
+    stem: 22_bayesian_reanalyses_of_landmark_trials
+  - key: "23"
+    title: "Writing the Bayesian Protocol and Working With Regulators"
+    stem: 23_writing_the_bayesian_protocol_and_working_with_regulators
+  - key: "A"
+    title: "Notation"
+    stem: A_notation
+  - key: "B"
+    title: "Regulatory Documents and Programs"
+    stem: B_regulatory_documents_and_programs
+  - key: "C"
+    title: "Software and Code"
+    stem: C_software_and_code
+style:
+  forbid: ["—", "–"]             # characters that may not appear in published text
+  no_hyphenated_words: true
+  allow_hyphenated: [p-value, p-values, e-value, e-values, O'Brien-Fleming, Lan-DeMets, I-SPY, REMAP-CAP, Brien-Fleming, Anytime-Valid, E-values, Response-Adaptive, TRAILBLAZER-ALZ, Time-to-Event]           # words that keep their hyphen, e.g. names

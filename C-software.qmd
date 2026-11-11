@@ -1,0 +1,95 @@
+# Software and Code {#sec-software}
+
+All numerical results in the book are produced by R code that the reader can run. Nearly all of the computation lives in a companion R package, `bayestrials`, and the chapters call it in short chunks and draw the figures with ggplot2. This appendix describes how to install the package, how it is organized, a worked example, how to reproduce the results, the companion online lab, and the established software that practitioners use for trial design.
+
+## Installation {#sec-software-env}
+
+The book was built with R 4.5.2. The package declares R 4.1 as its minimum version; it is version 0.1.0, it exports `r length(getNamespaceExports("bayestrials"))` functions, it passes `R CMD check`, and its tests run under testthat. The source is in the `bayestrials/` directory of the book repository. From a clone of the repository it installs with
+
+```bash
+R CMD INSTALL bayestrials
+```
+
+or, directly from its GitHub repository (<https://github.com/VadimSokolov/bayestrials>), with the line below.
+
+```r
+remotes::install_github("VadimSokolov/bayestrials")
+```
+
+The chapters also use ggplot2 for figures, and the package imports only `stats` and `parallel`, with `mvtnorm` and the other packages it can use listed under Suggests. Quarto renders the book through knitr, and each chapter begins with a hidden setup chunk that loads `bayestrials` and `ggplot2`.
+
+## How the package is organized {#sec-software-layout}
+
+Functions are named in snake_case, and the prefix tells the reader which part of the book the function belongs to. Arguments follow one convention throughout (see @sec-notation-args): `alpha` is the one-sided type I error, `theta` an effect, `p0` and `p1` response rates, `n` a number of patients or events, `nsim` the number of simulated trials, and `seed` an optional random seed. Functions return numbers, named vectors, data frames or named lists. They never print or plot.
+
+| Family | What it does | Where used |
+|---|---|---|
+| Core posterior and `gs_` | Beta-binomial and normal posteriors (`beta_post`, `prob_superior`, `normal_update`), effective sample size (`ess_beta`, `ess_normal`), group sequential boundaries and crossing probabilities (`gs_boundary`, `gs_spending_boundary`, `gs_crossing_prob`, `gs_tolls`) | @sec-bayes, @sec-priors, @sec-sequential |
+| Basics and `assign_` | Permutation test, binary z test, simple, block, stratified and minimization randomization (`assign_*`), covariate imbalance, small simulations of two-arm trials | @sec-testing, @sec-randomization |
+| Evidence | Bayes factors, minimum Bayes factor, false positive risk, the Bayesian bar | @sec-evidence |
+| `n_` and power | Sample size for binary, continuous and time-to-event endpoints (`n_fixed`, `n_binary`, `n_continuous`, `n_md`), power, assurance, number of events | @sec-power |
+| `oc_` | Simulation of Bayesian designs with interim looks, calibration of the threshold to a type I error target, operating characteristics tables (`oc_simulate`, `oc_calibrate`, `oc_summarize`) | @sec-simulation |
+| `pp_` | Predictive probability of success, conditional power, backward induction | @sec-predictive |
+| `rar_` | Response-adaptive randomization, Thompson sampling, allocation probabilities | @sec-rar |
+| `dose_` | 3+3, CRM, BOIN, isotonic regression, dose-finding simulation | @sec-dose |
+| `borrow_` | Power priors, meta-analytic-predictive and robust priors, basket posteriors, borrowing decision tables | @sec-borrowing |
+| `platform_` | Shared control, correlation between arms, false positive counts, time trends | @sec-platform |
+| `mult_` and `shrink_` | Bonferroni, Holm, Hochberg and graphical procedures, empirical Bayes shrinkage and posterior probabilities | @sec-multiplicity |
+| `ev_` | E-values, test martingales, mixtures, betting paths | @sec-evalues |
+| `select_` | The reconstruction of the SELECT trial: log Bayes factor, look table, event timing, simulation | @sec-cases |
+
+: Function families of `bayestrials`. {#tbl-software-families}
+
+The package also contains four datasets: `ulcer` (the four-operation ulcer trial of @sec-multiplicity), `select_design` (the design of the SELECT trial, @sec-cases), `ctgov_counts` and `ctgov_bayesian_records` (counts and records of registered trials that mention Bayesian methods, retrieved from ClinicalTrials.gov). Each function has a help page with an example that runs in under a second, and the files `bayestrials/data-raw/map-*.md` map the book's earlier Python functions to their R replacements.
+
+## A worked example {#sec-software-example}
+
+The example calibrates a two-arm Bayesian design with three looks, at 100, 200 and 300 patients per arm and a control response rate of 0.30. The success rule is that the posterior probability of superiority exceeds a threshold $c$ at any look. `oc_calibrate` chooses the smallest $c$ that keeps the type I error at 0.025 under the null, and then the same threshold is applied to the alternative of a response rate of 0.45.
+
+```{r}
+#| label: code-software-example
+#| echo: true
+library(bayestrials)
+looks <- c(100, 200, 300)
+sim0 <- oc_simulate(p0 = 0.3, p1 = 0.3,  looks = looks, nsim = 20000, seed = 1)
+c_star <- oc_calibrate(sim0, alpha = 0.025)
+sim0v <- oc_simulate(p0 = 0.3, p1 = 0.3,  looks = looks, nsim = 20000, seed = 3)
+sim1 <- oc_simulate(p0 = 0.3, p1 = 0.45, looks = looks, nsim = 20000, seed = 2)
+oc0 <- oc_summarize(sim0, c_star); oc0v <- oc_summarize(sim0v, c_star); oc1 <- oc_summarize(sim1, c_star)
+```
+
+The script gives a calibrated threshold of $c =$ `r round(c_star, 3)`. The rejection proportion in the calibration run, `r round(oc0$reject, 4)`, is the calibration target and not an error assessment. On a fresh null run with another seed the type I error is `r round(oc0v$reject, 4)` and the expected total sample size is `r round(oc0v$EN)` (the maximum is `r 2 * max(looks)`). Under the alternative the power is `r round(oc1$reject, 3)` and the expected total sample size is `r round(oc1$EN)`, because the trial stops early at the first look that crosses the threshold. These numbers are Monte Carlo estimates from 20,000 trials; the seed makes them repeatable and a different seed gives values that differ in the third decimal place. A full validation would repeat the fresh null run across the prespecified nuisance grid. @sec-simulation explains how to report the Monte Carlo error.
+
+## Reproducibility {#sec-software-repro}
+
+Every simulation either calls `set.seed()` in the chunk or passes `seed =` to the package function, so the seed is visible next to the result. Functions draw random numbers from R's global generator after the seed is set, so a chunk is repeatable but its results depend on the order of the random calls inside it. Monte Carlo results are reported with their Monte Carlo error (@sec-simulation). Quarto's freeze mechanism (`freeze: auto` in `_quarto.yml`) stores the computed output of each chapter, so a rebuild reuses stored results unless the source of that chapter has changed, and the slow simulation chunks are also knitr-cached with the cache keyed to a checksum of the installed package. To regenerate a result after the package changes, reinstall it, delete the chapter's directory under `_freeze/` and its knitr cache directory, and render the chapter again. The R version and the installed package versions can be recorded with `sessionInfo()`, and the authors recommend that a reader who needs exact reproduction record them for their own protocol.
+
+## The companion lab {#sec-software-lab}
+
+An interactive tutorial accompanies the book at <https://nytel.ai/testing/>. It runs in the browser and has modules that match the chapters, where the reader predicts an outcome and then checks it. The Bayesian trial simulator at <https://nytel.ai/testing/14-simulator.html> lets the reader set a design (arms, prior, thresholds, interim looks) and see simulated operating characteristics, in the spirit of the simulation report discussed in @sec-simulation. The full open simulator at <https://nytel.ai/testing/14-studio.html> is a free tool in the style of commercial design software such as FACTS: it handles several doses, adaptive allocation, scenarios and operating characteristics tables, and is the place to explore a design before writing code. Chapters that have a matching module end with a "Try it in the lab" callout.
+
+## Established trial-design software {#sec-software-tools}
+
+The following tools are in wide use. The descriptions are brief and cover only the purpose of each tool; consult each tool's documentation for current features and versions. The R packages below are on CRAN, except bcrm, which CRAN archived on 8 May 2026. On the machine where the book was built, rpact 4.4.0, gsDesign 3.11.0, BOIN 2.7.2, brms 2.23.0 and rstan 2.32.7 were installed; the other tools were not checked.
+
+**rpact** (R package). Confirmatory adaptive design: group sequential designs, sample size reassessment and combination tests, with simulation.
+
+**gsDesign** (R package). Group sequential design, including spending functions and boundaries, and power and sample size calculation. A reader can compare its boundaries with `gs_boundary` and `gs_spending_boundary` (@sec-sequential).
+
+**RBesT** (R package). Bayesian evidence synthesis tools: construction of meta-analytic-predictive priors, robustification, and operating characteristics for designs that use historical data. Relevant to @sec-borrowing.
+
+**SampleSizeProportions and SampleSizeMeans** (R packages, by Joseph and Bélisle). Bayesian sample size criteria (ALC, ACC, WOC) for proportions and means. The lupus example of @sec-power-lupus uses SampleSizeProportions 1.1.3.
+
+**BOIN** (R package). Design and simulation of Bayesian optimal interval phase I dose-finding trials. Relevant to @sec-dose.
+
+**trialr** (R package). Bayesian clinical trial designs fitted with Stan, including dose-finding and phase II designs.
+
+**adaptr** (R package). Simulation of Bayesian adaptive multi-arm trials, with response-adaptive randomization, early stopping and calibration of the stopping rules, summarized as operating characteristics. It is the closest open R counterpart to the simulation part of `bayestrials` for multi-arm designs.
+
+**bcrm** (R package; archived on CRAN on 8 May 2026, so it no longer installs from CRAN by default). Bayesian continual reassessment method for dose finding. Relevant to @sec-dose.
+
+**Stan and brms.** Stan is a probabilistic programming language for Bayesian inference by Hamiltonian Monte Carlo. brms is an R package that fits multilevel models through Stan with a formula interface. Both are used to fit analysis models when conjugate formulas are not available.
+
+**FACTS** (Berry Consultants). Commercial software for designing and simulating Bayesian adaptive trials, including dose finding, response-adaptive randomization and platform designs. Simulation output of this kind is what regulators ask for in a CID meeting (@sec-regulatory).
+
+**East Horizon** (Cytel). Commercial software for the design, simulation and monitoring of fixed, group sequential and adaptive trials. It belongs to the same family as the East product line from the same company.

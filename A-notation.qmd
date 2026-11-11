@@ -1,0 +1,109 @@
+# Notation {#sec-notation}
+
+This appendix fixes the meaning of every symbol the book uses, defines the abbreviations, and gives short definitions of the key terms. Each symbol has one meaning throughout. Where a chapter needs a local symbol, it defines it on the spot and does not reuse one from this table.
+
+## Symbols {#sec-notation-symbols}
+
+| Symbol | Meaning |
+|---|---|
+| $\theta$ | Treatment effect (generic). For time-to-event outcomes $\theta = -\log \mathrm{HR}$, so that benefit is positive. |
+| $\delta$ | Treatment effect in the FDA draft's success criterion $\Pr(\delta > a \mid \text{data}) > c$. Used only when quoting that criterion; elsewhere the book writes $\theta$. |
+| $a$, $c$ | The minimum clinically relevant effect and the posterior probability threshold in that criterion. |
+| $b$ | Threshold on the Bayes factor (or on the e-value, $b = 1/\alpha$), distinct from the posterior probability threshold $c$. |
+| $p_j$ | Response probability in arm $j$. The index $j = 0$ is the control arm. |
+| $n$, $n_j$ | Sample size in patients or, for time-to-event outcomes, the number of events. $n_j$ is the size of arm $j$. |
+| $I$ | Fisher information per patient (or per event). The total information is $nI$. |
+| $Z_n$ | Standardized test statistic after $n$ observations. |
+| $y$, $y_{1:n}$, $Y$ | Observed data, the first $n$ observations, and the corresponding random variable. |
+| $\pi(\theta)$ | Prior density of $\theta$. |
+| $\pi(\theta \mid y)$ | Posterior density of $\theta$ given the data. |
+| $p(y \mid \theta)$ | Likelihood of the data, read as a function of $\theta$. |
+| $\pi_0$, $\pi_a$ | Prior probabilities of the null and of the alternative hypothesis. |
+| $\alpha$ | One-sided type I error rate, 0.025 unless stated otherwise. |
+| $\beta$ | Type II error rate. Power is $1-\beta$. |
+| $z_\alpha$ | Upper $\alpha$ quantile of the standard normal distribution. |
+| $\mathrm{BF}$, $\mathrm{BF}_{10}$ | Bayes factor, with $\mathrm{BF}_{10}$ in favor of the alternative over the null. |
+| $E_n$ | E-value, or test martingale, at stage $n$. |
+| $t$ | Information fraction in a group sequential design, the share of the planned information accrued so far. |
+| $\mathrm{Beta}(a,b)$ | Beta distribution with shape parameters $a$ and $b$, the conjugate prior for a response probability. Here $a$ is a shape parameter and not the threshold $a$ of the success criterion above. |
+| $\tau$ | Prior scale of the treatment effect: $\theta \sim N(0, \tau^2)$ in the SELECT reconstructions of Parts III to V, with $\tau = 0.25$. |
+| $\tau_b$ | Between-stratum or between-arm standard deviation in the shrinkage examples of @sec-cases-alz, @sec-reanalyses-recovery and @sec-platform. A local symbol, distinct from the prior scale $\tau$. |
+| $p^*$ | Posterior probability threshold for continuous monitoring, calibrated by simulation so that the type I error is 0.025 (about 0.995 in the SELECT reconstruction). |
+| $d$ | Number of events in a time-to-event trial. It plays the role of $n$, with total information $I_n = d/4$ for the log hazard ratio (per-event information 1/4) under one to one allocation. |
+| $S$ | Score statistic, $S = \theta I_n$ on the mean path, with $Z = S/\sqrt{I_n}$. |
+| $L_n$ | Ockham penalty of a normal prior of scale $\tau$, $L_n = \log(1 + I_n\tau^2)$; in the large-information approximation the Bayes-factor bar is $Z_n^2 \ge L_n + 2\log b$, with $Z_n > 0$ for a one-sided claim; the exact bar for the normal mixture multiplies the right side by $1 + 1/(I_n\tau^2)$ (@sec-evidence, @sec-sequential, @sec-evalues). |
+| $I_n$ | Total information after $n$ observations, $nI$. |
+| $N(\mu,\sigma^2)$ | Normal distribution with mean $\mu$ and variance $\sigma^2$. |
+| $X \sim F$ | $X$ is distributed as $F$. |
+| $\mid$ | Conditioning, as in $\pi(\theta \mid y)$. |
+| $\mathbb{E}$, $\mathbb{P}$ | Expectation and probability. The text says with respect to what: the prior, the posterior, or the sampling distribution. |
+
+## Notation and package arguments {#sec-notation-args}
+
+The companion package `bayestrials` (@sec-software) uses plain-text argument names. The table maps the book's symbols to them.
+
+| Symbol | Argument | Meaning in the package |
+|---|---|---|
+| $\alpha$ | `alpha` | One-sided type I error, default 0.025. |
+| $\theta$ | `theta` | Treatment effect; for time-to-event outcomes $\theta = -\log \mathrm{HR}$. |
+| $p_0$, $p_1$ | `p0`, `p1` | Response probabilities in the control and treatment arms. |
+| $n$ | `n` | Number of patients or events. In @sec-testing, $n$ is the per-arm sample size with $n_0 = n_1 = n$, an explicit exception to the notation $n_j$ for arm sizes used elsewhere. In `oc_simulate` the interim sample sizes are given per arm in `looks`. |
+| number of simulated trials | `nsim` | Number of Monte Carlo replications. |
+| random seed | `seed` | If not `NULL`, the function calls `set.seed(seed)` first. |
+| $a$ | `a` | Minimum clinically relevant effect in $\Pr(\delta > a \mid \text{data}) > c$. |
+
+: Book symbols and `bayestrials` arguments. {#tbl-notation-args}
+
+## Abbreviations {#sec-notation-abbrev}
+
+| Abbreviation | Meaning |
+|---|---|
+| BLA | Biologics License Application. |
+| BOIN | Bayesian optimal interval design for dose finding. |
+| CID | Complex innovative trial design. Also the name of the FDA paired meeting program for such designs. |
+| CPIM | Critical Path Innovation Meetings, an FDA program for nonbinding, product-independent discussion of methods. |
+| CRM | Continual reassessment method, a model-based dose-finding design. |
+| CSR | Clinical study report. |
+| DDT | Drug development tool, as in the FDA qualification programs. |
+| DMC | Data monitoring committee. |
+| EMA | European Medicines Agency. |
+| ESS | Effective sample size of a prior, the number of patients' worth of information it carries. |
+| FDA | United States Food and Drug Administration. |
+| FWER | Familywise error rate, the probability of at least one false positive among a family of hypotheses. |
+| HMA | Heads of Medicines Agencies. |
+| HR | Hazard ratio. |
+| ICH | International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use. |
+| IND | Investigational New Drug application. |
+| IRT | Interactive response technology, the system that randomizes patients and assigns drug supply. |
+| ITT | Intention to treat, analysis of all randomized patients in the arms to which they were assigned. |
+| MAMS | Multi-arm multi-stage design. |
+| MAP | Meta-analytic-predictive prior, built from historical trials. |
+| MHRA | Medicines and Healthcare products Regulatory Agency (United Kingdom). |
+| MIDD | Model-informed drug development. |
+| NDA | New Drug Application. |
+| OC | Operating characteristics of a design, such as type I error, power and expected sample size. |
+| PDUFA | Prescription Drug User Fee Act, the statute and commitment letters under which FDA programs such as CID are run. |
+| QALY | Quality-adjusted life year. |
+| RAR | Response-adaptive randomization. |
+| SAP | Statistical analysis plan. |
+| SPA | Special protocol assessment, an agreement with FDA on a protocol's design and analysis. |
+
+## Key terms {#sec-notation-terms}
+
+**Assurance.** The probability of trial success averaged over a prior for the true effect, as opposed to power, which is computed at one assumed effect (@sec-power).
+
+**Concurrent control.** Control patients randomized during the same period as the patients on a given experimental arm. Control patients enrolled before that arm joined a platform trial are non-concurrent (@sec-platform).
+
+**Effective sample size.** The number of patients whose data would carry the same information as the prior distribution (@sec-priors).
+
+**E-value.** A nonnegative statistic whose expectation under the null is at most one. A running product of nonnegative factors forms a test supermartingale when each factor has conditional expectation at most one given the preceding data under every null distribution, and then, by Ville's inequality, it allows valid decisions at any stopping time (@sec-evalues).
+
+**Estimand.** The precise description of the treatment effect to be estimated: the treatment condition, the population, the variable, how intercurrent events are handled, and the population-level summary (ICH E9(R1), @sec-randomization).
+
+**Intercurrent event.** An event after treatment starts that affects the interpretation or existence of the measurements, such as discontinuation, rescue medication or death.
+
+**Operating characteristics.** The frequentist behavior of a design under stated scenarios, usually by simulation: type I error, power, expected sample size, bias (@sec-simulation).
+
+**Predictive probability.** The probability, given the data so far, that a trial will meet its success criterion at the planned end, averaging over the unseen future data (@sec-predictive).
+
+**Posterior probability of benefit.** $\Pr(\delta > a \mid \text{data})$, the quantity compared with the threshold $c$ in the FDA Bayesian draft (@sec-evidence).

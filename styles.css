@@ -1,0 +1,2 @@
+/* No rule under section headings */
+h1, h2, .h1, .h2, #title-block-header h1 { border-bottom: none !important; padding-bottom: 0 !important; }

@@ -1,0 +1,254 @@
+# Time-to-Event Endpoints {#sec-survival}
+
+```{r}
+#| include: false
+library(bayestrials); library(ggplot2)
+```
+
+Most confirmatory trials in cardiology and oncology are event driven. The primary endpoint is the time to death, progression or a major adverse cardiovascular event, the analysis is a log-rank test or a Cox model, and the trial ends not at a fixed sample size but when a target number of events has accrued. SELECT and REWIND (@sec-cases) are both of this kind: SELECT planned 1,225 events and observed 1,270, REWIND observed 1,257. A trial of 17,604 patients is, statistically, a trial of about 1,270 events.
+
+The Bayesian treatment of these trials is simpler than its reputation. For the decisions that matter (whether to stop at an interim analysis, how confident to be in a hazard ratio, whether a promising interim justifies more events) almost everything follows from two facts: the information about a log hazard ratio is proportional to the number of events, and the information about a single hazard is a gamma posterior. The chapter starts with the traditional analysis (log-rank test, Cox model, Schoenfeld's event formula), then works through both facts with numbers, then turns to the case that breaks the first fact, non-proportional hazards.
+
+::: {.callout-important title="Regulatory anchor"}
+No FDA or ICH document is devoted to the Bayesian analysis of time-to-event data, and, as far as we are aware, none is devoted to non-proportional hazards or to restricted mean survival time. The following documents set the frame; @sec-regulatory gives each one's status.
+
+- **ICH E9(R1), Addendum on Estimands and Sensitivity Analysis** (Step 4, November 2019) [@ich_e9_r1]. For a time-to-event endpoint the estimand must name the population, the variable (time to first event, or a composite), the handling of intercurrent events such as treatment discontinuation, rescue therapy or death before the non-fatal event, and the summary measure. A hazard ratio is one summary measure; the difference in restricted mean survival time or in survival probability at a landmark time are others. The choice is made before the trial, not after the curves are seen.
+- **ICH E9, Statistical Principles for Clinical Trials** (1998) [@ich_e9]. Section 3.5 on sample size and section 4.5 on interim analysis apply unchanged to event-driven trials: the number of events, and the assumptions behind it, must be stated in the protocol, and the interim plan must be fixed in advance.
+- **FDA, Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products** (draft guidance, January 2026) [@fda_bayesian_2026]. A draft, which recommends and does not require. Its success criteria are posterior probabilities of the form $\Pr(\delta > a \mid \text{data}) > c$, and nothing in it is specific to time-to-event data. For a trial with a frequentist statistical analysis plan, the operating characteristics of a Bayesian rule on the hazard ratio are calibrated as in @sec-simulation.
+- **FDA, Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics** (final guidance, December 2018) [@fda_oncology_endpoints_2018]. Discusses overall survival, progression-free survival and related endpoints and the biases of each. It is the document sponsors most often cite for oncology time-to-event endpoints; it does not prescribe a method for non-proportional hazards.
+:::
+
+## The traditional analysis {#sec-survival-traditional}
+
+Let $T$ be the event time and $S(t) = \Pr(T > t)$ the survival function. The hazard is $h(t) = \lim_{\delta \to 0}\Pr(t \le T < t + \delta \mid T \ge t)/\delta$, and the cumulative hazard is $H(t) = \int_0^t h(u)\,du$, so that $S(t) = e^{-H(t)}$. Patients still event-free at the data cutoff, or lost to follow-up, are censored: their event time is only known to exceed the last contact. The Kaplan-Meier estimate of $S(t)$ [@kaplan1958nonparametric] handles censoring without a model, and it is the curve every trial report draws.
+
+The treatment comparison has two standard forms. The log-rank test [@mantel1966; @peto1972] compares, at each event time, the observed number of events in the treated arm with the number expected if the two arms shared one hazard, and sums the differences. It is the score test of a proportional hazards model. The Cox model [@cox1972regression] writes $h(t \mid z) = h_0(t)e^{-\theta z}$ for a treatment indicator $z$, leaves the baseline hazard $h_0(t)$ unspecified, and estimates $\theta = -\log \mathrm{HR}$ (positive when treatment reduces the hazard, the book's benefit-positive convention) from the partial likelihood [@cox1975partial]. Under 1:1 allocation the variance of $\hat\theta$ is approximately
+$$
+\operatorname{Var}(\hat\theta) \approx \frac{4}{D},
+$$ {#eq-sv-var}
+where $D$ is the total number of events [@schoenfeld1981; @schoenfeld1983]. The approximation is accurate when the hazard ratio is not far from one. It carries the whole of the design: the number of patients enters only through the events they produce, which is why an event-driven trial fixes $D$ and lets the sample size, the accrual period and the follow-up be chosen to deliver it.
+
+When randomization was stratified, the log-rank test and the Cox model should be stratified on the same factors (a stratified log-rank test, or a Cox model with a baseline hazard per stratum), and prognostic baseline covariates can be added for precision, with the caveat that the hazard ratio is non-collapsible and so changes meaning when covariates are added; @sec-randomization-covadj sets out the conditional and marginal estimands and the regulatory guidance.
+
+Inverting @eq-sv-var gives the sample size formula of @sec-power. To detect a hazard ratio $\mathrm{HR}$ with one-sided level $\alpha$ and power $1-\beta$, the trial needs
+$$
+D = \frac{4\,(z_{\alpha} + z_{\beta})^2}{(\log \mathrm{HR})^2}
+$$ {#eq-sv-schoenfeld}
+events. With $\theta = -\log \mathrm{HR}$ the information per event is $I = 1/4$, so @eq-sv-schoenfeld is @eq-ss-standard with $n$ replaced by $D$. Freedman's tables give the same requirement with the factor $(1+\mathrm{HR})^2/(1-\mathrm{HR})^2$ in place of $4/(\log \mathrm{HR})^2$ [@freedman1982logrank]; the two agree when the hazard ratio is near one. @tbl-sv-schoenfeld shows how fast the requirement grows as the target effect shrinks.
+
+```{r}
+#| label: tbl-sv-schoenfeld
+#| echo: true
+#| tbl-cap: "Events required by the Schoenfeld formula, one-sided 0.025, for four design hazard ratios and two levels of power."
+d_req <- function(hr, power) ceiling(4 * (qnorm(0.975) + qnorm(power))^2 / log(hr)^2)
+hrs <- c(0.70, 0.80, 0.83, 0.90)
+tab <- data.frame(`Design HR` = hrs, `Events, 80% power` = d_req(hrs, 0.80),
+                  `Events, 90% power` = d_req(hrs, 0.90), check.names = FALSE)
+knitr::kable(tab, format.args = list(big.mark = ","))
+```
+
+SELECT was designed for a hazard ratio of 0.83 with 90 percent power and 1,225 events, and the formula gives `r format(d_req(0.83, 0.90), big.mark = ",")`, close to the plan (the trial's group sequential design accounts for the difference). A cardiovascular outcomes trial hoping for a hazard ratio of 0.90 needs `r format(d_req(0.90, 0.90), big.mark = ",")` events, and so tens of thousands of patients followed for years. Oncology trials, with larger effects and higher event rates, need hundreds.
+
+Two cautions belong with the traditional analysis, and a Bayesian analysis inherits both. First, a single hazard ratio is a clean summary under proportional hazards. When the hazard ratio changes over time, the ordinary Cox estimate is a weighted average whose weights depend on the censoring pattern and on follow-up [@struthers1986misspecified], so that the same drug can yield different hazard ratios in different trials (@sec-survival-nph). Time-specific or explicitly defined average hazard ratios remain possible, but they need careful definition and interpretation. Second, the information in @eq-sv-var is the number of events of the primary endpoint as defined, so any change to the endpoint definition or its intercurrent-event handling changes the information.
+
+## Events are information {#sec-survival-info}
+
+Combine @eq-sv-var with the normal posterior of @sec-bayes. With a flat prior, $\theta \mid \text{data} \sim N(\hat\theta, 4/D)$, and an observed hazard ratio of 0.80 gives the posterior probabilities of @tbl-sv-events.
+
+```{r}
+#| label: tbl-sv-events
+#| echo: true
+#| tbl-cap: "Posterior probabilities for an observed hazard ratio of 0.80 under a flat prior on the log hazard ratio, by number of events."
+ev <- surv_events_table(c(100, 200, 400, 800), hr = 0.8, hr_mcid = 0.9)
+tab <- data.frame(Events = ev$D, `SD of log HR` = round(ev$se, 3),
+                  `Pr(HR < 1)` = round(ev$p_benefit, 3), `Pr(HR < 0.9)` = round(ev$p_mcid, 3),
+                  check.names = FALSE)
+knitr::kable(tab)
+```
+
+The table is a reminder of how much information a convincing hazard ratio requires. To be 95 percent sure that a 20 percent reduction in hazard is at least a 10 percent reduction, a trial needs about 800 events: with `r ev$D[4]` events the probability is `r round(ev$p_mcid[4], 2)`, with 400 it is `r round(ev$p_mcid[3], 2)`.
+
+The same calculation run backwards translates a prior into events. To make the posterior standard deviation of $\theta$ equal to $s$ the trial needs $D = 4/s^2$ events, and a prior of standard deviation $s_0$ on the log hazard ratio contributes $4/s_0^2$ effective events. A prior with $s_0 = 0.2$ is worth `r 4 / 0.2^2` events. This exchange rate is the cleanest way to explain prior borrowing (@sec-borrowing) to a clinical team: "the historical trials contribute as much as 100 events in this trial" is a statement a clinician can accept or reject, where "a normal prior with standard deviation 0.2" is not.
+
+## The gamma posterior for a hazard {#sec-survival-gamma}
+
+For a single arm with constant hazard $\lambda$, observing $d$ events in total follow-up time $T$ gives the likelihood $\lambda^d e^{-\lambda T}$, whatever the censoring pattern, provided censoring is noninformative. With a $\mathrm{Gamma}(a, b)$ prior (shape $a$, rate $b$) the posterior is $\mathrm{Gamma}(a + d, b + T)$. The prior is worth $a$ events and $b$ years of exposure.
+
+Suppose a control arm records 60 events in 400 patient-years. With a vague $\mathrm{Gamma}(0.01, 0.01)$ prior:
+
+```{r}
+#| label: tbl-sv-gamma
+#| echo: true
+#| tbl-cap: "Posterior for a constant hazard and for the exponential median survival, 60 events in 400 patient-years, Gamma(0.01, 0.01) prior."
+g <- surv_gamma_hazard(d = 60, T = 400, a = 0.01, b = 0.01)
+tab <- data.frame(Quantity = c("Hazard (per year)", "Median survival (years)"),
+                  `Posterior mean` = c(g$hazard["mean"], g$median["mean"]),
+                  `2.5%` = c(g$hazard["lo"], g$median["lo"]),
+                  `97.5%` = c(g$hazard["hi"], g$median["hi"]), check.names = FALSE)
+knitr::kable(tab, digits = 3, row.names = FALSE)
+```
+
+The posterior mean hazard is `r round(g$hazard["mean"], 3)` per year, with 95 percent interval `r round(g$hazard["lo"], 3)` to `r round(g$hazard["hi"], 3)`. The median survival under the exponential model is $\log 2/\lambda$. Its posterior mean is `r round(g$median["mean"], 2)` years, not the plug-in $\log 2/0.15 = `r round(log(2)/0.15, 2)`$: the median is a reciprocal of the hazard, so averaging it is not the same as transforming the average. The interval, `r round(g$median["lo"], 1)` to `r round(g$median["hi"], 1)` years, is asymmetric for the same reason. The Bayesian computation transforms the posterior directly and so gets the asymmetry right without the delta method.
+
+A constant hazard is rarely realistic over years of follow-up. Dividing time into intervals $I_1, \dots, I_K$ with constant hazard $\lambda_k$ in each, the likelihood factors into independent gamma terms, one per interval, with $d_k$ events and $T_k$ exposure. A hierarchical prior that ties neighboring hazards together, for example a random walk on $\log\lambda_k$, smooths the hazard and lets sparse late intervals borrow from earlier ones. The piecewise exponential model [@holford1976life; @breslow1974covariance], with a gamma-process prior for the cumulative hazard as the nonparametric Bayes extension [@kalbfleisch1978nonparametric], underlies most Bayesian analyses of time-to-event data (see @ibrahim2001), and with a proportional hazards term $\lambda_k e^{-\theta z}$ it approaches the Cox model as the intervals become finer.
+
+Two further Bayesian survival models are worth knowing. The power prior reviewed in @ibrahim2015 is not limited to binary data: its discounting of the historical likelihood (@sec-borrowing-power) extends to a survival likelihood. When the historical data may not be exchangeable with the current trial, Murray and colleagues give a semiparametric commensurate model for time-to-event data from two possibly non-exchangeable sources, designed to attenuate bias and increase efficiency, and illustrated with post-market surveillance of stents in dialysis patients [@murray2014commensurate]. Chen and colleagues develop a Bayesian promotion-time cure model, distinct from the mixture model illustrated in @sec-survival-nph [@chen1999surviving].
+
+## Predictive probability in an event-driven trial {#sec-survival-pp}
+
+@sec-predictive developed conditional power and predictive probability for a generic standardized statistic. For an event-driven trial the information scale is the event count, and the formulas become explicit. Suppose a trial is designed for $D_{\max} = 600$ events and succeeds if the final one-sided $z$ statistic for $\theta > 0$ exceeds 1.96. At an interim analysis with $D_1$ events the estimate is $\hat\theta_1$. The remaining $D_2 = D_{\max} - D_1$ events contribute an independent estimate $\hat\theta_2 \sim N(\theta, 4/D_2)$, and the final estimate is the information-weighted average $\hat\theta = (D_1\hat\theta_1 + D_2\hat\theta_2)/D_{\max}$. Under a flat prior the posterior of $\theta$ is $N(\hat\theta_1, 4/D_1)$, so the predictive distribution of $\hat\theta_2$ is $N(\hat\theta_1, 4/D_2 + 4/D_1)$ and the final estimate is normal with mean $\hat\theta_1$ and variance $(D_2/D_{\max})^2(4/D_2 + 4/D_1)$. The predictive probability of success is a single normal probability. The calculation has a history in time-to-event monitoring. Spiegelhalter, Freedman and Parmar proposed skeptical and enthusiastic priors on the log hazard ratio for exactly this purpose [@spiegelhalter1994bayesian], and the CHART radiotherapy trials were the worked example of Bayesian design and monitoring in practice [@parmar1994chart].
+
+Two frequentist summaries are often reported instead. Conditional power under the design assumption plugs in the hazard ratio the trial was designed for, here 0.8. Conditional power under the current trend plugs in $\hat\theta_1$. @tbl-sv-pp compares the three.
+
+```{r}
+#| label: tbl-sv-pp
+#| echo: true
+#| tbl-cap: "Interim summaries in a trial designed for 600 events, success at final z > 1.96, design hazard ratio 0.80, flat prior for the predictive probability (PP). CP is conditional power."
+pp <- surv_pp_cp(D1 = c(300, 300, 300, 450), hr_obs = c(0.75, 0.85, 0.95, 0.88),
+                 Dmax = 600, hr_design = 0.8)
+tab <- data.frame(`Events D1` = pp$D1, `Observed HR` = pp$hr_obs, `Interim z` = round(pp$z, 2),
+                  PP = round(pp$pp, 2), `CP, design` = round(pp$cp_design, 2),
+                  `CP, trend` = round(pp$cp_trend, 2), check.names = FALSE)
+knitr::kable(tab)
+```
+
+The three numbers can tell different stories. In the third row, conditional power under the design assumption is `r round(pp$cp_design[3], 2)`, which might persuade a data monitoring committee to continue. But halfway through, the observed hazard ratio is 0.95, whose approximate 95 percent interval (0.76 to 1.19) includes the design value of 0.8 as well as no effect, so the data neither confirm nor exclude the design assumption. Conditional power under the trend, `r round(pp$cp_trend[3], 2)`, conditions on the interim estimate as if it were the true effect, although half the events are still to come. The predictive probability, `r round(pp$pp[3], 2)`, averages over the posterior of the hazard ratio, so it reflects both the interim estimate and its uncertainty. The three differ in what they condition on, and a committee should see all three. (A predictive probability under a flat prior is itself pessimistic when the design effect was supported by earlier trials; the flat prior is the conservative end, and @sec-predictive shows the effect of a design-alternative prior.)
+
+The second row, a promising but uncertain interim, is the situation in which adaptive designs propose to increase $D_{\max}$. The predictive probability makes the trade-off visible. Increasing $D_{\max}$ to 900 raises the predictive probability of success from `r round(pp$pp[2], 2)` to `r round(surv_pp_cp(300, 0.85, Dmax = 900)$pp, 2)` at a cost of 300 more events. Whether that is worth it depends on the value of approval and on what the extra events cost, the question of the value of the extra information, and not on a rule that conditional power lies in a "promising zone". Any such change must be pre-specified and its type I error consequences controlled, as the FDA adaptive design guidance [@fda2019adaptive] (final, November 2019) recommends; the calculation above is a decision aid, not a license to adapt.
+
+## Non-proportional hazards {#sec-survival-nph}
+
+Immunotherapy trials have taught oncologists that hazards need not be proportional [@alexander2018hazards]. A treatment that engages the immune system may do nothing for months and then produce durable responses in a minority of patients. The survival curves overlap or cross early and separate late, and a single hazard ratio misdescribes both phases. The consequences for the traditional analysis are concrete: the log-rank test loses power when the effect is delayed, because the early events, which carry weight in the test, are uninformative about the treatment; and the Cox hazard ratio becomes a quantity that depends on how long the trial runs [@hernan2010hazards].
+
+@fig-sv-curves shows three scenarios built from the same control arm, a constant hazard of 0.15 per year (median survival 4.6 years). Treatment either cuts the hazard by 40 percent from the start (proportional), cuts it by 40 percent only after a delay of one year, or cures 20 percent of patients and leaves the rest at the control hazard.
+
+```{r}
+#| label: fig-sv-curves
+#| echo: true
+#| fig-cap: "Survival curves for a control arm with hazard 0.15 per year and three treatment scenarios: proportional hazards with hazard ratio 0.6, a delay of one year before the same hazard ratio takes effect, and a cure fraction of 0.2."
+#| fig-height: 3.5
+tt <- seq(0, 8, by = 0.05)
+S_ctl <- surv_pwexp_S(tt, 0.15)
+dd <- rbind(
+  data.frame(t = tt, S = S_ctl, arm = "Control", scenario = "Control"),
+  data.frame(t = tt, S = surv_pwexp_S(tt, 0.15 * 0.6), arm = "Treated", scenario = "Proportional"),
+  data.frame(t = tt, S = surv_pwexp_S(tt, c(0.15, 0.09), c(0, 1)), arm = "Treated", scenario = "Delayed effect"),
+  data.frame(t = tt, S = 0.2 + 0.8 * S_ctl, arm = "Treated", scenario = "Cure fraction 0.2"))
+ggplot(dd, aes(t, S, color = scenario, linetype = arm)) + geom_line() +
+  labs(x = "Years", y = "Survival probability", color = NULL, linetype = NULL) + theme_minimal()
+```
+
+Three Bayesian responses are in common use.
+
+The first is a piecewise treatment effect, $\theta_k = -\log\mathrm{HR}_k$ in interval $k$, with a hierarchical prior that lets the effect change over time but shrinks it toward a common value. It is the piecewise exponential model of @sec-survival-gamma with a treatment effect in each interval, and its posterior answers the clinical question "when does the benefit begin?" directly. The second is a mixture cure model [@boag1949cured; @berkson1952], in which a fraction $\pi$ of treated patients are effectively cured and the rest follow the control hazard, $S_1(t) = \pi + (1-\pi)S_0(t)$ (in the Berkson-Gage model the uncured patients have a survival function of their own, and following the control hazard is a special case; @chen1999surviving give a Bayesian promotion-time (non-mixture) cure model with a surviving fraction). The posterior for $\pi$ is the quantity a patient cares about, but it is identifiable only if follow-up is long enough for the curve to plateau; with immature data it is dominated by the prior, which has to be stated. The third is to change the estimand to the restricted mean survival time up to a horizon $\tau$,
+$$
+\mathrm{RMST}(\tau) = \int_0^\tau S(t)\,dt,
+$$ {#eq-sv-rmst}
+whose posterior is computed from draws of the survival curve. The difference in RMST is the average event-free time gained within $\tau$, in months or years, which is the unit in which patients and payers think, and it does not require proportional hazards [@royston2011rmst; @royston2013; @uno2014]. The idea of a restricted mean life is older than these papers [@irwin1949expectation; @karrison1987restricted]. It does require a horizon, and the choice of $\tau$ is part of the estimand and must be fixed in the protocol.
+
+```{r}
+#| label: tbl-sv-nph
+#| echo: true
+#| tbl-cap: "RMST difference over 5 years and cumulative hazard ratio at 5 years for the three scenarios of the figure (control hazard 0.15 per year, hazard ratio 0.6, delay 1 year, cure fraction 0.2). The control arm has RMST 3.52 years."
+nph <- surv_nph_example(tau = 5, h0 = 0.15, delay = 1, hr = 0.6, cure = 0.2)
+tab <- data.frame(Scenario = nph$scenario, `RMST treated` = nph$rmst_treated,
+                  `RMST difference` = nph$rmst_diff, `Cumulative HR` = nph$cumhaz_ratio, check.names = FALSE)
+knitr::kable(tab, digits = 2)
+```
+
+The scenarios give different RMST gains, `r round(nph$rmst_diff[1], 2)`, `r round(nph$rmst_diff[2], 2)` and `r round(nph$rmst_diff[3], 2)` years over five years, and a cumulative hazard ratio at five years of `r round(nph$cumhaz_ratio[1], 2)`, `r round(nph$cumhaz_ratio[2], 2)` and `r round(nph$cumhaz_ratio[3], 2)`: the hazard ratio is not a constant, which is the point.
+
+### Power loss under a delayed effect {#sec-survival-power-loss}
+
+How much does the log-rank test lose? The simulation below compares a trial of 300 patients per arm followed for five years, with the control hazard 0.15 per year, under a constant hazard ratio of 0.75 and under a delayed effect with no benefit for two years and a hazard ratio of 0.583 afterward. The two scenarios are matched so that the treated survival at five years is the same, 0.57, so they describe the same final benefit reached by different paths.
+
+```{r}
+#| label: tbl-sv-logrank
+#| echo: true
+#| tbl-cap: "Simulated power of the one-sided log-rank test (alpha 0.025), 300 patients per arm, administrative censoring at 5 years, 2,000 replications, with the mean number of events. Treated survival at 5 years is 0.57 in both scenarios."
+set.seed(1507)
+rpwexp <- function(n, rates, breaks) {      # inversion for a piecewise exponential
+  e <- rexp(n); H <- c(0, cumsum(rates[-length(rates)] * diff(breaks)))
+  k <- findInterval(e, H); breaks[k] + (e - H[k]) / rates[k]
+}
+sim_power <- function(rates1, breaks1, n = 300, tau = 5, R = 2000) {
+  rej <- numeric(R); ev <- numeric(R)
+  for (r in seq_len(R)) {
+    t0 <- rexp(n, 0.15); t1 <- rpwexp(n, rates1, breaks1)
+    time <- pmin(c(t0, t1), tau); status <- as.integer(c(t0, t1) <= tau)
+    grp <- rep(0:1, each = n)
+    lr <- survival::survdiff(survival::Surv(time, status) ~ grp)
+    z <- sign(lr$obs[1] - lr$exp[1]) * sqrt(lr$chisq)    # positive: more events in control
+    rej[r] <- z > qnorm(0.975); ev[r] <- sum(status)
+  }
+  c(power = mean(rej), events = mean(ev))
+}
+p_ph  <- sim_power(0.15 * 0.75, 0)
+p_del <- sim_power(c(0.15, 0.0875), c(0, 2))
+tab <- data.frame(Scenario = c("Proportional, HR 0.75", "Delayed 2 years, then HR 0.583"),
+                  Power = c(p_ph["power"], p_del["power"]), `Mean events` = c(p_ph["events"], p_del["events"]))
+knitr::kable(tab, digits = c(0, 2, 0))
+```
+
+The simulated power is `r round(p_ph["power"], 2)` under the constant hazard ratio and `r round(p_del["power"], 2)` under the delayed effect, with a similar number of events, although the five-year survival difference is the same. The Schoenfeld calculation of @tbl-sv-schoenfeld, which assumes a single hazard ratio, would not have warned about the difference. Two responses are used in practice: a weighted log-rank test (Fleming-Harrington weights [@harrington1982class; @fleming1991counting]) that gives more weight to late events, and a design that states the delayed-effect model, with its simulation, in the protocol. Either choice is made before the trial; choosing the weights after seeing the curves invalidates the type I error. The next subsection shows what the weighted tests recover.
+
+### Tests built for a delayed effect {#sec-survival-nph-tests}
+
+The Fleming-Harrington weighted log-rank test multiplies the contribution of each event time by a weight $S(t)^\rho\{1 - S(t)\}^\gamma$, where $S$ is the pooled Kaplan-Meier estimate [@harrington1982class; @fleming1991counting]. The choice $\rho = \gamma = 0$ is the ordinary log-rank test, and $(\rho, \gamma) = (0, 1)$ puts the weight on late events, where a delayed effect shows. A test that is best for one shape of effect can be poor for another, so the combination test takes the largest of several standardized weighted statistics, usually the four with $\rho, \gamma \in \{0, 1\}$, and refers it to the multivariate normal distribution implied by their correlation [@lee2007versatility; @lin2020alternative]. This is the MaxCombo test. @tbl-sv-maxcombo repeats the simulation of @tbl-sv-logrank with the weighted test and the MaxCombo test, and adds a null scenario to check the level.
+
+```{r}
+#| label: tbl-sv-maxcombo
+#| echo: false
+#| tbl-cap: "Simulated rejection rate (one-sided 0.025) of the log-rank test, the Fleming-Harrington (0, 1) test and the MaxCombo test of four Fleming-Harrington statistics, 300 patients per arm, administrative censoring at 5 years, 2,000 replications. The first row is the null of identical survival curves."
+set.seed(1508)
+sim_nph <- function(rates1, breaks1, n = 300, tau = 5, R = 2000) {
+  rej <- matrix(FALSE, R, 3)
+  for (r in seq_len(R)) {
+    tm <- c(rexp(n, 0.15), rpwexp(n, rates1, breaks1))
+    s <- fh_z(pmin(tm, tau), as.integer(tm <= tau), rep(0:1, each = n))
+    p <- 1 - mvtnorm::pmvnorm(upper = rep(max(s$z), 4), corr = s$corr, abseps = 1e-4)[1]
+    rej[r, ] <- c(s$z[1] > qnorm(0.975), s$z[2] > qnorm(0.975), p < 0.025)
+  }
+  colMeans(rej)
+}
+mc <- rbind(sim_nph(0.15, 0), sim_nph(0.15 * 0.75, 0), sim_nph(c(0.15, 0.0875), c(0, 2)))
+tab <- data.frame(Scenario = c("Null, identical curves", "Proportional, HR 0.75", "Delayed 2 years, then HR 0.583"),
+                  `Log-rank` = mc[, 1], `FH(0,1)` = mc[, 2], MaxCombo = mc[, 3], check.names = FALSE)
+knitr::kable(tab, digits = 2)
+```
+
+Under the delayed effect the weighted test has power `r round(mc[3, 2], 2)` and the MaxCombo test `r round(mc[3, 3], 2)`, against `r round(mc[3, 1], 2)` for the log-rank test. Under proportional hazards the order reverses (this table is a fresh simulation, so its log-rank figure differs by Monte Carlo error from the `r round(p_ph["power"], 2)` of @tbl-sv-logrank): the log-rank test has `r round(mc[2, 1], 2)`, the MaxCombo test gives up a little (`r round(mc[2, 3], 2)`) and the late-weighted test gives up more (`r round(mc[2, 2], 2)`). That is the trade. A test chosen for one shape wins when the shape is right and loses when it is wrong, and the MaxCombo test pays a smaller premium for not knowing which shape it will meet, although, as the first caution below says, it too can reject when the experimental arm is worse. All three hold the level under the null of identical curves: the rejection rates are `r round(mc[1, 1], 3)`, `r round(mc[1, 2], 3)` and `r round(mc[1, 3], 3)` against the nominal 0.025.
+
+Two cautions go with the table. First, these tests are tests of identical survival curves, and the weighted tests can reject when early harm and late benefit cancel in the average, so that a significant result does not by itself mean that patients on average did better; the modestly weighted tests of Magirr and Burman were proposed to control the risk of declaring a uniformly inferior drug superior [@magirr2019modestly]. Second, the choice among them is a design decision with regulatory weight: the cross-pharma working group's straw-man guidance [@roychoudhury2021nph] treats the choice of test and the plausible non-proportional scenarios as something to settle, with simulation, at the design stage. Restricted mean survival time, the other main alternative, has an empirical record: in 54 oncology trials whose individual patient data were reconstructed from the published curves, the hazard ratio gave on average a larger treatment effect than the ratio of restricted mean survival times (average ratio 1.11, with substantial variation between trials), and the authors recommend that restricted mean survival time be reported routinely [@trinquart2016rmst]. The rule of this chapter is the same for every alternative: the primary test, its weights or horizon, and the simulation under the delayed-effect scenario go in the protocol before the curves are seen.
+
+
+## Regulation and practice {#sec-survival-regulation}
+
+Four points follow from the guidance landscape.
+
+First, the estimand comes first. Under ICH E9(R1) [@ich_e9_r1] the hazard ratio, the RMST difference and the survival difference at a landmark time are different estimands, and a Bayesian analysis reports the posterior of the one the protocol names. The five strategies for intercurrent events of @sec-randomization apply: for time to a non-fatal event in the presence of death, the usual choice is a composite (death counts as an event) or a competing-risks treatment, and each leads to a different model.
+
+Second, what exists on non-proportional hazards is thin. We are not aware of an FDA or ICH guidance that sets a required method for non-proportional hazards or for RMST; the closest thing to a consensus document is the straw-man guidance of the cross-pharma working group discussed above [@roychoudhury2021nph], which is industry and academic guidance and not regulatory text. The oncology endpoints guidance [@fda_oncology_endpoints_2018] discusses the endpoints and their biases, and the practice of FDA reviewers, which can be read in public review documents, is to accept pre-specified alternatives to the log-rank test as sensitivity analyses and to scrutinize post hoc ones. The summary of a drug's effect on the product label is still usually a hazard ratio. This is an area where agreement with the agency at a pre-submission meeting, on the primary analysis and on the sensitivity analyses, matters more than the choice among statistical methods.
+
+Third, the Bayesian elements map onto the existing framework. An informative prior on the log hazard ratio is judged as in @sec-priors and @sec-borrowing, and its worth in events is stated as in @sec-survival-info. The book's default for a confirmatory adaptive design without borrowing is a Bayesian success criterion calibrated to the type I error by simulation, with the event-time process (accrual, censoring, the NPH model) inside the simulation. The FDA draft Bayesian guidance [@fda_bayesian_2026] describes this as one of three routes, the others being direct interpretation of posterior probabilities (for example with borrowing, by agreement with FDA) and decision-theoretic or benefit-risk criteria. The predictive probability of @sec-survival-pp is a monitoring aid and enters the formal rules only as a pre-specified futility or sample-size criterion.
+
+Fourth, the event count itself is a design element. The final analysis is triggered by the event count, so the data monitoring committee and the sponsor must agree on how events are adjudicated and counted, and the timing rule for an interim analysis must be prespecified, whether by a number of events or by calendar date. If the analysis occurs at an information fraction other than the target, or events overrun the plan, the actual information fraction has to be handled by a prespecified method (for example an alpha-spending function evaluated at the observed fraction).
+
+## Key points {.unnumbered}
+
+- The information about a log hazard ratio is one quarter of the number of events, $\operatorname{Var}(\hat\theta) \approx 4/D$ under 1:1 allocation. Event-driven trials fix $D$, and the Schoenfeld formula $D = 4(z_\alpha + z_\beta)^2/(\log\mathrm{HR})^2$ is the sample size formula of @sec-power in event units.
+- A prior with standard deviation $s_0$ on the log hazard ratio is worth $4/s_0^2$ events. A prior of standard deviation 0.2 is worth 100 events.
+- To be 95 percent sure that an observed hazard ratio of 0.8 is below 0.9, a trial needs about 800 events (probability `r round(ev$p_mcid[4], 2)`).
+- For a constant hazard the posterior is gamma, and posterior summaries of the median survival come from transforming draws. In the worked example the posterior mean median is `r round(g$median["mean"], 2)` years, not the plug-in `r round(log(2)/0.15, 2)`.
+- Conditional power under the design assumption and under the trend condition on different fixed effects; predictive probability averages over the posterior of the effect: in the worked row with an observed hazard ratio of 0.95 at half the events the three values are `r round(pp$cp_design[3], 2)`, `r round(pp$cp_trend[3], 2)` and `r round(pp$pp[3], 2)`.
+- Under non-proportional hazards a single Cox hazard ratio can depend on censoring and follow-up, so the estimand needs explicit definition. The log-rank test loses power under a delayed effect (simulated `r round(p_del["power"], 2)` against `r round(p_ph["power"], 2)` for a constant hazard ratio), and the RMST difference and the cure fraction are alternatives, each requiring pre-specification.
+- No FDA or ICH document, to our knowledge, prescribes a method for non-proportional hazards or RMST. ICH E9(R1) requires that whatever summary measure is chosen be defined as an estimand before the trial.
+
+## Exercises {.unnumbered}
+
+1. Derive @eq-sv-var from the score test for the Cox model with one binary covariate under 1:1 allocation and a hazard ratio near one.
+2. With a $\mathrm{Gamma}(2, 10)$ prior on the control hazard, recompute the posterior mean and interval for the control arm with 60 events in 400 patient-years. How many events is the prior worth, and how much does it move the median survival?
+3. Reproduce @tbl-sv-pp. For the second row, compute the predictive probability if $D_{\max}$ is increased to 900, and the conditional power under the design assumption.
+4. Under a flat prior, investigate when the predictive probability lies between the two conditional powers. Is it always so when the design hazard ratio is more favorable than the observed one?
+5. Simulate the cure scenario (cure fraction 0.2, control hazard 0.15 per year). Over follow-up of 3, 5 and 8 years, compute the Cox hazard ratio and the RMST difference. Which is more stable as follow-up lengthens?
+6. A protocol specifies a primary analysis by the log-rank test and a "supportive" RMST analysis chosen after the blinded review of the pooled curve. Write the objection a regulator would raise, and the pre-specification that would meet it.

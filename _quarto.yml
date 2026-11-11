@@ -1,0 +1,135 @@
+project:
+  execute-dir: project
+  type: book
+  output-dir: _book
+
+book:
+  title: "Bayesian Clinical Trials and Personalized Medicine"
+  subtitle: "Volume I: Bayesian Clinical Trials"
+  author:
+    - Alexandra Sokolova
+    - Vadim Sokolov
+    - Nicholas G. Polson
+  date: today
+  sidebar:
+    tools:
+      - icon: github
+        href: https://github.com/VadimSokolov/bayestrials
+        text: "R package bayestrials"
+      - icon: easel
+        href: https://nytel.ai/testing/
+        text: "Interactive lab"
+  page-footer:
+    center: "Code: [R package bayestrials](https://github.com/VadimSokolov/bayestrials) | Interactive lab: [nytel.ai/testing](https://nytel.ai/testing/)"
+  chapters:
+    - index.qmd
+    - part: "Trials, Decisions, and Regulation"
+      chapters:
+        - 01-decision.qmd
+        - 02a-lifecycle.qmd
+        - 02-regulatory.qmd
+    - part: "Basics: Comparing Groups, Randomizing, and Updating Beliefs"
+      chapters:
+        - 03-testing.qmd
+        - 04-randomization.qmd
+        - 05-bayes.qmd
+        - 06-evidence.qmd
+        - 07-priors.qmd
+    - part: "The Standard Apparatus Reconsidered"
+      chapters:
+        - 08-power.qmd
+        - 09-multiplicity.qmd
+        - 10-sequential.qmd
+        - 11-evalues.qmd
+        - 11a-safety.qmd
+    - part: "Bayesian Adaptive Designs"
+      chapters:
+        - 12-simulation.qmd
+        - 13-predictive.qmd
+        - 14-rar.qmd
+        - 15-dose.qmd
+        - 15a-survival.qmd
+        - 16-borrowing.qmd
+        - 17-platform.qmd
+    - part: "From Design to Approval"
+      chapters:
+        - 18-cases.qmd
+        - 18a-reanalyses.qmd
+        - 19-protocol.qmd
+    - references.qmd
+  appendices:
+    - A-notation.qmd
+    - B-documents.qmd
+    - C-software.qmd
+
+metadata-files:
+  - bookmeta.yml
+
+bibliography:
+  - references.bib
+  - bib/ch01.bib
+  - bib/ch02.bib
+  - bib/ch03.bib
+  - bib/ch04.bib
+  - bib/ch05.bib
+  - bib/ch06.bib
+  - bib/ch07.bib
+  - bib/ch08.bib
+  - bib/ch09.bib
+  - bib/ch10.bib
+  - bib/ch11.bib
+  - bib/ch12.bib
+  - bib/ch13.bib
+  - bib/ch14.bib
+  - bib/ch15.bib
+  - bib/ch16.bib
+  - bib/ch17.bib
+  - bib/ch18.bib
+  - bib/ch19.bib
+  - bib/lifecycle.bib
+  - bib/safety.bib
+  - bib/survival.bib
+  - bib/reanalyses.bib
+  - bib/app.bib
+
+execute:
+  freeze: auto
+  echo: false
+  warning: false
+
+knitr:
+  opts_chunk:
+    fig.align: center
+    out.width: "85%"
+    dev: png
+    dpi: 320
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    echo: true
+    code-fold: true
+    code-summary: "Show the R code"
+    code-tools: false
+    number-depth: 2
+  pdf:
+    documentclass: scrbook
+    classoption: [fontsize=10pt]
+    geometry:
+      - paperwidth=7in
+      - paperheight=10in
+      - inner=0.85in
+      - outer=0.65in
+      - top=0.8in
+      - bottom=0.8in
+      - footskip=0.35in
+    latex-clean: false
+    number-depth: 2
+    include-in-header:
+      text: |
+        \usepackage{needspace}
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+        \fvset{breaklines=true,breakanywhere=true}
+        \AtBeginDocument{\let\verbatim\relax\let\endverbatim\relax\DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}}

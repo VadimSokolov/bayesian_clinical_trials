@@ -1,0 +1,240 @@
+# Bayesian Reanalyses of Landmark Trials {#sec-reanalyses}
+
+```{r}
+#| include: false
+library(bayestrials); library(ggplot2)
+fmt <- function(x, d = 2) formatC(x, format = "f", digits = d)
+g  <- reanalysis_gusto()
+e  <- reanalysis_eolia()
+a  <- reanalysis_andromeda()
+rc <- reanalysis_recovery()
+```
+
+A published trial gives a likelihood, not a conclusion. The conclusion depends on the prior the reader brings and on the loss attached to acting wrongly, and a trial that ends with $p = 0.09$ or $p = 0.06$ can support action, inaction, or a new trial depending on both. This chapter reanalyses four trials from their published summaries. In each case the same three steps recur. First, reduce the report to an approximately normal likelihood for a log relative risk, a log hazard ratio or a risk difference. Second, combine it with a small family of priors chosen to represent defensible positions. Third, report posterior probabilities of effects large enough to matter, not only the probability that the effect is nonzero.
+
+Each trial reported a prespecified primary analysis at a prespecified level, and it did its job: GUSTO, EOLIA and ANDROMEDA-SHOCK each answered the question the protocol asked. The designs differ: EOLIA, for example, was a group sequential trial with a triangular boundary, which matters for the futility discussion below. A reanalysis asks a different question, and the last section of this chapter says what it can and cannot claim. Every number below is computed from the counts or intervals quoted, with the `reanalysis_` functions of the bayestrials package (one per trial, plus the general `reanalysis_normal()` and the hierarchical `reanalysis_hier()`). Where published Bayesian reanalyses exist, we compare with them. Our numbers differ from theirs because we use normal approximations on the stated effect scale for each trial and because our priors are simple stand-ins for theirs.
+
+::: {.callout-important title="Regulatory anchor"}
+- **FDA, Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products (draft guidance, January 2026)** [@fda_bayesian_2026]. The draft recommends that the prior be prespecified and justified in the protocol, that sensitivity to the prior be examined, and describes a posterior probability criterion as one way to define success; skeptical priors are one option for particular circumstances, not a requirement (Sections IV.A, V.A, V.C and V.F). All of this concerns a trial designed to be analyzed this way. It says nothing that turns a post hoc reanalysis of a finished trial into evidence of effectiveness. A draft, not binding.
+- **ICH E9 (1998), sections 3.4 and 5.1.** Analysis methods are fixed before the data are unblinded, and the primary analysis is the prespecified one. A reanalysis is a secondary or exploratory analysis in this sense. See @sec-regulatory.
+:::
+
+## The normal approximation and its posterior {#sec-reanalyses-normal}
+
+Let $\hat\theta$ be the estimate on the log scale and $s$ its standard error. A reported interval $(\ell, u)$ at 95 percent gives
+
+$$
+s = \frac{\log u - \log \ell}{2 \times 1.96}.
+$$ {#eq-re-se}
+
+With a normal prior $\theta \sim N(m_0, s_0^2)$, the posterior is normal with precision equal to the sum of the precisions and mean equal to the precision-weighted average,
+
+$$
+\frac{1}{s_1^2} = \frac{1}{s^2} + \frac{1}{s_0^2},
+\qquad
+m_1 = s_1^2\left(\frac{\hat\theta}{s^2} + \frac{m_0}{s_0^2}\right).
+$$ {#eq-re-post}
+
+Write $\theta = -\log RR$ (or minus the log hazard ratio), so that positive means benefit, as in the code. For a benefit threshold $\theta^\ast$ (for example $\theta^\ast = -\log 0.8$ for a twenty percent relative reduction), $\Pr(\theta > \theta^\ast \mid \text{data}) = \Phi((m_1 - \theta^\ast)/s_1)$. The prior is worth $s^2/s_0^2$ trials of the present size: a prior with $s_0 = s$ counts as much as the trial itself (this is the effective sample size of @sec-priors). Ratios are reported back on their natural scale.
+
+@spiegelhalter1994bayesian proposed a standard family of priors for this exercise, and we use versions of them. Elicited skeptical priors for stopping rules have an earlier statement in @freedman1983subjective, and the CHART trials were the worked example [@parmar1994chart]. A skeptical prior is centered at no effect with enough spread that a large benefit is unlikely a priori. An enthusiastic prior is centered at the effect the trial was designed to detect. A reference prior is flat. A positive trial is convincing when it persuades the skeptic, and a negative trial is convincing when it discourages the enthusiast. @sec-priors-three discusses the three families and @sec-priors-sensitivity the sensitivity analysis over the prior scale.
+
+## GUSTO: when prior trials disagree with the new one {#sec-reanalyses-gusto}
+
+### The trial and its traditional analysis
+
+GUSTO [@gusto1993] randomized 41,021 patients with acute myocardial infarction to four strategies: streptokinase with subcutaneous heparin, streptokinase with intravenous heparin, accelerated tissue plasminogen activator (tPA) with intravenous heparin, and a combination. Thirty-day mortality was 6.3 percent on accelerated tPA and 7.2 and 7.4 percent on the two streptokinase-only arms, about 7.3 percent pooled. The prespecified comparison of tPA with the two streptokinase arms gave a 14 percent relative reduction in mortality (95 percent interval 5.9 to 21.3 percent), $p = 0.001$. The frequentist conclusion was that tPA was superior, with an absolute benefit of one percentage point, or ten lives per thousand treated, at a substantially higher drug cost.
+
+### The Bayesian question
+
+@brophy1995 asked what a cardiologist should have believed given the two earlier megatrials that compared the agents, GISSI-2 and ISIS-3, with 2,411 deaths among 24,118 patients on tPA and 2,384 among 24,176 on streptokinase between them (their Table 1). They gave the earlier trials weights of 100, 50 and 10 percent, took one percentage point of absolute mortality as the smallest clinically superior difference, and concluded that the clinical superiority of tPA "remains uncertain". They put the prior on each arm's mortality rate, a beta distribution built from that arm's earlier deaths and survivors, and with GUSTO's data the probability that tPA lowers mortality was 0.17, 0.44 and 0.98 at the three weights and 0.9995 with GUSTO alone (their Table 2).
+
+In the counts Brophy and Joseph used, GUSTO had 652 deaths among 10,343 patients on accelerated tPA and 1,473 among 20,173 on the two streptokinase arms combined. The risk difference (streptokinase minus tPA) is $\hat\theta = `r fmt(attr(g, "est"), 4)`$ with standard error
+$$
+s = \sqrt{\frac{\hat p_S(1 - \hat p_S)}{20173} + \frac{\hat p_T(1 - \hat p_T)}{10343}} = `r fmt(attr(g, "se"), 4)`.
+$$
+We put the prior on the risk difference itself. Pooled, the earlier trials give a difference of `r fmt(attr(g, "prior_mean"), 4)` (tPA very slightly worse) with standard error `r fmt(attr(g, "prior_se"), 4)`, and the prior is normal with that mean and that standard error divided by $\sqrt{w}$, so $w = 0.1$ is a prior worth a tenth of its nominal information. @tbl-reanalyses-gusto shows this model next to Brophy and Joseph's, which the `reanalysis_gusto()` function reproduces.
+
+```{r}
+#| label: tbl-reanalyses-gusto
+#| tbl-cap: "GUSTO risk difference (streptokinase minus tPA) with the earlier trials GISSI-2 and ISIS-3 at weight w. Difference model: normal prior on the risk difference. Arm model (Brophy and Joseph): beta priors on each arm's mortality; it reproduces their Table 2."
+g2 <- data.frame(Prior = g$prior,
+                 `Posterior mean` = fmt(g$post_mean, 4),
+                 `Pr(effect > 0)` = fmt(g$p_benefit, 3),
+                 `Pr(effect > 0.01)` = fmt(g$p_mcid, 3),
+                 `Arm model: Pr(effect > 0)` = fmt(g$arm_p_benefit, 3),
+                 `Arm model: Pr(effect > 0.01)` = fmt(g$arm_p_mcid, 3),
+                 check.names = FALSE)
+knitr::kable(g2, align = "lccccc")
+```
+
+The two models agree on GUSTO alone and part company as the earlier trials gain weight. Within each earlier trial the agents had nearly the same mortality (9.6 percent on tPA and 8.9 on streptokinase in GISSI-2, 10.3 and 10.6 in ISIS-3), so on the scale of the difference the earlier evidence says "close to zero" and little more. Pooling each arm's rate across trials does something else. GUSTO's patients died at about 7 percent and the earlier trials' at about 10, and GUSTO put twice as many patients on streptokinase as on tPA, so the pooled streptokinase rate leans toward GUSTO's low mortality and the pooled tPA rate toward the earlier trials' high mortality. The comparison then absorbs the difference between trials into the difference between agents, the mechanism of Simpson's paradox, and at full weight the arm model makes tPA probably worse although no trial found it so. For these trials, borrowing within-trial treatment contrasts avoids pooling dissimilar baseline mortality rates. An arm-level model would need trial-specific baseline risks and justified borrowing between trials (@sec-borrowing).
+
+The table still separates two questions: whether there is any benefit, and whether it is large enough to matter. A test against zero addresses the first, and an interval or a test against the one-point threshold addresses the second; the posterior probabilities read both directly, conditional on the prior. On the difference scale, that tPA lowers mortality at all is very probable under every weight: the probability is at least `r fmt(min(g$p_benefit), 3)`. That it lowers mortality by a full percentage point, enough to justify its price, is a coin toss (`r fmt(g$p_mcid[1], 2)`) with no prior information, `r fmt(g$p_mcid[2], 2)` at weight 0.1, and unlikely once the earlier trials count at half weight or more. Brophy and Joseph's conclusion, that clinical superiority remains uncertain, holds in both models; their low probabilities of any benefit come from the arm-wise pooling. The decision to pay for tPA turns on the second question and on the price of a life year.
+
+## EOLIA: probable benefit after a nonsignificant primary analysis {#sec-reanalyses-eolia}
+
+### The trial and its traditional analysis
+
+EOLIA [@combes2018] randomized 249 patients with very severe acute respiratory distress syndrome to early venovenous extracorporeal membrane oxygenation (ECMO) or to conventional lung-protective ventilation, with rescue ECMO allowed in the control arm. Sixty-day mortality was 35 percent (44 of 124) with ECMO and 46 percent (57 of 125) in the control arm, a relative risk of 0.76 with 95 percent interval 0.55 to 1.04 and $p = 0.09$. Thirty-five control patients (28 percent) crossed over to ECMO, and 20 of them died. The trial was widely reported as negative. The design was group sequential with a two-triangle boundary, with analyses after every 60 randomized participants and a maximum of 331, and the trial stopped for futility at the fourth interim analysis [@combes2018, Methods].[^re-eolia]
+
+[^re-eolia]: The sample size assumed 60-day mortality of 60 percent with conventional care and 40 percent with ECMO, with 80 percent power at a two-sided level of 0.05. That is a relative risk of 0.67, the center of the enthusiastic prior below.
+
+### The Bayesian analysis
+
+@goligher2018 carried out the published Bayesian reanalysis. Under a minimally informative prior they reported a posterior relative risk of 0.78 (95 percent credible interval 0.56 to 1.04), a posterior probability of any mortality reduction of 96 percent, of a relative risk below 0.67 of 18 percent, and of an absolute risk reduction of at least 2 percentage points of 92 percent. Across their other priors (moderately enthusiastic, strongly skeptical, and one built from earlier studies) the probability of benefit ranged from 88 to 99 percent.
+
+Our own calculation uses the counts, so $\log \widehat{RR} = \log(0.355/0.456) =$ `r fmt(log((44/124)/(57/125)), 3)` with $s^2 = 1/44 - 1/124 + 1/57 - 1/125 =$ `r fmt(1/44 - 1/124 + 1/57 - 1/125, 4)`, $s =$ `r fmt(sqrt(1/44 - 1/124 + 1/57 - 1/125), 3)`. The counts give a relative risk of `r fmt(e$post_ratio[1], 3)`, a little different from the published 0.76, which is adjusted. The priors are normal on the log relative risk and every one is stated in @tbl-reanalyses-eolia-priors.
+
+```{r}
+#| label: tbl-reanalyses-eolia-priors
+#| tbl-cap: "EOLIA priors on the log relative risk, with the prior mean and SD on that scale and the prior probability of a relative risk below 0.8."
+pr <- data.frame(Prior = c("Flat", "Skeptical, s0 = 0.25", "Skeptical, s0 = 0.15", "Enthusiastic"),
+                 `Mean of log RR` = c("none", "0", "0", fmt(log(0.67), 3)),
+                 `SD of log RR` = c("infinite", "0.25", "0.15", "0.25"),
+                 `Median RR` = c("none", "1", "1", "0.67"),
+                 `Prior Pr(RR < 0.8)` = c("none", fmt(pnorm(log(0.8) / 0.25), 2), fmt(pnorm(log(0.8) / 0.15), 2),
+                                           fmt(pnorm((log(0.8) - log(0.67)) / 0.25), 2)),
+                 check.names = FALSE)
+knitr::kable(pr, align = "lcccc")
+```
+
+```{r}
+#| label: tbl-reanalyses-eolia
+#| tbl-cap: "EOLIA: posterior relative risk of death at sixty days under four priors (our calculation from the counts 44/124 and 57/125, normal approximation)."
+e2 <- data.frame(Prior = e$prior,
+                 `Posterior RR` = fmt(e$post_ratio, 2),
+                 `Pr(RR < 1)` = fmt(e$p_benefit, 2),
+                 `Pr(RR < 0.8)` = fmt(e$p_0.8, 2),
+                 `Pr(RR < 0.67)` = fmt(e$p_0.67, 3),
+                 check.names = FALSE)
+knitr::kable(e2, align = "lcccc")
+```
+
+```{r}
+#| label: reanalyses-eolia-abs
+set.seed(20181)
+p1 <- rbeta(2e6, 1 + 44, 1 + 80); p0 <- rbeta(2e6, 1 + 57, 1 + 68)
+arr2 <- mean(p0 - p1 >= 0.02); arr10 <- mean(p0 - p1 >= 0.10)
+```
+
+On the absolute scale, with independent uniform priors on the two mortality rates (a calculation of ours, not Goligher's), the posterior probability that ECMO reduces mortality by at least two percentage points is `r fmt(arr2, 2)`, and by at least ten points it is `r fmt(arr10, 2)`. Goligher's own figure for two points, under their minimally informative prior, is 92 percent. The two agree closely even though the models differ, which is itself a robustness statement.
+
+The lesson is about what the trial ruled out. EOLIA did not rule out the effect it was designed to find: it made that effect less likely (`r fmt(e$p_0.67[1], 2)` under the flat prior), but not unlikely. What it established is that some benefit is probable under the four priors examined (the probability of benefit runs from `r fmt(min(e$p_benefit), 2)` to `r fmt(max(e$p_benefit), 2)`). A hospital deciding whether to maintain an ECMO program for severe ARDS faces a decision with a large upside and a known cost, and for that decision a probability of about 0.9 that the treatment helps is a strong argument. A nonsignificant result is nonrejection of the null, not evidence of no effect, and the interval from 0.55 to 1.04 already said as much. The posterior adds probabilities at thresholds of interest, which a test of the same threshold or an interval would also address. It does not make EOLIA a positive trial: the primary analysis missed its threshold, and a reanalysis cannot change that (see @sec-reanalyses-limits). The earlier randomized ECMO trials are told in @sec-rar-ecmo.
+
+## ANDROMEDA-SHOCK: the same pattern with a hazard ratio {#sec-reanalyses-andromeda}
+
+ANDROMEDA-SHOCK [@hernandez2019] randomized 424 adults with septic shock in 28 intensive care units to an 8-hour resuscitation targeting normalization of capillary refill time or targeting serum lactate. Twenty-eight-day mortality was 34.9 percent (74 of 212) in the capillary refill arm and 43.4 percent (92 of 212) in the lactate arm, a hazard ratio of 0.75 with 95 percent interval 0.55 to 1.02 and $p = 0.06$.
+
+The reported interval gives $\log \widehat{HR} =$ `r fmt(log(0.75), 3)` and $s =$ `r fmt((log(1.02) - log(0.55)) / (2 * 1.96), 3)`. @zampieri2020 published the Bayesian reanalysis with four priors (optimistic, neutral, null and pessimistic) and found a posterior probability of benefit at 28 days above 90 percent under all of them. Their model was on the odds-ratio scale, with priors on the odds ratio. Ours is on the hazard-ratio scale, so the rows below illustrate the same logic and are not a replication of their table.
+
+```{r}
+#| label: tbl-reanalyses-andromeda
+#| tbl-cap: "ANDROMEDA-SHOCK: posterior hazard ratio for death under five normal priors on the log hazard ratio (our hazard-ratio calculation, not Zampieri et al.'s odds-ratio analysis). Prior means and SDs: flat, none; neutral, mean 0, SD 0.35; skeptical, mean 0, SD 0.15; pessimistic, mean log 1.1, SD 0.15; optimistic, mean log 0.8, SD 0.20."
+a2 <- data.frame(Prior = a$prior,
+                 `Posterior HR` = fmt(a$post_ratio, 2),
+                 `Pr(HR < 1)` = fmt(a$p_benefit, 2),
+                 `Pr(HR < 0.8)` = fmt(a$p_0.8, 2),
+                 check.names = FALSE)
+knitr::kable(a2, align = "lccc")
+```
+
+Zampieri's pessimistic prior still left a probability of benefit above 0.90, while our pessimistic row gives `r fmt(a$p_benefit[4], 2)`. The difference is not a contradiction: the priors, the scale and the model differ. The pessimistic row is one sensitivity analysis and not the only way to discount the result. It centers the prior at a hazard ratio of 1.1, an instantaneous hazard ten percent higher, which is not a ten percent higher probability of death, and its posterior probability of benefit is `r fmt(a$p_benefit[4], 2)`. A sufficiently concentrated prior centered at no effect also lowers the posterior probability of benefit, so the table shows how much prior skepticism the result tolerates.
+
+There is also a decision argument that no p value captures. Capillary refill time is measured with a finger and a stopwatch, and lactate needs a laboratory. If the two strategies were equally effective, the cheaper and faster one would be preferred. A strategy that is cheaper, at least as safe, and probably better need not clear $p < 0.05$ to be adopted. Whether it should be adopted is a question of expected net benefit, and we do not compute it here: that needs a utility function, a measured cost difference and a mapping from the hazard ratio to absolute mortality, none of which the posterior probabilities in @tbl-reanalyses-andromeda supply. The argument is conditional: if the strategies are equally safe and capillary refill is cheaper, adoption is favored to the extent that the posterior makes a loss in survival improbable, and @sec-decision shows how to put numbers on that.
+
+## RECOVERY: subgroups and shrinkage {#sec-reanalyses-recovery}
+
+The dexamethasone comparison in RECOVERY [@recovery_dexamethasone_2021] randomized hospitalized patients with Covid-19 to dexamethasone 6 mg once daily for up to ten days or usual care. Twenty-eight-day mortality was 22.9 percent (482 of 2104) on dexamethasone and 25.7 percent (1110 of 4321) on usual care, an age-adjusted rate ratio of 0.83 with 95 percent interval 0.75 to 0.93. The subgroup results by respiratory support at randomization were as important as the overall result. All rate ratios here are age-adjusted.
+
+```{r}
+#| label: reanalyses-recovery-tau
+rr <- c(0.64, 0.82, 1.19); lo <- c(0.51, 0.72, 0.92); hi <- c(0.81, 0.94, 1.55)
+se <- (log(hi) - log(lo)) / (2 * qnorm(0.975))
+h1 <- reanalysis_hier(-log(rr), se, tau_max = 1)
+h3 <- reanalysis_hier(-log(rr), se, tau_max = 3)
+tmed <- function(h) h$tau_grid[which(cumsum(h$tau_post) >= 0.5)[1]]
+tmean <- function(h) h$tau_mean
+```
+
+```{r}
+#| label: tbl-reanalyses-recovery
+#| tbl-cap: "RECOVERY dexamethasone by respiratory support: published age-adjusted rate ratios and the hierarchical posterior (flat prior on the common mean, uniform prior on tau over (0, 1])."
+mort <- c("29.3% vs 41.4%", "23.3% vs 26.2%", "17.8% vs 14.0%")
+pub <- sprintf("%.2f (%.2f to %.2f)", rr, lo, hi)
+r2 <- data.frame(Stratum = rc$stratum, Mortality = mort, `Published RR` = pub,
+                 `Shrunk RR` = fmt(rc$shrunk_rr, 2),
+                 `Pr(RR < 1), shrunk` = fmt(rc$p_benefit, 3),
+                 `Pr(RR < 1), unshrunk` = fmt(rc$p_benefit_flat, 3),
+                 check.names = FALSE)
+knitr::kable(r2, align = "lccccc")
+```
+
+Subgroup analyses are a familiar source of false findings, and the frequentist instinct is to distrust them unless an interaction test is significant (@sec-mult-subgroups). The Bayesian instinct is to shrink them toward a common mean by an amount the data choose (@sec-mult-shrinkage). Let $\theta_j = -\log RR_j$ be the benefit-positive effect in stratum $j$, with $\hat\theta_j \sim N(\theta_j, s_j^2)$ and $\theta_j \sim N(\mu, \tau_b^2)$. With a flat prior on $\mu$ and a prior on $\tau_b$, the marginal likelihood of $\tau_b$ is
+
+$$
+p(\tau_b \mid \hat\theta) \propto p(\tau_b)\, V_\mu(\tau_b)^{1/2} \prod_j (s_j^2 + \tau_b^2)^{-1/2} \exp\left\{-\frac{(\hat\theta_j - \hat\mu(\tau_b))^2}{2(s_j^2+\tau_b^2)}\right\},
+$$ {#eq-re-tau}
+
+where $\hat\mu(\tau_b)$ is the precision-weighted mean and $V_\mu(\tau_b)$ its variance. The conditional posterior mean of each $\theta_j$ is $(1 - B_j)\hat\theta_j + B_j \hat\mu$ with $B_j = s_j^2/(s_j^2 + \tau_b^2)$.
+
+With only three strata, the data say little about $\tau_b$ and its posterior is sensitive to the prior placed on it. We use a uniform prior on $\tau_b$ over $(0, 1]$ on the log scale. Under that prior the posterior median of $\tau_b$ is `r fmt(tmed(h1), 2)` and the posterior mean is `r fmt(tmean(h1), 2)`. The mean is the less stable summary: moving the upper bound from 1 to 3 changes the median to `r fmt(tmed(h3), 2)` and the mean to `r fmt(tmean(h3), 2)`, because with three groups the posterior has a heavy right tail that the truncation point controls. The shrinkage factors are small in either case, and the shrunk estimates in @tbl-reanalyses-recovery barely move (`r fmt(rr[1], 2)` to `r fmt(rc$shrunk_rr[1], 2)`, `r fmt(rr[3], 2)` to `r fmt(rc$shrunk_rr[3], 2)`). That is the right answer. Shrinkage is not a rule that every subgroup be pulled to the mean. It is a rule that the data decide how much to pull, and here the pattern of benefit rising with severity is both large and biologically expected, because the inflammatory phase of Covid-19 is where a corticosteroid should help.
+
+The decision implication is the one clinicians drew: treat patients on oxygen or ventilation, and do not treat patients without oxygen. In our model the posterior probability of harm (rate ratio above 1) in the no-oxygen stratum is `r fmt(1 - rc$p_benefit[3], 2)`, and even if one discounts the point estimate, no benefit is plausible enough to justify exposure. This probability, like the shrunk estimates, comes from our model, not from RECOVERY. Published Bayesian reanalyses of other RECOVERY comparisons exist for comparison, for example of tocilizumab (a preprint) [@albuquerque2021tocilizumab].
+
+## What the four reanalyses share {#sec-reanalyses-share}
+
+Four patterns recur.
+
+Existence and magnitude are separate questions. In GUSTO some benefit was very probable and its magnitude was the open question. In EOLIA and ANDROMEDA-SHOCK the primary test did not reject the null, which is nonrejection and not evidence of absence, and the intervals (0.55 to 1.04 and 0.55 to 1.02) already showed that sizeable benefits were compatible with the data. Frequentist intervals describe the uncertainty about magnitude, and tests can target a clinically meaningful threshold instead of zero. A posterior adds direct probability statements at chosen thresholds, conditional on the prior, and the comparison with the estimate, interval and threshold test is the useful one.
+
+The priors are arguments, not confessions. Each prior in the tables represents a position someone in the field actually held or could defend. Displaying the posterior under each is how a Bayesian report shows readers where they stand, and it is far more informative than a single interval.
+
+A stopping rule can stop a trial despite a high probability of some benefit. EOLIA stopped for futility at its fourth analysis, after 240 patients, when the lower boundary of its triangular design was crossed [@combes2018].[^re-fut] A boundary rule and a predictive-probability rule can both do this, depending on the final success criterion each is built around, because each asks whether that criterion is likely to be met, which is not the same as whether the treatment works.
+
+[^re-fut]: The lower boundary of a triangular test is a futility boundary on the efficacy statistic, and the design is explained in @sec-sequential. A predictive-probability futility rule asks a related but different question, how likely the final success criterion is to be met given the data so far (@sec-predictive).
+
+Decisions need utilities. In each case the action depends on more than the posterior: on the cost of tPA, the burden of ECMO, the convenience of capillary refill and the harm of steroids in early disease. The reanalyses supply the probabilities, and a utility turns them into choices (@sec-decision).
+
+## What a reanalysis can and cannot claim {#sec-reanalyses-limits}
+
+### Prespecification
+
+The trials above were designed, powered and analyzed as frequentist trials. Their prespecified analysis is the one the protocol and statistical analysis plan fixed, and for EOLIA, ANDROMEDA-SHOCK and GUSTO that analysis was fixed before the data were seen. A Bayesian reanalysis is done after the results are known, by people who know them. Even with the best intentions, the choice of priors, thresholds and scale is made in the light of the answer. That does not make it wrong, and Goligher and Zampieri both chose their priors in a documented way. It does mean the reanalysis is exploratory in ICH E9's sense, and that the honest report lists every prior tried and not only the favorable ones. The tables above follow that rule: each row is shown, including the pessimistic prior that gives the weakest result.
+
+### Prior choice
+
+The posterior is as defensible as the prior. A flat prior on the log scale is not neutral on the absolute scale (@sec-priors-flat), a skeptical prior centered at no effect is a belief and not an absence of belief, and a prior built from earlier trials, as Brophy and Joseph did for GUSTO, depends on how much weight they get and on whether the populations are exchangeable (@sec-borrowing). The recommended practice is the one the FDA draft asks of a prospective design: state each prior's mean and standard deviation, show the posterior across a range of them, and say which readers each prior represents. The weight table for GUSTO and the four priors for EOLIA do that. A reanalysis that reports one prior, chosen after the data, does not.
+
+### The regulator's view
+
+The FDA Bayesian draft [@fda_bayesian_2026] is written for a trial that is designed to be Bayesian. It asks for a prespecified prior, a success criterion of the form $\Pr(\delta > a \mid \text{data}) > c$, simulation of operating characteristics, and, for trials with an overall frequentist analysis plan, familywise type I error control at 0.025 one-sided. It allows direct interpretation of the posterior probability and decision-theoretic criteria. It does not describe a post hoc reanalysis as substantial evidence, and nothing in it says a posterior probability of 0.9 computed after a negative primary analysis converts that analysis into a positive one. In this book's reading (not the draft's words), a reanalysis is useful input to a sponsor planning the next trial, to a guideline committee weighing a decision, and to a hospital choosing a practice, and it is not a substitute for the prespecified analysis in a regulatory submission. It is a draft, not binding, and the substantial-evidence standard is in the statute (@sec-regulatory).
+
+### A reanalysis is not a new trial
+
+A reanalysis uses the data once more. It cannot add patients, cannot repair a design flaw such as open-label assessment or crossover, and cannot change the probability that the original trial would have rejected a null effect. What it can do is change the question from "did the trial cross its threshold?" to "what should we believe now, and what should we do?". The honest consequence is that a strongly positive posterior after a negative trial is a reason to run a confirmatory trial designed around the effect sizes the reanalysis found plausible, with the priors written in the protocol. EOLIA's reanalysis and the later ECMO literature are a reminder of this: the posterior pointed to probable benefit, and the decision to adopt rested on clinical judgment and further evidence, not on the posterior alone. RECOVERY shows the other side: a trial so large that its prespecified analysis was decisive, where shrinkage of subgroups changes the numbers but not the practice.
+
+### What critics say {#sec-reanalyses-critics}
+
+Reanalyzing a trial after the result is known has a literature of its own, with supporters and critics, and the cases above sit inside it. An early instance is the debate over extracorporeal membrane oxygenation in newborns, in which Ware described the trials and Kass and Greenhouse commented from a Bayesian perspective [@ware1989; @kass1989ecmo]. EOLIA put the same question to adults (@sec-rar-ecmo), and its Bayesian reanalysis [@goligher2018] was published beside an editorial asking whether clinicians should embrace their inner Bayesian [@lewis2018inner]. Systematic programs followed. Wijeysundera and colleagues reanalyzed 88 randomized trials from four general medical journals and concluded that Bayesian and frequentist analyses complement each other and that trial reports should include both [@wijeysundera2009bayesian]. Diamond and Kaul used Bayesian approaches to interpret clinical megatrials [@diamond2004prior], Quintana, Viele and Lewis describe how prior information is used to interpret trial results [@quintana2017bayesian], and Ryan and colleagues showed what a simple Bayesian analysis of the OPTIMISE trial of hemodynamic therapy in major gastrointestinal surgery adds to the traditional one [@ryan2019bayesian]. The case for these reanalyses is that they state probabilities at clinically meaningful thresholds, and that showing the posterior under several priors makes the dependence on the prior visible, in the spirit of the acknowledgment of multiple perspectives that Gelman and Hennig propose as a virtue of statistical work [@gelman2017subjective].
+
+The criticism we cite is a commentary by de Grooth and Cremer, "Bayes and the Evidence Base: Reanalyzing Trials Using Many Priors Does Not Contribute to Consensus" [@degrooth2024bayes]. It recommends testing whether a result would persuade a reasonable adversary and assessing bias and generalizability separately. That connects to the skeptical-prior analyses above, in which the skeptical prior stands in for the adversary, and to a point that we make in our own words, that a table of many priors invites each reader to pick the row that agrees with what he or she already believed, so the table can sharpen a disagreement instead of resolving it. Two further objections follow from the structure of a reanalysis and are not attributed to any source. First, the priors are chosen after the result is known. Second, which trials are reanalyzed is itself a choice that nobody prespecified. A cardiology example shows both the power and the risk. Brophy reanalyzed the EXCEL trial of stenting against bypass surgery for left main disease: EXCEL's prespecified three-year analysis established noninferiority against a 4.2 percentage point margin [@stone2016excel]. Applying that original margin to the five-year results, Brophy observed that noninferiority was no longer established by this comparison, and his Bayesian reanalysis estimated a 95 percent probability of more composite events with stenting, so the headline moved with the question asked. Adding three other trials found by a stated search as informative priors lowered the probability of any excess mortality with stenting from 99 to 85 percent, which shows how much depends on which trials enter, and it is the stated search rule that makes that choice auditable [@brophy2020excel].
+
+Our reading is that each side is right about something different. A reanalysis is informative as a way of seeing what the data can and cannot support, and weak as evidence when the priors and the trials were chosen after the fact. The rule that follows extends the one stated above: write the reanalysis down before looking, with the priors fixed and the trials chosen by a stated rule, report every prior tried, and treat the result as input to the next trial and not as a verdict on the last one.
+
+::: {.callout-note title="Key points"}
+- A published trial yields a likelihood, and a conclusion needs a prior and a loss. Use an approximately normal likelihood on the stated effect scale, such as a risk difference or a log ratio, then show the posterior under a family of stated priors.
+- GUSTO: with the prior on the risk difference, that tPA helps is very probable under every weight, but whether it helps by a full percentage point depends on how much weight the earlier trials get. Brophy and Joseph's priors on each arm's rate pool baseline risks across trials and make any benefit look doubtful. Borrowing within-trial treatment contrasts avoids that, and an arm-level model would need trial-specific baseline risks and justified borrowing between trials.
+- EOLIA and ANDROMEDA-SHOCK: a missed threshold at $p = 0.09$ or $0.06$ left a high posterior probability of benefit under most priors. Our hazard-ratio rows for ANDROMEDA-SHOCK are not a replication of Zampieri et al.'s odds-ratio analysis.
+- RECOVERY: hierarchical shrinkage leaves strongly supported subgroup effects nearly unchanged and pulls a weak one only a little. The posterior of the between-stratum SD depends on its prior, so state the prior and report the median.
+- A reanalysis is exploratory, prior choices are made after the data, and it cannot replace the prespecified analysis or serve as a new trial. Report every prior tried, and use the result to design the next trial.
+:::
+
+## Exercises {#sec-reanalyses-exercises}
+
+1. Derive @eq-re-post by completing the square, and show that a prior with $s_0 = s$ contributes as much information as the trial.
+2. For EOLIA, find the prior standard deviation $s_0$, centered at no effect, for which $\Pr(RR<1 \mid \text{data}) = 0.8$. Would anyone in the field have held a prior that skeptical?
+3. Repeat the GUSTO analysis on the relative risk scale. Does the conclusion about the one percentage point threshold change?
+4. For ANDROMEDA-SHOCK, take 28-day mortality of 0.434 under lactate-guided resuscitation and treat the hazard ratio as a risk ratio applied to it (a stated approximation). Suppose capillary refill monitoring saves a laboratory cost worth the equivalent of 0.002 deaths per patient. Under the skeptical prior, compute the expected net benefit of capillary refill in deaths per patient, using the posterior mean of the hazard ratio, and say how the answer changes with the approximation.
+5. In RECOVERY, put a half-normal prior with scale 0.1 on $\tau_b$ instead of the uniform prior. How much do the shrunk estimates move, and what does that say about the prior's influence with three strata?
+6. A trial reports $HR = 0.85$ with interval 0.70 to 1.03. Construct the skeptical prior that makes the posterior probability of $HR < 0.9$ exactly one half.
