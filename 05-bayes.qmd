@@ -10,11 +10,11 @@ library(bayestrials); library(ggplot2)
 The example from @sec-testing has a control response rate of 30% and a treatment response rate of 45%. With a flat prior, the Bayesian and traditional analyses give nearly the same numbers.
 
 ::: {.callout-important title="Regulatory anchor"}
-**ICH E9, Statistical Principles for Clinical Trials** (Step 4, February 1998) [@ich_e9]. Section 1.2 observes that clinical-trial methodology has been based on frequentist methods, then states that this "should not be taken to imply that other approaches are not appropriate: the use of Bayesian (see Glossary) and other approaches may be considered when the reasons for their use are clear and when the resulting conclusions are sufficiently robust." The Glossary defines Bayesian approaches as those that provide "a posterior probability distribution for some parameter (e.g. treatment effect), derived from the observed data and a prior probability distribution for the parameter." Section 5.5 asks for estimates of treatment effect with confidence intervals in addition to tests. E9 permits Bayesian analysis and asks for reasons and robustness; it does not forbid it.
+ICH E9, Statistical Principles for Clinical Trials (Step 4, February 1998) [@ich_e9]. Section 1.2 observes that clinical-trial methodology has been based on frequentist methods, then states that this "should not be taken to imply that other approaches are not appropriate: the use of Bayesian (see Glossary) and other approaches may be considered when the reasons for their use are clear and when the resulting conclusions are sufficiently robust." The Glossary defines Bayesian approaches as those that provide "a posterior probability distribution for some parameter (e.g. treatment effect), derived from the observed data and a prior probability distribution for the parameter." Section 5.5 asks for estimates of treatment effect with confidence intervals in addition to tests. E9 permits Bayesian analysis and asks for reasons and robustness; it does not forbid it.
 
-**ICH E20, Adaptive Designs for Clinical Trials** (Step 2 draft, June 2025) [@ich_e20]. Section 5.3 describes Bayesian methods as those that "combine a prior probability distribution with current trial data to obtain a posterior probability distribution," and expects Bayesian adaptive designs to show targeted operating characteristics, including control of the type I error probability where that is the objective. A draft, not binding.
+ICH E20, Adaptive Designs for Clinical Trials (Step 2 draft, June 2025) [@ich_e20]. Section 5.3 describes Bayesian methods as those that "combine a prior probability distribution with current trial data to obtain a posterior probability distribution," and expects Bayesian adaptive designs to show targeted operating characteristics, including control of the type I error probability where that is the objective. A draft, not binding.
 
-**FDA, Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products** (draft guidance, January 2026) [@fda_bayesian_2026]. Section II defines the prior as "the pre-study probability distribution for model parameters." Section IV.B says "It is always critical for Bayesian analyses to have a prespecified prior." A draft, not binding; @sec-regulatory describes all three documents and their status.
+FDA, Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products (draft guidance, January 2026) [@fda_bayesian_2026]. Section II defines the prior as "the pre-study probability distribution for model parameters." Section IV.B says "It is always critical for Bayesian analyses to have a prespecified prior." A draft, not binding; @sec-regulatory describes all three documents and their status.
 :::
 
 
@@ -42,7 +42,7 @@ grid_row <- function(theta, prior, h, n, lab, w = 0.07) {
 grid_row(theta, prior, 7, 10, "7 of 10") / grid_row(theta, prior, 70, 100, "70 of 100")
 ```
 
-Take the value $\theta = 0.7$. The prior bar is the $\mathrm{Beta}(2,2)$ density there, $6 \times 0.7 \times 0.3 = 1.26$, rescaled so that the eleven bars sum to one: `r sprintf("%.3f", prior[8] / sum(prior))`. The likelihood bar is the probability of 7 heads in 10 tosses at $\theta = 0.7$, `r sprintf("%.3f", dbinom(7, 10, 0.7))`, rescaled the same way: `r sprintf("%.3f", dbinom(7, 10, theta)[8] / sum(dbinom(7, 10, theta)))`. After the multiplication and the division the posterior bar at $\theta = 0.7$ is `r sprintf("%.3f", grid_update(theta, prior, dbinom(7, 10, theta))$posterior[8])`. In the top row the prior still counts: it pulls the posterior toward one half, and the bar at 0.6 is nearly as tall as the bar at 0.7. In the bottom row the likelihood is so narrow that any smooth prior is nearly constant across it, and the posterior is the likelihood. The traditional estimate after 10 tosses is $7/10 = 0.70$, with a standard error of about $\sqrt{0.7 \times 0.3 / 10} = 0.145$. The posterior mean on the grid is `r sprintf("%.3f", sum(theta * grid_update(theta, prior, dbinom(7, 10, theta))$posterior))`, between the data and the prior's center.
+Take the value $\theta = 0.7$. The prior bar is the $\mathrm{Beta}(2,2)$ density there, $6 \times 0.7 \times 0.3 = 1.26$, rescaled so that the eleven bars sum to one: `r sprintf("%.3f", prior[8] / sum(prior))`. The likelihood bar is the probability of 7 heads in 10 tosses at $\theta = 0.7$, `r sprintf("%.3f", dbinom(7, 10, 0.7))`, rescaled the same way: `r sprintf("%.3f", dbinom(7, 10, theta)[8] / sum(dbinom(7, 10, theta)))`. After the multiplication and the division the posterior bar at $\theta = 0.7$ is `r sprintf("%.3f", grid_update(theta, prior, dbinom(7, 10, theta))$posterior[8])`. In the top row the prior still counts: it pulls the posterior toward one half, and the bar at 0.6 is nearly as tall as the bar at 0.7. In the bottom row, for the weak $\mathrm{Beta}(2,2)$ prior shown here, the posterior is close to the normalized likelihood after 100 tosses. A more concentrated prior could still have substantial influence. The traditional estimate after 10 tosses is $7/10 = 0.70$, with a standard error of about $\sqrt{0.7 \times 0.3 / 10} = 0.145$. The posterior mean on the grid is `r sprintf("%.3f", sum(theta * grid_update(theta, prior, dbinom(7, 10, theta))$posterior))`, between the data and the prior's center.
 
 ### The same calculation for a patient response rate
 
@@ -70,7 +70,7 @@ $$ {#eq-bayes}
 
 where $\pi(\theta)$ is the prior, $p(y \mid \theta)$ the likelihood and $\pi(\theta \mid y)$ the posterior. The denominator is the probability of the data averaged over the prior. It does not depend on $\theta$, so it only rescales the product to integrate to one (on the grid it is the sum of the products). The shape of the posterior is the prior times the likelihood.
 
-The traditional analysis uses the same likelihood. A frequentist estimate, the maximum likelihood estimate, is the value of $\theta$ at which $p(y \mid \theta)$ peaks, and a z test is a calculation on its sampling distribution. What the Bayesian gives up is nothing mathematical, but something practical: the answer now depends on a choice, the prior, that has to be made, defended and written into the protocol. That is the subject of @sec-priors and the reason the FDA draft requires the prior to be prespecified.
+The traditional analysis uses the same likelihood. A frequentist estimate, the maximum likelihood estimate, is the value of $\theta$ at which $p(y \mid \theta)$ peaks, and a z test is a calculation on its sampling distribution. What the Bayesian gives up is nothing mathematical, but something practical: the answer now depends on a choice, the prior, that has to be made, defended and written into the protocol. That is the subject of @sec-priors and the reason the FDA draft recommends prespecifying the analysis prior.
 
 ### A diagnostic test
 
@@ -143,7 +143,7 @@ $$
 \theta \sim \mathrm{Beta}(a, b), \quad h \text{ heads}, \; t \text{ tails} \quad\Longrightarrow\quad \theta \mid y \sim \mathrm{Beta}(a + h,\; b + t).
 $$ {#eq-conjugate}
 
-A prior with this property, that the posterior belongs to the same family, is called **conjugate** to the likelihood. For the Beta prior and a binomial likelihood the update is addition: add the responders to $a$ and the non-responders to $b$. One reads $\mathrm{Beta}(a,b)$ as "as if $a-1$ responders and $b-1$ non-responders had already been seen, starting from a flat prior" (with a convention that makes the rule exact, shown in the Technical note below).
+A prior with this property, that the posterior belongs to the same family, is called **conjugate** to the likelihood. For the Beta prior and a binomial likelihood the update is addition: add the responders to $a$ and the non-responders to $b$. When $a, b \ge 1$, $\mathrm{Beta}(a,b)$ can be read as adding $a-1$ responders and $b-1$ non-responders to a flat $\mathrm{Beta}(1,1)$ baseline (the convention that makes the rule exact is shown in the Technical note below). Shapes below one have no literal nonnegative patient-count interpretation under that convention.
 
 ```{r}
 #| label: tbl-bayes-beta-coin
@@ -167,7 +167,7 @@ $$
 \underbrace{\theta^{a-1}(1-\theta)^{b-1}}_{\text{prior}} \times \underbrace{\theta^{h}(1-\theta)^{t}}_{\text{likelihood}} = \theta^{a+h-1}(1-\theta)^{b+t-1},
 $$
 
-which is the kernel of $\mathrm{Beta}(a+h, b+t)$. The normalizing constant in @eq-bayes is whatever makes the result integrate to one, namely $B(a+h, b+t)$, so nothing needs to be integrated by hand. The statement "$a - 1$ prior responders" holds because the flat $\mathrm{Beta}(1,1)$ corresponds to none; some authors instead describe $\mathrm{Beta}(a,b)$ as $a+b$ pseudo-observations, which is the count used for effective sample size below. The two descriptions differ by the two pseudo-observations of the flat prior and are both in use.
+which is the kernel of $\mathrm{Beta}(a+h, b+t)$. Dividing the kernel by $B(a+h, b+t)$ gives its normalized density, so nothing needs to be integrated by hand. The denominator in @eq-bayes is the prior predictive probability of the observed data. The statement "$a - 1$ prior responders" holds because the flat $\mathrm{Beta}(1,1)$ corresponds to none; some authors instead describe $\mathrm{Beta}(a,b)$ as $a+b$ pseudo-observations, which is the count used for effective sample size below. The two descriptions differ by the two pseudo-observations of the flat prior and are both in use.
 :::
 
 The ECMO example is a real trial: Bartlett and colleagues' 1985 trial of extracorporeal membrane oxygenation (ECMO) in newborns with respiratory failure [@bartlett1985]. In the randomized play-the-winner design (outcomes so far change the probability that the next patient is assigned to each treatment), all 11 newborns assigned to ECMO survived (the single control patient did not). With a flat prior the posterior is $\mathrm{Beta}(12, 1)$, which puts almost all its mass at survival rates near one; @tbl-bayes-beta-coin gives $\Pr(\theta > 0.8) = `r sprintf("%.3f", pbeta(0.8, ecmo$a, ecmo$b, lower.tail = FALSE))`$.
@@ -239,7 +239,7 @@ The success criterion is a posterior probability: efficacy is declared if $\Pr(\
 
 ```{r}
 #| label: fig-bnt-ve
-#| fig-cap: "BNT162b2: prior and posterior density of vaccine efficacy (VE), from the Beta-binomial model on the share of cases in the vaccine arm. The shaded region is the 95% credible interval. The success margin of 30% lies far to the left of the posterior."
+#| fig-cap: "BNT162b2: prior and posterior density of positive vaccine efficacy (VE), from the Beta-binomial model on the share of cases in the vaccine arm. The shaded region is the 95% credible interval. The success margin of 30% lies far to the left of the posterior."
 #| fig-width: 5.5
 #| fig-height: 2.6
 a0 <- 0.700102; b0 <- 1 # prior on p = (1 - VE) / (2 - VE)
@@ -255,6 +255,8 @@ ggplot(vd, aes(ve, dens, colour = which)) + geom_line() + scale_colour_brewer(pa
   geom_area(data = subset(vd, which == "posterior" & ve >= q[1] / 100 & ve <= q[3] / 100), aes(ve, dens), inherit.aes = FALSE, fill = "#1B9E77", alpha = 0.3) +
   geom_vline(xintercept = 0.3, linetype = 2) + labs(x = "vaccine efficacy", y = "density", colour = NULL) + theme_minimal(base_size = 9)
 ```
+
+The figure shows positive efficacy only; the prior assigns `r round(100 * pbeta(0.5, a0, b0, lower.tail = FALSE), 1)`% probability to negative efficacy.
 
 ::::: {#res-bnt162b2-reproduction}
 
@@ -281,13 +283,13 @@ The 95% credible interval for the toxicity rate runs from `r sprintf("%.2f", tq[
 
 ## Gamma-Poisson for event rates {#sec-gamma-poisson}
 
-Many safety and recurrence outcomes are counts of events over follow-up time, such as infections, seizures or hospitalizations. They are summarized by a rate, the number of events per patient-year. Let $\lambda$ be the rate and suppose the patients were followed for a total of $t$ patient-years, with $y$ events. The standard model is $y \mid \lambda \sim \mathrm{Poisson}(\lambda t)$, so the likelihood is proportional to $\lambda^{y} e^{-\lambda t}$. The conjugate prior is the **gamma distribution**, $\lambda \sim \mathrm{Gamma}(\alpha, \beta)$, with density proportional to $\lambda^{\alpha - 1} e^{-\beta \lambda}$ on $\lambda > 0$, mean $\alpha/\beta$, and $\beta$ measured in patient-years. Multiplying the prior by the likelihood gives
+Many safety and recurrence outcomes are counts of events over follow-up time, such as infections, seizures or hospitalizations. They are summarized by a rate, the number of events per patient-year. Let $\lambda$ be the rate and suppose the patients were followed for a total of $T$ patient-years, with $y$ events. The standard model is $y \mid \lambda \sim \mathrm{Poisson}(\lambda T)$, so the likelihood is proportional to $\lambda^{y} e^{-\lambda T}$. The conjugate prior is the **gamma distribution**, $\lambda \sim \mathrm{Gamma}(a_G, b_G)$, with shape $a_G$ and rate $b_G$, density proportional to $\lambda^{a_G - 1} e^{-b_G \lambda}$ on $\lambda > 0$, mean $a_G/b_G$, and $b_G$ measured in patient-years. Multiplying the prior by the likelihood gives
 
 $$
-\lambda \sim \mathrm{Gamma}(\alpha, \beta), \quad y \text{ events in } t \text{ patient-years} \quad\Longrightarrow\quad \lambda \mid y \sim \mathrm{Gamma}(\alpha + y,\; \beta + t).
+\lambda \sim \mathrm{Gamma}(a_G, b_G), \quad y \text{ events in } T \text{ patient-years} \quad\Longrightarrow\quad \lambda \mid y \sim \mathrm{Gamma}(a_G + y,\; b_G + T).
 $$ {#eq-gamma-poisson}
 
-The update is again addition: events are added to $\alpha$ and patient-years to $\beta$. The posterior mean $(\alpha + y)/(\beta + t)$ is a weighted average of the prior mean $\alpha/\beta$ and the observed rate $y/t$, with weights $\beta$ and $t$. The prior is worth $\beta$ patient-years of follow-up, which is its effective sample size.
+The update is again addition: events are added to $a_G$ and patient-years to $b_G$. The posterior mean $(a_G + y)/(b_G + T)$ is a weighted average of the prior mean $a_G/b_G$ and the observed rate $y/T$, with weights $b_G$ and $T$. The prior is worth $b_G$ patient-years of follow-up, which is its effective sample size.
 
 As an illustration (the numbers are invented for the purpose), suppose earlier studies of a drug suggest a rate of serious adverse events of about 0.10 per patient-year, worth 20 patient-years of experience, so the prior is $\mathrm{Gamma}(2, 20)$. A new trial observes 9 events in 80 patient-years.
 
@@ -313,7 +315,15 @@ Return to the trial of @sec-testing: a control arm with a true response probabil
 
 ### The traditional analysis
 
-The observed difference is $\hat p_1 - \hat p_0 = 0.15$. The pooled response is $0.375$, the standard error of the difference under the null is $\sqrt{0.375 \times 0.625 \times (1/100 + 1/100)} = 0.0685$, so $z = 2.19$ and the one-sided p-value is $0.014$. The one-sided p-value is below the usual 0.025 level. The 95% confidence interval for the difference, using the unpooled standard error 0.0676, runs from $0.017$ to $0.283$. Fisher's exact test gives a one-sided p of $0.020$.
+```{r}
+#| include: false
+x1 <- 45; x0 <- 30; n <- 100
+z <- z_test_binary(x0, x1, n); p_one <- pnorm(z, lower.tail = FALSE)
+ci <- wald_ci(x0, x1, n)
+pbar <- (x0 + x1) / (2 * n)
+```
+
+The observed difference is $\hat p_1 - \hat p_0 = `r sprintf("%.2f", (x1 - x0) / n)`$. The pooled response is $`r sprintf("%.3f", pbar)`$, the standard error of the difference under the null is $\sqrt{`r sprintf("%.3f", pbar)` \times `r sprintf("%.3f", 1 - pbar)` \times (1/100 + 1/100)} = `r sprintf("%.4f", sqrt(pbar * (1 - pbar) * 2 / n))`$, so $z = `r sprintf("%.2f", z)`$ and the one-sided p-value is $`r sprintf("%.3f", p_one)`$. The one-sided p-value is below the usual 0.025 level. The 95% confidence interval for the difference, using the unpooled standard error `r sprintf("%.4f", sqrt(0.45 * 0.55 / n + 0.30 * 0.70 / n))`, runs from $`r sprintf("%.3f", ci$lower)`$ to $`r sprintf("%.3f", ci$upper)`$. Fisher's exact test gives a one-sided p of $`r sprintf("%.3f", fisher.test(matrix(c(x1, n - x1, x0, n - x0), 2, byrow = TRUE), alternative = "greater")$p.value)`$.
 
 ### The Bayesian analysis
 
@@ -368,7 +378,7 @@ The posterior probability that the effect exceeds 5 percentage points is `r spri
 | Input | likelihood | likelihood and prior |
 | Main output | estimate, 95% CI, one-sided p | posterior distribution, credible interval, $\Pr(p_1 > p_0 \mid y)$ |
 | Probability statement is about | the procedure, over repeated trials | the parameter, given these data |
-| Result here | $\hat d = 0.15$, CI (0.017, 0.283), $p = 0.014$ | mean 0.147, 95% CrI (0.015, 0.277), $\Pr = 0.9855$ |
+| Result here | $\hat d = `r sprintf("%.2f", (x1 - x0) / n)`$, CI `r sprintf("(%.3f, %.3f)", ci$lower, ci$upper)`, $p = `r sprintf("%.3f", p_one)`$ | mean `r sprintf("%.3f", mean(diff))`, 95% CrI `r sprintf("(%.3f, %.3f)", quantile(diff, 0.025), quantile(diff, 0.975))`, $\Pr = `r sprintf("%.4f", sup())`$ |
 | Decision rule | reject if $p < 0.025$ | declare success if $\Pr(\delta > a \mid y) > c$ |
 | What the regulator asks for | prespecified test, $\alpha$ control | prespecified prior and $(a, c)$, calibrated operating characteristics |
 
@@ -406,15 +416,15 @@ pp <- sapply(priors, function(ab) prob_superior(ab[1] + 45, ab[2] + 55, ab[1] + 
 knitr::kable(data.frame(Prior = names(priors), P = unname(pp)), digits = 3, col.names = c("Prior on each arm", "Pr(p1 > p0 | data)"), align = "lr")
 ```
 
-Applied to both arms alike, even the skeptical Beta(3,7) prior (ESS 10, mean 0.30) moves the answer only from 0.9855 to about 0.983, because 100 patients per arm swamp the 10 pseudo-patients the prior contributes to each arm and the prior is the same on both arms. A prior that differs between arms, or one that centers the treatment effect at zero, is a different matter and is treated in @sec-priors.
+Applied to both arms alike, even the skeptical Beta(3,7) prior (ESS 10, mean 0.30) moves the answer only from `r sprintf("%.4f", sup())` to about `r sprintf("%.3f", pp[3])`, because 100 patients per arm swamp the 10 pseudo-patients the prior contributes to each arm and the prior is the same on both arms. A prior that differs between arms, or one that centers the treatment effect at zero, is a different matter and is treated in @sec-priors.
 
 ## Credible intervals and confidence intervals {#sec-intervals}
 
-The 95% confidence interval for the difference is (0.017, 0.283). The 95% credible interval, the central 95% of the posterior of $p_1 - p_0$, is (0.015, 0.277).
+The 95% confidence interval for the difference is `r sprintf("(%.3f, %.3f)", ci$lower, ci$upper)`. The 95% credible interval, the central 95% of the posterior of $p_1 - p_0$, is `r sprintf("(%.3f, %.3f)", quantile(diff, 0.025), quantile(diff, 0.975))`.
 
 A **confidence interval** is a procedure. If the trial were repeated many times and the interval computed each time by the same recipe, about 95% of the intervals would contain the true $p_1 - p_0$ (this is the nominal coverage of the normal-approximation recipe, which holds approximately and under suitable conditions). The probability statement is about the procedure; for the one interval reported in the clinical study report, the true value is either inside or it is not, and the "95%" does not say how likely it is that this interval covers the truth. A **credible interval** is a statement about the parameter: given the data and the prior, the probability that $p_1 - p_0$ lies in the interval is 95%. There is also a choice of which 95% region, and two are common: the equal-tailed interval, leaving 2.5% in each tail, and the highest posterior density (HPD) interval, the shortest region with 95% probability. For a skewed posterior they differ; for the symmetrical one above they nearly coincide.
 
-An informative prior can shift the credible interval, and often narrows it, without affecting the confidence interval. Near boundaries, a confidence interval built from the normal approximation may stray outside $[0,1]$ or cover poorly, while a credible interval built from the Beta posterior stays inside by construction.
+An informative prior can shift the credible interval, and often narrows it, without affecting the confidence interval. For a single response probability, a Wald interval can extend outside $[0,1]$ or cover poorly near the boundaries, whereas a credible interval built from the Beta posterior stays inside by construction. The following simulation examines coverage for this single probability.
 
 ```{r}
 #| cache: false
@@ -467,7 +477,7 @@ knitr::kable(data.frame(Method = c("Posterior predictive (beta-binomial)", "Plug
   digits = c(0, 2, 2, 0, 0), col.names = c("Method", "Mean", "SD", "95% interval, lower", "95% interval, upper"), align = "lrrrr")
 ```
 
-In @tbl-bayes-predictive the predictive mean is `r sprintf("%.1f", mp[[1]])` responders out of 50 and its standard deviation is `r sprintf("%.2f", mp[[2]])`, against `r sprintf("%.2f", mq[[2]])` for the plug-in binomial. The extra spread is the contribution of not knowing $p$: a prediction made as if $\hat p = 0.45$ were the truth would be overconfident by about 20 percent. The 95% predictive interval for responders among the next 50 is `r ip[1]` to `r ip[2]`, which the Monte Carlo agrees with.
+In @tbl-bayes-predictive the predictive mean is `r sprintf("%.1f", mp[[1]])` responders out of 50 and its standard deviation is `r sprintf("%.2f", mp[[2]])`, against `r sprintf("%.2f", mq[[2]])` for the plug-in binomial. The extra spread is the contribution of not knowing $p$: the predictive standard deviation is `r round(100 * (mp[[2]] / mq[[2]] - 1))`% larger than the plug-in standard deviation. The 95% predictive interval for responders among the next 50 is `r ip[1]` to `r ip[2]`, which the Monte Carlo agrees with.
 
 The same two-stage logic, "draw the parameter from its posterior, then draw the future data from the model," gives the predictive probability that a trial in progress will succeed at its final analysis. @sec-predictive builds on @eq-predictive to define predictive probability, futility rules and Goldilocks-type sample-size choices (the sample size is picked from predictive probabilities).
 
@@ -495,7 +505,7 @@ ggplot(data.frame(tau = tt, w = tt^2 / (tt^2 + s2_b)), aes(tau, w)) + geom_line(
   labs(x = expression(tau ~ "(points)"), y = "weight on the data") + theme_minimal(base_size = 9)
 ```
 
-With $\tau = 4$ the weight on the data is $w = `r sprintf("%.2f", w_b)`$, so the posterior mean is $`r sprintf("%.2f", w_b)` \times (`r sprintf("%.2f", mean(bears))`) = `r sprintf("%.2f", w_b * mean(bears))`$ points. After nine games the data say the team is 9.2 points worse than average, and the posterior says 2.8 points worse, because nine games with a standard deviation of 18 points are a noisy record. The betting market can be compared with this posterior mean. For the next game, at home against the Minnesota Vikings, the betting lines reported for the game had the Bears favored by about 3 points (one sportsbook posted Bears -3.5 at publication). With the usual home-field advantage of about 3 points, that rates the Bears about even with the Vikings on a neutral field, so the market discounted the record of $-9.22$ heavily. The posterior with $\tau = 4$ rates the Bears `r sprintf("%.2f", -w_b * mean(bears))` points worse than average. The two comparisons are against different opponents (the Vikings and an average team), so they are not compared further here, but both the market and the prior discounted the two blowouts heavily. The Bears won the game, 21 to 13.
+With $\tau = 4$ the weight on the data is $w = `r sprintf("%.2f", w_b)`$, so the posterior mean is $`r sprintf("%.2f", w_b)` \times (`r sprintf("%.2f", mean(bears))`) = `r sprintf("%.2f", w_b * mean(bears))`$ points. After nine games the data say the team is `r sprintf("%.1f", -mean(bears))` points worse than average, and the posterior says `r sprintf("%.1f", -w_b * mean(bears))` points worse, because nine games with a standard deviation of 18 points are a noisy record. The betting market can be compared with this posterior mean. For the next game, at home against the Minnesota Vikings, the betting lines reported for the game had the Bears favored by about 3 points (one sportsbook posted Bears -3.5 at publication). With the usual home-field advantage of about 3 points, that rates the Bears about even with the Vikings on a neutral field. That is a statement about Chicago relative to Minnesota, not relative to an average team. The posterior with $\tau = 4$ rates the Bears `r sprintf("%.2f", -w_b * mean(bears))` points worse than average. The two comparisons are against different opponents (the Vikings and an average team), so they are not compared further here. The normal model also gives every game the same weight, so it does not single out the two blowouts. The Bears won the game, 21 to 13.
 
 The prior standard deviation $\tau$ is the knob. A small $\tau$ means the prior is precise and the posterior is pulled strongly toward the prior mean, and as $\tau$ grows the weight on the data rises toward one (@fig-bears-shrinkage). With $\tau = 10$ the data get a weight of `r sprintf("%.2f", 100 / (100 + s2_b))`, and with $\tau = 2$ only `r sprintf("%.2f", 4 / (4 + s2_b))`.
 
@@ -509,7 +519,12 @@ $$ {#eq-loghr-lik}
 
 This is the likelihood, an approximate one: the Cox partial likelihood in large samples is close to a normal in $\theta$, and the approximation is the standard route taken by Bayesian design in survival studies. In the traditional trial the logrank test is, to a good approximation, the z test $z = \hat\theta \sqrt{d} / 2$, and the one-sided p-value is $1 - \Phi(z)$. The number of events, not patients, is the sample size, in both frameworks, as in @sec-power and @sec-sequential.
 
-Take a trial that observes $d = 200$ events and $\widehat{\mathrm{HR}} = 0.74$, so $\hat\theta = -\log 0.74 = 0.30$ with standard error $2/\sqrt{200} = 0.141$. Then $z = 2.12$ and the one-sided p-value is $0.017$, a success at the 0.025 level.
+```{r}
+#| include: false
+d <- 200; theta_hat <- -log(0.74); se <- 2 / sqrt(d)
+```
+
+Take a trial that observes $d = 200$ events and $\widehat{\mathrm{HR}} = 0.74$, so $\hat\theta = -\log 0.74 = `r sprintf("%.3f", theta_hat)`$ with standard error $2/\sqrt{200} = `r sprintf("%.3f", se)`$. Then $z = `r sprintf("%.2f", theta_hat / se)`$ and the one-sided p-value is $`r sprintf("%.3f", pnorm(theta_hat / se, lower.tail = FALSE))`$, a success at the 0.025 level.
 
 For the prior take a normal distribution, $\theta \sim N(m_0, \tau^2)$. A normal prior and a normal likelihood give a normal posterior (normal-normal conjugacy), with precision (the reciprocal of the variance) equal to the sum of the precisions:
 
@@ -525,7 +540,7 @@ This is the same weighted average of @eq-weighted, now with weights given by pre
 #| label: tbl-bayes-normal-normal
 #| echo: true
 #| tbl-cap: "Posterior for theta = -log HR with 200 events and an observed hazard ratio of 0.74, under a flat, a skeptical and a strong skeptical normal prior. Pr(HR < 0.9) is the posterior probability that the hazard ratio is below the margin 0.9."
-d <- 200; theta_hat <- 0.30; se <- 2 / sqrt(d)
+d <- 200; theta_hat <- -log(0.74); se <- 2 / sqrt(d)
 margin <- log(1 / 0.9) # effect margin a: HR below 0.9
 z <- theta_hat / se
 priors <- c("approximately flat N(0, 10^2)" = 10, "skeptical N(0, 0.35^2)" = 0.35, "strong skeptical N(0, 0.20^2)" = 0.20)
@@ -536,7 +551,7 @@ tab <- do.call(rbind, lapply(names(priors), function(nm) {
              pnorm(margin, u$mean, u$sd, lower.tail = FALSE), sprintf("%.2f to %.2f", ci[1], ci[2]))
 }))
 knitr::kable(tab, digits = c(0, 0, 3, 2, 3, 3, 0), align = "lrrrrrr",
-  col.names = c("Prior", "Prior ESS (events)", "Posterior mean", "Posterior HR", "Pr(theta > 0)", "Pr(HR < 0.9)", "95% credible interval for HR"))
+  col.names = c("Prior", "Prior ESS (events)", "Posterior mean", "Posterior median HR", "Pr(theta > 0)", "Pr(HR < 0.9)", "95% credible interval for HR"))
 ```
 
 ```{r}
@@ -555,7 +570,7 @@ ggplot(data.frame(x = c(-0.4, 0.8)), aes(x)) +
 ```
 
 
-With a flat prior, the posterior is $N(0.300, 0.141^2)$ and $\Pr(\theta > 0 \mid \hat\theta) = 0.983$. That is $1 - p$ again ($1 - 0.017 = 0.983$), and now essentially exactly: with an improper flat prior (the limit of a normal prior as its variance grows), in the normal-normal model $\Pr(\theta > 0 \mid \hat\theta) = \Phi(\hat\theta/\text{se})$ is identically one minus the one-sided p-value. With a skeptical prior of ESS 33 events (@fig-loghr), the posterior mean is 0.258 (HR 0.77), $\Pr(\theta > 0) = 0.975$ and the 95% credible interval for the hazard ratio is about 0.60 to 1.00. With the stronger skeptical prior (ESS 100) the posterior mean drops to 0.200 (HR 0.82) and the posterior probability of any benefit falls to 0.958. The same data under three priors give 0.983, 0.975 and 0.958: at a threshold of 0.975 the first passes, the second passes only in the fourth decimal, and the third fails. This is why the prior must be specified before the data, and why @sec-priors is about how to choose one that a regulator will accept. The prior standard deviation of the log hazard ratio is the same knob as $\tau$ for the Bears, and the skeptical-prior $\tau$ in @sec-cases-rewind-tau is chosen in the same way. A later chapter uses this weighting to pool groups.
+With a flat prior, the posterior is $N(`r sprintf("%.3f", tab[[3]][1])`, `r sprintf("%.3f", se)`^2)$ and $\Pr(\theta > 0 \mid \hat\theta) = `r sprintf("%.3f", tab[[5]][1])`$. That is $1 - p$ again ($1 - `r sprintf("%.3f", pnorm(z, lower.tail = FALSE))` = `r sprintf("%.3f", 1 - pnorm(z, lower.tail = FALSE))`$), and now essentially exactly: with an improper flat prior (the limit of a normal prior as its variance grows), in the normal-normal model $\Pr(\theta > 0 \mid \hat\theta) = \Phi(\hat\theta/\text{se})$ is identically one minus the one-sided p-value. With a skeptical prior of ESS 33 events (@fig-loghr), the posterior mean is `r sprintf("%.3f", tab[[3]][2])` (HR `r sprintf("%.2f", tab[[4]][2])`), $\Pr(\theta > 0) = `r sprintf("%.3f", tab[[5]][2])`$ and the 95% credible interval for the hazard ratio is `r tab[[7]][2]`. With the stronger skeptical prior (ESS 100) the posterior mean drops to `r sprintf("%.3f", tab[[3]][3])` (HR `r sprintf("%.2f", tab[[4]][3])`) and the posterior probability of any benefit falls to `r sprintf("%.3f", tab[[5]][3])`. The same data under three priors give `r sprintf("%.3f", tab[[5]][1])`, `r sprintf("%.3f", tab[[5]][2])` and `r sprintf("%.3f", tab[[5]][3])`: at a threshold of 0.975 the first two pass and the third fails. This is why the prior must be specified before the data, and why @sec-priors is about how to choose one that a regulator will accept. The prior standard deviation of the log hazard ratio is the same knob as $\tau$ for the Bears, and the skeptical-prior $\tau$ in @sec-cases-rewind-tau is chosen in the same way. A later chapter uses this weighting to pool groups.
 
 ::: {.callout-note collapse="true" title="Technical note: normal-normal in one line"}
 Complete the square. The product of $\exp\{-(\theta - m_0)^2 / 2\tau^2\}$ and $\exp\{-(\hat\theta - \theta)^2 d/8\}$ is proportional to $\exp\{-\tfrac12(1/\tau^2 + d/4)\,\theta^2 + (m_0/\tau^2 + \hat\theta\, d/4)\,\theta\}$, which is the kernel of a normal with precision $1/\tau^2 + d/4$ and mean the ratio of the linear to the quadratic coefficient. The approximation in @eq-loghr-lik is a modeling choice, not an exact result: it treats $\hat\theta$ as sufficient for the log hazard ratio, which holds only approximately for a Cox model, and it ignores the discreteness of event times. For design purposes it is the usual choice; the final analysis in a Bayesian trial that wants the exact partial or full likelihood can use a piecewise exponential model.
@@ -565,7 +580,7 @@ Complete the square. The product of $\exp\{-(\theta - m_0)^2 / 2\tau^2\}$ and $\
 
 The Beta with a binomial, the gamma with a Poisson and the normal with a normal are pairs for which the posterior has a closed form, and the update is addition. Most models used in trials are not so lucky. A logistic regression that adjusts the treatment effect for baseline covariates, a proportional-odds model for an ordinal outcome such as the organ support-free days of REMAP-CAP, and a model with many arms or time trends have prior-times-likelihood products that match no standard distribution.
 
-In these models the posterior is still defined by @eq-bayes. What is missing is the formula, so the posterior is computed numerically, by integration, approximation or simulation. The most common general method is simulation. **Markov chain Monte Carlo** (MCMC) generates a long sequence of draws of the parameters, each draw depending only on the previous one, constructed so that after a warm-up the draws are samples from the posterior. Any summary then comes from the draws, as in the two-group comparison above: the mean of the draws is the posterior mean, their 2.5% and 97.5% quantiles are the credible interval, and the share of draws in which the odds ratio exceeds one is the posterior probability of benefit.
+In these models the posterior is still defined by @eq-bayes. What is missing is the formula, so the posterior is computed numerically, by integration, approximation or simulation. The most common general method is simulation. **Markov chain Monte Carlo** (MCMC) generates a long sequence of draws of the parameters, each draw depending only on the previous one, constructed so that its stationary distribution is the posterior. After a warm-up, the dependent draws approximate the posterior if the chain has explored it adequately; convergence diagnostics and Monte Carlo error assess that approximation. Any summary then comes from the draws, as in the two-group comparison above: the mean of the draws is the posterior mean, their 2.5% and 97.5% quantiles are the credible interval, and the share of draws in which the odds ratio exceeds one is the posterior probability of benefit.
 
 The computation is done by software such as Stan, and the analyst does not code the sampler. The analyst does have to check that the chains have converged, that the number of effective draws is large enough for the summary reported, and that the result does not move with the seed. A protocol for a model without a closed form therefore states the software, the number of chains and draws, the seed and the convergence checks, as in @sec-protocol-bayes. Nothing else in the logic changes: the prior, the likelihood and the posterior are the same objects as on the grid at the start of this chapter.
 
@@ -617,12 +632,12 @@ The simulation has five looks, adding 50 patients per arm each time (cumulative 
 res <- sim_sequential_looks(n_trials = 4000, n_look = 50, n_looks = 5, seed = 11)
 knitr::kable(data.frame(Setting = c(rep("Null true (p1 = p0 = 0.30), one-sided z > 1.96", 2), rep("Truth drawn from flat priors, stop at first look with Pr(p1 > p0 | y) > 0.975", 3)),
   Quantity = c("Rejection rate, one look at the end", "Rejection rate, any of 5 looks", "Trials that stopped (of 4000)",
-               "Mean posterior probability at stopping", "Fraction of stopped trials where p1 > p0 truly"),
+               "Mean Monte Carlo estimate of the posterior probability at stopping", "Fraction of stopped trials where p1 > p0 truly"),
   Value = c(sprintf("%.3f", res$final_only), sprintf("%.3f", res$any_look), sprintf("%d", res$n_stopped), sprintf("%.4f", res$mean_post_at_stop), sprintf("%.4f", res$frac_truly_better))),
   align = "llr")
 ```
 
-With the null true and five looks at the nominal one-sided 0.025 level, the chance of declaring success at some look is `r sprintf("%.3f", res$any_look)`, not 0.025 (the final-look-only rate is `r sprintf("%.3f", res$final_only)`; @tbl-bayes-looks). That is the reason group sequential designs adjust the thresholds, and the reason regulators insist that the monitoring plan be prespecified (ICH E9 Section 4.5 on interim analysis). When the true response rates are drawn from the prior that the analysis assumed, the trials that stop at the first look where the posterior probability exceeds 0.975 have, on average, a posterior probability of `r sprintf("%.4f", res$mean_post_at_stop)` at the moment they stop, and the fraction of those trials in which the treatment is truly better is `r sprintf("%.4f", res$frac_truly_better)`. The posterior is right on average among the trials that stopped, despite the five opportunities to stop.
+With the null true and five looks at the nominal one-sided 0.025 level, the chance of declaring success at some look is `r sprintf("%.3f", res$any_look)`, not 0.025 (the final-look-only rate is `r sprintf("%.3f", res$final_only)`; @tbl-bayes-looks). That is the reason group sequential designs adjust the thresholds, and the reason regulators insist that the monitoring plan be prespecified (ICH E9 Section 4.5 on interim analysis). When the true response rates are drawn from the prior that the analysis assumed, the trials that stop at the first look where the posterior probability exceeds 0.975 have, on average, a Monte Carlo estimate of the posterior probability of `r sprintf("%.4f", res$mean_post_at_stop)` at the moment they stop, and the fraction of those trials in which the treatment is truly better is `r sprintf("%.4f", res$frac_truly_better)`. The estimate comes from the same random draws that triggered stopping, so selection on it can push it slightly upward, and the comparison is approximate. The posterior is right on average, to that approximation, among the trials that stopped, despite the five opportunities to stop.
 
 - Stopping-rule invariance follows from the likelihood factorization: for an ignorable stopping mechanism and a fixed analysis prior, the stopping factor cancels. Calibration across trials additionally depends on the assumed prior and sampling model. If the true effects are not drawn from that prior, then the posterior at the moment of stopping need not be calibrated to anything in the real world, and the frequentist inflation reappears as an operating characteristic: the fraction of null drug trials that stop for success is what the regulator cares about, and it is a property of the design and the threshold, not of the posterior at a single look. For this reason one of the routes the FDA draft describes, and this book's default for confirmatory adaptive designs without borrowing, is to calibrate Bayesian success criteria by simulation to the type I error probability, and E20 Section 5.3 describes the same operating characteristics [@fda_bayesian_2026; @ich_e20]. @sec-simulation shows how.
 - A threshold calibrated for a single look must be raised, or the number of looks limited, to hold the type I error at 0.025 across the monitoring plan. @sec-sequential quantifies the price.
@@ -649,25 +664,14 @@ The BNT162b2 vaccine trial (@sec-bayes-bnt) wrote its success rule as $\Pr(\math
 REMAP-CAP is a platform trial (@sec-platform) whose primary analysis is a Bayesian cumulative logistic model for organ support-free days, which has no closed-form posterior (@sec-no-conjugate). Its report on interleukin-6 receptor antagonists [@gordon2021remapcap] fixed efficacy as a posterior probability above 99% that the odds ratio exceeds 1, with neutral priors, and tocilizumab crossed that threshold at an interim analysis in 2020 (99.75%). The posterior being valid at each look (@sec-updating) is what lets a platform report while it continues (@sec-landmark-remapcap).
 
 
-## Summary: what changed, what stayed {#sec-bayes-summary}
-
-- **The unknown becomes a distribution.** The treatment effect is described by a prior, updated by data into a posterior, and statements are probabilities about the effect. On a grid the update is a multiplication of two histograms.
-- **The inputs gain a prior.** The prior has to be chosen, prespecified and defended; it is worth a stated number of patients (its effective sample size).
-- **The outputs change meaning.** The credible interval is a probability statement about the parameter, $\Pr(p_1 > p_0 \mid y)$ is a probability that the treatment is better, and posterior predictive distributions say what future patients will do.
-- **The data's role does not change.** The likelihood is the same one the traditional trial uses, and with a flat prior and a large trial the numbers agree: $\Pr(p_1 > p_0 \mid y) = 0.9855$ against $1 - p = 0.9858$ here, and exactly $1 - p$ in the normal-normal model.
-- **Conjugate pairs make the update arithmetic.** Beta with binomial, gamma with Poisson, and normal with normal each give a posterior of the same family. Models without such a pair are computed by numerical integration, approximation or, most commonly, Markov chain Monte Carlo.
-
-The regulator's position, stated in ICH E9 and reaffirmed in the FDA draft and E20, is that the Bayesian approach is acceptable when the reasons for its use are clear and the conclusions are robust. Robust here is a technical word: the conclusion should survive a reasonable change of prior, and the design should have operating characteristics, demonstrated by simulation, that a regulator can read in the language of error rates. @sec-evidence takes up the weighing of evidence, @sec-priors the choice of priors, and @sec-sequential and @sec-predictive the use of the posterior and the predictive distribution in monitoring.
-
-
 ## Key points {.unnumbered}
 
-- Bayes' rule reverses a conditional probability: posterior is proportional to prior times likelihood. On a grid, that is a product of two histograms rescaled to sum to one, for a coin, a response rate or a diagnostic test (a 27% positive predictive value from a 90% sensitive, 95% specific test at 2% prevalence).
-- Exchangeability, the judgment that the order of patients does not matter, replaces independence; de Finetti's theorem turns it into a likelihood and a prior. It can fail. Randomization makes treatment assignment independent of prognosis; the response model separately assumes exchangeability within each arm or stratum.
-- The Beta prior is conjugate to the binomial: the update adds responders and non-responders. The posterior mean is a weighted average of prior mean and sample proportion, and the prior's effective sample size is $a + b$. The same holds for the gamma prior and event rates, where the prior is worth $\beta$ patient-years.
+- Bayes' rule reverses a conditional probability: posterior is proportional to prior times likelihood. On a grid, that is a product of two histograms rescaled to sum to one, for a coin, a response rate or a diagnostic test (a `r round(100 * ppv)`% positive predictive value from a 90% sensitive, 95% specific test at 2% prevalence).
+- Exchangeability, the judgment that the order of patients does not matter, replaces independence; for an infinitely extendible exchangeable binary sequence, de Finetti's theorem gives a mixture of independent Bernoulli sequences, that is, a likelihood and a prior. It can fail. Randomization makes treatment assignment independent of prognosis; the response model separately assumes exchangeability within each arm or stratum.
+- The Beta prior is conjugate to the binomial: the update adds responders and non-responders. The posterior mean is a weighted average of prior mean and sample proportion, and the prior's effective sample size is $a + b$. The same holds for the gamma prior and event rates, where the prior is worth $b_G$ patient-years.
 - In the normal-normal model the weight on the data is data precision over total precision, and the prior standard deviation $\tau$ controls it: small $\tau$ pulls strongly toward the prior mean.
 - Models with no conjugate pair, such as logistic regression and the proportional-odds model, are usually computed by Markov chain Monte Carlo, and then the protocol states the software, chains, draws, seed and convergence checks.
-- With flat priors, $\Pr(p_1 > p_0 \mid y) = 0.9855$ matches $1 - p = 0.9858$ for the trial of 45/100 versus 30/100, and across simulated trials the two differ by at most 0.002. In the normal-normal model on $\theta = -\log \mathrm{HR}$ the match is exact. A Bayesian threshold of 0.975 with a flat prior is not a lower bar than a one-sided 0.025.
+- With flat priors, $\Pr(p_1 > p_0 \mid y) = `r sprintf("%.4f", sup())`$ matches $1 - p = `r sprintf("%.4f", 1 - p_one)`$ for the trial of 45/100 versus 30/100, and across simulated trials the two differ by at most `r sprintf("%.3f", max(gap))`. In the normal-normal model on $\theta = -\log \mathrm{HR}$ the match is exact. A Bayesian threshold of 0.975 with a flat prior is not a lower bar than a one-sided 0.025.
 - A confidence interval describes a procedure and a credible interval describes a parameter. Predictive distributions, which add the uncertainty about the parameter to the sampling variability, are wider than plug-in predictions and are the basis of predictive probability.
 - The posterior at an interim look is the same function of the data whatever the stopping rule, but the type I error of a stopping rule is not; the first is a statement about this trial, the second about repeated trials. Regulators judge a Bayesian design by the second, which is why the FDA draft recommends prior prespecification and evaluated operating characteristics, with calibration to type I error as one of its three routes and this book's default.
 
@@ -675,6 +679,6 @@ The regulator's position, stated in ICH E9 and reaffirmed in the FDA draft and E
 1. A sponsor states that "the p-value of 0.014 means there is a 98.6% probability that the drug works." Under what assumptions is the number right, what is the claim's problem, and how would you rephrase it for the clinical study report?
 2. A Beta(30, 70) prior is proposed for the control arm from a historical trial of 100 patients. What is its effective sample size, how much of the posterior mean would it contribute in a current trial with 50 control patients, and what would you ask the sponsor to show about the exchangeability of the historical and current patients?
 3. A Data Monitoring Committee is shown, after 150 events, a posterior probability of benefit of 0.96 under a skeptical prior and 0.99 under a flat prior. What would you need to know to decide which number to rely on, and what does the protocol have to have said beforehand?
-4. A colleague says Bayesian monitoring is free because the posterior is unaffected by looking. Using the simulation of the previous section, explain what is true in that sentence and what is not.
+4. A colleague says Bayesian monitoring is free because the posterior is unaffected by looking. Using the simulation in @tbl-bayes-looks, explain what is true in that sentence and what is not.
 5. ICH E9 permits Bayesian approaches when "the reasons for their use are clear and when the resulting conclusions are sufficiently robust." Draft two sentences for a protocol that meet that expectation for the normal-normal analysis of @sec-normal-normal.
 :::

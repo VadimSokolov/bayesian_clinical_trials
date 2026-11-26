@@ -6,7 +6,7 @@ This appendix fixes the meaning of every symbol the book uses, defines the abbre
 
 | Symbol | Meaning |
 |---|---|
-| $\theta$ | Treatment effect (generic). For time-to-event outcomes $\theta = -\log \mathrm{HR}$, so that benefit is positive. |
+| $\theta$ | Treatment effect (generic). For time-to-event outcomes $\theta = -\log \mathrm{HR}$, so that benefit is positive. In @sec-hierarchical, $\theta_j$ is the latent quantity for group $j$ on the stated scale, including the log odds of dumping or of response. |
 | $\delta$ | Treatment effect in the success criterion of FDA's draft Bayesian guidance, $\Pr(\delta > a \mid \text{data}) > c$. Used only when quoting that criterion; elsewhere the book writes $\theta$. |
 | $a$, $c$ | The minimum clinically relevant effect and the posterior probability threshold in that criterion. |
 | $b$ | Threshold on the Bayes factor (or on the e-value, $b = 1/\alpha$), distinct from the posterior probability threshold $c$. |
@@ -25,9 +25,11 @@ This appendix fixes the meaning of every symbol the book uses, defines the abbre
 | $\mathrm{BF}$, $\mathrm{BF}_{10}$ | Bayes factor, with $\mathrm{BF}_{10}$ in favor of the alternative over the null. |
 | $E_n$ | E-value, or test martingale, at stage $n$. |
 | $t$ | Information fraction in a group sequential design, the share of the planned information accrued so far. |
+| $T$ | Follow-up exposure in patient-years, as in the Gamma-Poisson model of @sec-gamma-poisson. |
 | $\mathrm{Beta}(a,b)$ | Beta distribution with shape parameters $a$ and $b$, the conjugate prior for a response probability. Here $a$ is a shape parameter and not the threshold $a$ of the success criterion above. |
-| $\tau$ | Prior scale of the treatment effect: $\theta \sim N(0, \tau^2)$ in the reconstructions of the SELECT cardiovascular trial in Parts III to V, with $\tau = 0.25$. |
-| $\tau_b$ | Between-stratum or between-arm standard deviation in the shrinkage examples of @sec-cases-alz, @sec-reanalyses-recovery and @sec-platform. A local symbol, distinct from the prior scale $\tau$. |
+| $\mathrm{Gamma}(a_G,b_G)$ | Gamma distribution with shape $a_G$ and rate $b_G$, mean $a_G/b_G$, the conjugate prior for an event rate. The rate $b_G$ is measured in patient-years. |
+| $\tau$ | Standard deviation of a normal prior or group distribution. In @sec-hierarchical it is the between-group standard deviation. The SELECT cardiovascular reconstructions in Parts III to V use $\theta \sim N(0, \tau^2)$ with $\tau = 0.25$. |
+| $\tau_b$ | Between-stratum or between-arm standard deviation in the shrinkage examples of @sec-cases-alz, @sec-reanalyses-recovery and @sec-platform. The corresponding between-group scale used in these later examples, written $\tau$ in @sec-hierarchical. |
 | $p^*$ | Posterior probability threshold for continuous monitoring, calibrated by simulation so that the type I error is 0.025 (about 0.995 in the SELECT reconstruction). |
 | $d$ | Number of events in a time-to-event trial. It plays the role of $n$, with total information $I_n = d/4$ for the log hazard ratio (per-event information 1/4) under one to one allocation. |
 | $S$ | Score statistic, $S = \theta I_n$ on the mean path, with $Z = S/\sqrt{I_n}$. |
@@ -71,7 +73,7 @@ The companion package `bayestrials` (@sec-software) uses plain-text argument nam
 | FDA | United States Food and Drug Administration. |
 | FWER | Familywise error rate, the probability of at least one false positive among a family of hypotheses. |
 | HMA | Heads of Medicines Agencies. |
-| HR | Hazard ratio. |
+| HR | Hazard ratio. In breast-cancer signature labels such as HR+/HER2-, hormone receptor status. |
 | ICH | International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use. |
 | IND | Investigational New Drug application. |
 | IRT | Interactive response technology, the system that randomizes patients and assigns drug supply. |
@@ -94,7 +96,7 @@ The companion package `bayestrials` (@sec-software) uses plain-text argument nam
 
 **Concurrent control.** Control patients randomized during the same period as the patients on a given experimental arm. Control patients enrolled before that arm joined a platform trial are non-concurrent (@sec-platform).
 
-**Effective sample size.** The number of patients whose data would carry the same information as the prior distribution (@sec-priors).
+**Effective sample size.** The prior's information expressed as an equivalent amount of data under a stated model and matching rule. The units are patients for the Beta-binomial model, events for the log hazard ratio approximation, and patient-years of effective exposure for the Gamma-Poisson model (@sec-priors).
 
 **E-value.** A nonnegative statistic whose expectation under the null is at most one. A running product of nonnegative factors is a test supermartingale when each factor has conditional expectation at most one, given the preceding data, under every null distribution. By Ville's inequality, such a product allows valid decisions at any stopping time (@sec-evalues).
 

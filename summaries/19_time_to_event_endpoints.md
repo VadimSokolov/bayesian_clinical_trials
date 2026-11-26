@@ -1,7 +1,7 @@
 # Chapter 19. Time-to-Event Endpoints
 
 <!-- cite:begin -->
-From *Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 19. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24163054. Book page: https://vsokolov.org/books/bayesian_clinical_trials/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials.
+From *Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 19. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24564479. Book page: https://vsokolov.org/books/bayesian_clinical_trials/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials.
 <!-- cite:end -->
 
 This chapter treats time to event endpoints. It starts with the traditional analysis (Kaplan and Meier, the log rank test and the Cox model), then shows that events are the information, derives the gamma posterior for a hazard, and gives predictive probability in an event driven trial. A section on non proportional hazards covers why the hazard ratio misdescribes a delayed or cure type effect, power loss under a delayed effect, and tests built for such effects (weighted log rank, restricted mean survival time and modestly weighted tests). It ends with regulation and practice, key points and exercises.

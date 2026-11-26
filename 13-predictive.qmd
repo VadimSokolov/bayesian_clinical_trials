@@ -477,7 +477,7 @@ A protocol that sets the threshold should say which data enter the calculation a
 
 ### DAWN: predictive probability for expected success and futility
 
-DAWN [@jovin2017dawn; @stryker_dawn_sap_2017] makes predictive probability the stopping quantity: the trial stops for expected success if the predictive probability of success exceeds a threshold that falls as the sample grows (95% at 200 patients, 80% at 500), so an early stop needs more certainty than a late one, and it stops for futility if the predictive probability of success at the maximum sample size, under any enrichment possibility, is under 10%. The final success criterion and its adjustment for enrichment are in @sec-sim-practice, and the trial is told in @sec-landmark-dawn.
+DAWN [@jovin2017dawn; @stryker_dawn_sap_2017] makes predictive probability the stopping quantity. For expected-success stopping, the trial predicts whether both primary analyses will succeed after currently enrolled patients complete 90-day follow-up, assuming no further enrollment, and stops if that probability exceeds a threshold that falls as the sample grows (95% at 200 patients, 80% at 500), so an early stop needs more certainty than a late one. For futility, it predicts success after enrollment to the maximum sample size under each permitted enrichment option, and stops if that probability is under 10%. The final success criterion and its adjustment for enrichment are in @sec-sim-practice, and the trial is told in @sec-landmark-dawn.
 
 This is the Goldilocks structure of @sec-goldilocks with a schedule of thresholds, and it shows what a regulator reads in such a design: not the decision theory but the table of looks and thresholds and the simulation that calibrates the final criterion.
 

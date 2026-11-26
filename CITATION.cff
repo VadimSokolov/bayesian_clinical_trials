@@ -13,9 +13,9 @@ authors:
 - family-names: Polson
   given-names: Nicholas G.
   affiliation: Booth School of Business, University of Chicago
-version: 1.3.0
-doi: 10.5281/zenodo.24163054
-date-released: '2026-11-25'
+version: 1.3.1
+doi: 10.5281/zenodo.24564479
+date-released: '2026-11-26'
 license: CC-BY-4.0
 repository-code: https://github.com/VadimSokolov/bayesian_clinical_trials
 url: https://vsokolov.org/books/bayesian_clinical_trials/
@@ -63,7 +63,7 @@ preferred-citation:
     given-names: Nicholas G.
     affiliation: Booth School of Business, University of Chicago
   year: 2026
-  doi: 10.5281/zenodo.24163054
+  doi: 10.5281/zenodo.24564479
   url: https://vsokolov.org/books/bayesian_clinical_trials/
   publisher:
     name: Independently published

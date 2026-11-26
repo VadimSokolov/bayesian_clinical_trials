@@ -85,21 +85,15 @@ Methods 1 and 2 are *static*: the amount of borrowing is fixed before the trial.
 
 ### Exchangeability and hierarchical models {#sec-borrowing-hier}
 
-Two groups of patients are *exchangeable* if, before seeing any data, we would not be surprised by relabeling them: nothing we know distinguishes the response rate of one group from that of the other. Exchangeability does not say the rates are equal. It says their joint prior is symmetric. We model the group rates as conditionally independent draws from a common distribution with unknown parameters, which is the hierarchical model. This is a modeling assumption; de Finetti's representation (@sec-bayes) motivates it when exchangeability extends to an infinite sequence.
-
-For $K$ groups with response rates $p_1,\ldots,p_K$, a standard hierarchical model for binary data is
+The exchangeability assumption and shrinkage weights are developed in @sec-hierarchical. Here the groups are historical and current patient populations. For $K$ groups with response rates $p_1,\ldots,p_K$, the hierarchical model for binary data is
 $$
 y_k \mid p_k \sim \mathrm{Binomial}(n_k,p_k),\qquad \mathrm{logit}\,p_k \mid \mu,\tau_b \sim N(\mu,\tau_b^2),\qquad (\mu,\tau_b)\sim \pi(\mu,\tau_b).
 $$ {#eq-hier}
-The between-group standard deviation $\tau_b$ controls borrowing. When $\tau_b$ is near zero the groups are close to identical and each group's estimate is pulled towards the common mean. When $\tau_b$ is large the groups are nearly independent and each keeps its own data. The key feature is that $\tau_b$ is estimated from the data: if the groups disagree, the posterior for $\tau_b$ moves up and borrowing falls. For a normal outcome with group effects $\theta_k$, the posterior mean of group $k$ is, approximately, a weighted average,
-$$
-\mathbb{E}[\theta_k \mid y] \approx \lambda_k \bar\theta + (1-\lambda_k)\hat\theta_k,\qquad \lambda_k = \frac{\sigma_k^2}{\sigma_k^2+\tau_b^2},
-$$ {#eq-shrink}
-where $\sigma_k^2$ is the sampling variance of the group's own estimate $\hat\theta_k$ and $\bar\theta$ is the precision-weighted overall mean. A small group has large $\sigma_k^2$ and so is shrunk more. This is the same shrinkage that @sec-multiplicity used for several endpoints. Stein's normal-means result (1956) shows that carefully chosen shrinkage estimators can reduce total squared error under its assumptions [@stein1956inadmissibility]. Whether shrinkage improves estimation in the hierarchical binomial model above has to be assessed under plausible heterogeneity, because the theorem does not cover estimated heterogeneity or arbitrary shrinkage rules.
+The between-group standard deviation $\tau_b$ (written $\tau$ in @sec-hierarchical) controls how much the historical groups inform the current one. It is estimated from the data, so borrowing falls when the historical and current groups disagree.
 
 The same structure is used in multicenter trials, where the groups are centers. @polson2026simbayes fit a hierarchical logistic-normal model to the eight-center topical-cream trial of Skene and Wakefield, with a bivariate normal on the pair of center-specific log odds for the two arms, so that centers borrow strength on both arms and on their difference [@skene1990]. Individual centers had 5 to 37 patients per arm, so single-center estimates were imprecise, and the model improves them without discarding center-level variation.
 
-First, shrinkage lowers *total* error only under conditions, and not the error of every group: under the normal model with known variances and three or more means, Stein's result is that shrinkage lowers the total squared-error risk, but an individual group can be estimated worse, and a group that really is different usually is estimated worse than by its own data alone. Second, with few groups $\tau_b$ is poorly estimated, and the answer depends on its prior. With four historical trials, a half-normal prior with scale 0.5 on $\tau_b$ and one with scale 1.0 can give quite different degrees of borrowing, and the sensitivity analysis should show it. The FDA draft's insistence on sensitivity analyses over "a range of alternative reasonable choices for the prior" is aimed at this point [@fda_bayesian_2026].
+With few historical trials, $\tau_b$ is poorly estimated and the answer depends on its prior. With four historical trials, a half-normal prior with scale 0.5 on $\tau_b$ and one with scale 1.0 can give quite different degrees of borrowing, and the sensitivity analysis should show it. The FDA draft's insistence on sensitivity analyses over "a range of alternative reasonable choices for the prior" is aimed at this point [@fda_bayesian_2026].
 
 ## Power priors and their normalized version {#sec-borrowing-power}
 

@@ -1,7 +1,7 @@
 {
  "edition": "1",
  "pdf": {
-  "bytes": 8630165,
+  "bytes": 8626721,
   "file": "pdf/bayesian_clinical_trials.pdf",
   "pages": 610,
   "parts": [
@@ -216,41 +216,41 @@
     "title": "Appendix C. Software and Code"
    }
   ],
-  "sha256": "da5deeb60fa50cc1645d1656972062a83575cc902bf026cbbd73ce0a7f5f27af"
+  "sha256": "2477b9fc140a097b80ffd78a4ef2dc82ad0c3bab9a2f21b089e45a0577b56d52"
  },
  "results": {
   "backward_induction_states": {
    "environment": "res",
    "file": "13-predictive.qmd",
-   "fingerprint": "f9177bfb785a",
+   "fingerprint": "1e1eb7b030a9",
    "label": "res-backward-induction-states",
    "number": "16.6.2",
    "page": "338",
    "printed": "Section 16.6.2",
-   "verified_fingerprint": "f9177bfb785a",
-   "verified_on": "2026-11-25"
+   "verified_fingerprint": "1e1eb7b030a9",
+   "verified_on": "2026-11-26"
   },
   "bayes_bar_crossing_46": {
    "environment": "res",
    "file": "06-evidence.qmd",
-   "fingerprint": "ecb898a12266",
+   "fingerprint": "b1caacd6c95a",
    "label": "res-bayes-bar-crossing",
    "number": "8.5.1",
    "page": "157",
    "printed": "Section 8.5.1",
-   "verified_fingerprint": "ecb898a12266",
-   "verified_on": "2026-11-12"
+   "verified_fingerprint": "b1caacd6c95a",
+   "verified_on": "2026-11-26"
   },
   "bnt162b2_beta_binomial_reproduction": {
    "environment": "res",
    "file": "05-bayes.qmd",
-   "fingerprint": "64e6f2fc9240",
+   "fingerprint": "9883f1f1a686",
    "label": "res-bnt162b2-reproduction",
    "number": "6.6",
    "page": "118",
    "printed": "Section 6.6",
-   "verified_fingerprint": "64e6f2fc9240",
-   "verified_on": "2026-11-25"
+   "verified_fingerprint": "9883f1f1a686",
+   "verified_on": "2026-11-26"
   },
   "evidence_tolls_three_scales": {
    "environment": "res",
@@ -288,35 +288,35 @@
   "null_maximum_calibration": {
    "environment": "res",
    "file": "12-simulation.qmd",
-   "fingerprint": "a862fc393995",
+   "fingerprint": "4e81b83c2a28",
    "label": "res-null-max-calibration",
    "number": "15.4",
    "page": "306",
    "printed": "Section 15.4",
-   "verified_fingerprint": "a862fc393995",
-   "verified_on": "2026-11-25"
+   "verified_fingerprint": "4e81b83c2a28",
+   "verified_on": "2026-11-26"
   },
   "select_reconstruction_medians": {
    "environment": "res",
    "file": "18-cases.qmd",
-   "fingerprint": "6964e8036139",
+   "fingerprint": "5fee98c53a6f",
    "label": "res-select-reconstruction",
    "number": "22.1.1",
    "page": "463",
    "printed": "Section 22.1.1",
-   "verified_fingerprint": "6964e8036139",
-   "verified_on": "2026-11-25"
+   "verified_fingerprint": "5fee98c53a6f",
+   "verified_on": "2026-11-26"
   },
   "shared_control_false_positive_counts": {
    "environment": "res",
    "file": "17-platform.qmd",
-   "fingerprint": "b24c440203cb",
+   "fingerprint": "55a4a76bbd53",
    "label": "res-shared-control-counts",
    "number": "21.4.1",
    "page": "441",
    "printed": "Section 21.4.1",
-   "verified_fingerprint": "b24c440203cb",
-   "verified_on": "2026-11-25"
+   "verified_fingerprint": "55a4a76bbd53",
+   "verified_on": "2026-11-26"
   },
   "surcharge_seventy_percent": {
    "environment": "res",
@@ -332,30 +332,37 @@
   "ulcer_bonferroni_vs_posterior": {
    "environment": "res",
    "file": "09-multiplicity.qmd",
-   "fingerprint": "94a67b2851ec",
+   "fingerprint": "090e9c4dd487",
    "label": "res-ulcer-reading",
    "number": "11.5.2",
    "page": "236",
    "printed": "Section 11.5.2",
-   "verified_fingerprint": "94a67b2851ec",
-   "verified_on": "2026-11-25"
+   "verified_fingerprint": "090e9c4dd487",
+   "verified_on": "2026-11-26"
   },
   "utility_only_rule_null_declaration": {
    "environment": "res",
    "file": "13-predictive.qmd",
-   "fingerprint": "a7e1418a91ed",
+   "fingerprint": "9dcfbcd75c06",
    "label": "res-utility-only-null",
    "number": "16.6.3",
    "page": "341",
    "printed": "Section 16.6.3",
-   "verified_fingerprint": "a7e1418a91ed",
-   "verified_on": "2026-11-25"
+   "verified_fingerprint": "9dcfbcd75c06",
+   "verified_on": "2026-11-26"
   }
  },
- "updated": "2026-11-25",
+ "updated": "2026-11-26",
  "zenodo": {
   "concept_doi": "10.5281/zenodo.24122875",
   "doi": "10.5281/zenodo.24163054",
+  "draft": {
+   "doi": "10.5281/zenodo.24564479",
+   "html": "https://zenodo.org/deposit/24564479",
+   "id": 24564479,
+   "reserved_on": "2026-11-26",
+   "version": "1.3.1"
+  },
   "html": "https://zenodo.org/records/24163054",
   "latest_id": 24163054,
   "tag": "v1.3.0",

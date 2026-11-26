@@ -10,7 +10,7 @@ Reporting the best of twenty results as the only comparison conceals selection a
 
 Instead of raising the bar that each result must clear, a hierarchical model lowers the estimate of each result toward what the other results suggest.
 
-Novick and Grizzle used a trial of four operations for duodenal ulcer in 1965 to argue for Bayesian analysis of trial data. Traditional and hierarchical analyses use the same real counts of dumping syndrome after surgery, from the same trial, published by Grizzle, Starmer and Koch [-@grizzle1969categorical].
+Novick and Grizzle used a trial of four operations for duodenal ulcer in 1965 to argue for Bayesian analysis of trial data. Traditional and hierarchical analyses use the same real counts of dumping syndrome after surgery, published by Grizzle, Starmer and Koch [-@grizzle1969categorical].
 
 ::: {.callout-important title="Regulatory anchor"}
 **ICH E9, Statistical Principles for Clinical Trials (1998) [@ich_e9], section 5.6 (multiplicity).** Multiplicity arises from "multiple primary variables, multiple comparisons of treatments, repeated evaluation over time and/or interim analyses". When it is present, "the usual frequentist approach to the analysis of clinical trial data may necessitate an adjustment to the type I error". The guideline asks that the strategy be identified in the protocol and that adjustment always be considered. Section 2.2 asks for the precise definition of the primary variable to be specified in the protocol, to avoid multiplicity concerns from post hoc definitions.
@@ -190,13 +190,14 @@ Stein [-@stein1956inadmissibility] showed that for three or more means in a mult
 
 ### A numerical illustration: the winner's curse
 
-Six arms have true effects drawn from $N(0, 0.2^2)$ on the log odds scale, each estimated with standard error $0.28$ (about what the ulcer trial's arms give, below). Only the arm with the largest observed effect is reported.
+Six arms have true effects drawn from $N(0, 0.2^2)$ on the log odds scale, each estimated with standard error `r round(sqrt(mean(shrink_logodds(ulcer)$v)), 2)`, using the average sampling variance of the ulcer arms (below). Only the arm with the largest observed effect is reported.
 
 ```{r}
 #| label: fig-winners-curse
 #| fig-cap: "Error of the estimate for the apparently best of six arms. The raw estimate is biased upward because the arm was selected for looking best. The shrunken estimate is centered on the truth with a much smaller spread."
 #| echo: true
-set.seed(3); k <- 6; reps <- 20000; tau <- 0.2; se <- 0.28
+se <- sqrt(mean(shrink_logodds(ulcer)$v)) # average sampling variance of the ulcer arms
+set.seed(3); k <- 6; reps <- 20000; tau <- 0.2
 th <- matrix(rnorm(reps * k, 0, tau), reps); y <- th + matrix(rnorm(reps * k, 0, se), reps)
 i <- cbind(1:reps, max.col(y)); B <- se^2 / (tau^2 + se^2) # shrinkage factor, mu = 0 known
 err <- data.frame(raw = y[i] - th[i], shrunk = (1 - B) * y[i] - th[i])
@@ -249,9 +250,9 @@ In practice false discovery rate control is used for screening, exploratory endp
 
 ## An illustration motivated by the four-operation ulcer trial {#sec-mult-ulcer}
 
-Novick and Grizzle [-@novick1965] made one of the first cases for Bayesian analysis of clinical trial data using an experiment then in progress that compared four operative treatments for duodenal ulcer. Four arms yield six pairwise contrasts, with repeated analyses during the trial and a modest effect on a binary endpoint. They argued that a Bayesian analysis conditions on the data in hand and therefore needs neither a multiplicity correction nor a spending schedule, and that prior information about operative outcomes can be stated rather than suppressed. The feature of the trial we use is structural: the four operations differ in how much stomach is removed, so they are ordered.
+Novick and Grizzle [-@novick1965] made one of the first cases for Bayesian analysis of clinical trial data using an experiment then in progress that compared four operative treatments for duodenal ulcer. Four arms yield six pairwise contrasts, with repeated analyses during the trial and a modest effect on a binary endpoint. They argued that a Bayesian analysis conditions on the data in hand and therefore needs neither a multiplicity correction nor a spending schedule, and that prior information about operative outcomes can be stated rather than suppressed. The feature of the design we use is structural: the four operations differ in how much stomach is removed, so they are ordered.
 
-The counts below are the dumping-syndrome data of Grizzle, Starmer and Koch [-@grizzle1969categorical] from the same trial, pooled over four hospitals. Dumping (rapid gastric emptying that causes nausea, cramps and sweating after meals) is an adverse effect, and its rate rises with the extent of resection. We could not confirm which outcome Novick and Grizzle themselves analyzed. The counts ship with the package as the dataset `ulcer`.
+The calculations use the dumping-syndrome counts published by Grizzle, Starmer and Koch [-@grizzle1969categorical], pooled over four hospitals. Dumping (rapid gastric emptying that causes nausea, cramps and sweating after meals) is an adverse effect, and its rate rises with the extent of resection. We could not confirm which outcome Novick and Grizzle themselves analyzed. The counts ship with the package as the dataset `ulcer`.
 
 ```{r}
 #| label: tbl-ulcer-data
@@ -262,7 +263,7 @@ knitr::kable(transform(ulcer[, c("operation", "n", "dumping")], rate = round(100
 ```
 
 ::: {.callout-note title="A note on the companion lab"}
-Module 05 of the companion lab uses a different table for the same trial: four treatments (named A to D) with 100 patients each and a three-level outcome (excellent, fair, death), described there as illustrative counts at the scale of Novick and Grizzle (1965). The lab's table and this chapter's table are not the same data: this chapter uses the real dumping-syndrome counts. Both illustrate the same lesson, and the numbers in this chapter come from the code shown.
+Module 05 of the companion lab uses a different table: four treatments (named A to D) with 100 patients each and a three-level outcome (excellent, fair, death), described there as illustrative counts at the scale of Novick and Grizzle (1965). The lab's table and this chapter's table are not the same data: this chapter uses the real dumping-syndrome counts. Both illustrate the same lesson, and the numbers in this chapter come from the code shown.
 :::
 
 ### What the traditional reading does with it
@@ -270,15 +271,18 @@ Module 05 of the companion lab uses a different table for the same trial: four t
 ```{r}
 #| label: ulcer-standard
 #| echo: true
-d <- y[4] - y[1]; se <- sqrt(v[1] + v[4]); z <- d / se; p2 <- 2 * (1 - pnorm(z))
-ulcer_std <- c(log_OR = d, se = se, Z = z, p_two_sided = p2, bonferroni_6 = min(1, 6 * p2), bar_z = qnorm(1 - 0.025 / 6))
+d <- y[4] - y[1]; se <- sqrt(v[1] + v[4]); z <- d / se
+# six prespecified directional comparisons (more extensive resection, more dumping), one-sided, familywise alpha 0.025
+p1 <- pnorm(z, lower.tail = FALSE)
+pw <- combn(4, 2, function(i) pnorm((y[i[2]] - y[i[1]]) / sqrt(v[i[1]] + v[i[2]]), lower.tail = FALSE))
+ulcer_std <- c(log_OR = d, se = se, Z = z, p_one_sided = p1, bonferroni_6 = min(1, 6 * p1), holm_6 = p.adjust(pw, "holm")[3], bar_z = qnorm(1 - 0.025 / 6))
 ```
 
-The most extreme contrast, 75 percent resection against drainage and vagotomy, is a difference of `r round(100 * (ulcer$dumping[4] / ulcer$n[4] - ulcer$dumping[1] / ulcer$n[1]), 1)` percentage points in the dumping rate, a log odds ratio of `r round(d, 3)` with standard error `r round(se, 3)`. The test statistic is $Z = `r round(z, 2)`$ and the unadjusted two-sided $p$-value is `r round(p2, 4)`. That is the answer if this single contrast was the only one asked. It was not: with four arms there are six pairwise contrasts, and this one was chosen because it is the largest.
+We compare the operations at the two ends of the resection range, drainage and vagotomy against 75 percent resection, a difference of `r round(100 * (ulcer$dumping[4] / ulcer$n[4] - ulcer$dumping[1] / ulcer$n[1]), 1)` percentage points in the dumping rate. The largest observed difference is between 25 and 75 percent resection, a log odds ratio of `r round(y[4] - y[2], 3)`. The comparison is directional throughout: the question is whether more extensive resection causes more dumping, so every $p$-value is one-sided and the familywise level is 0.025. For drainage against 75 percent resection the log odds ratio is `r round(d, 3)` with standard error `r round(se, 3)`. The test statistic is $Z = `r round(z, 2)`$ and the unadjusted one-sided $p$-value is `r round(p1, 4)`. That is the answer if this single contrast was the only one asked. It was not: with four arms there are six pairwise contrasts, and the others are in the same family.
 
-The Bonferroni-adjusted $p$-value is `r round(6 * p2, 4)`. A group sequential design with four interim analyses at the corrected level would put the first boundary at $5.34$ (an O'Brien-Fleming boundary at the Bonferroni level, from Polson and Sokolov's script), which $Z=`r round(z, 2)`$ does not approach. An e-value procedure at the same corrected level, with a normal-mixture alternative of prior scale 0.5 on the log odds ratio, would need $Z\ge `r round(decide_bayes_bar(0.5^2 / ulcer_std[["se"]]^2, 6 / 0.025), 2)`$ (the construction is in @sec-evalues). None rejects the null for the dumping difference. If the question really were "does any of these six contrasts show a difference, with a guarantee that I will make a false claim at most one time in forty", the answer from this trial is "not established".
+The Bonferroni-adjusted $p$-value is `r round(6 * p1, 4)`. A group sequential design with four interim analyses at the corrected level would put the first boundary at $5.34$ (an O'Brien-Fleming boundary at the Bonferroni level, from Polson and Sokolov's script), which $Z=`r round(z, 2)`$ does not approach. An e-value procedure at the same corrected level, with a normal-mixture alternative of prior scale 0.5 on the log odds ratio, would need $Z\ge `r round(decide_bayes_bar(0.5^2 / ulcer_std[["se"]]^2, 6 / 0.025), 2)`$ (the construction is in @sec-evalues). None rejects the null for the dumping difference. If the question really were "does any of these six contrasts show a difference, with a guarantee that I will make a false claim at most one time in forty", the answer from this trial is "not established".
 
-With six contrasts and the best one's $p$-value adjusted by $6$, Holm and Bonferroni agree on the smallest $p$-value; Holm's gain would come from the other contrasts, none of which is stronger. The pairwise Bonferroni and Holm procedures do not use the ordering visible in the table (the dumping rate rises, with one small reversal, as more stomach is removed); a prespecified trend test does.
+This contrast has the second smallest of the six $p$-values, so Holm's step-down procedure multiplies it by 5 rather than 6 and gives `r round(ulcer_std[["holm_6"]], 4)`, which is also above 0.025. The pairwise Bonferroni and Holm procedures do not use the ordering visible in the table (the dumping rate rises, with one small reversal, as more stomach is removed); a prespecified trend test does.
 
 ### What the hierarchical reading does with it
 
@@ -340,7 +344,7 @@ Where the traditional design is the better choice: a confirmatory trial with two
 
 FDA revised its draft guidance on master protocols in June 2026. For comparisons of different drugs against a common control, the agency "generally does not recommend the use of multiplicity adjustments to strongly control the probability of making at least one type I error across the multiple comparisons of different drugs". The reason given is that the expected number of type I errors is the same whether those comparisons are made in independent trials or in one master protocol. A sponsor of two unrelated drugs who runs two separate trials does not adjust either one for the other, so there is no reason to adjust when they happen to share a protocol. Rothman [@rothman1990noadjust] argued that no adjustments are needed for multiple comparisons at all, and Proschan and Waclawiw [@proschan2000practical] gave practical guidelines for when adjustment is warranted. The different-drug comparisons described here can constitute separate families. Distinct endpoint claims for one drug do not, by themselves, justify dispensing with multiplicity control. The position is for unrelated drugs, often from different sponsors, and, in the draft's wording, generally also for comparisons of one drug in different diseases, conditions or disease subtypes when these represent distinct clinical objectives, as in separate basket substudies. It is not for multiple doses or regimens of one drug, which are alternative ways to support one claim and sit within the usual family, and it is not a licence to select subgroups or baskets and then combine them to support a single claim, which returns to the usual family. @sec-platform develops the shared control, the non-concurrent control question and the way hierarchical models are used across arms and across subgroups in platform trials.
 
-Shrinkage across drugs treats different drugs as exchangeable draws and requires justification separate from multiplicity adjustment: unrelated drugs are not scientifically exchangeable, so shrinking one drug's effect toward their average borrows irrelevant information. Hierarchical modeling is natural for doses of the same drug, for subgroups of the same population, and for baskets of tumor types with a common mechanism. Subgroup and basket designs include Thall and colleagues' subtype model, Berry and colleagues' subpopulation models, and the exchangeability-nonexchangeability model (between-group variance priors and simulated error rates: @sec-borrowing-basket).
+Shrinkage across drugs treats different drugs as exchangeable draws and requires justification separate from multiplicity adjustment: unrelated drugs are not scientifically exchangeable, so shrinking one drug's effect toward their average borrows irrelevant information. Hierarchical modeling is natural for doses of the same drug, for subgroups of the same population, and for baskets of tumor types with a common mechanism. Subgroup and basket designs include Thall and colleagues' subtype model, Berry and colleagues' subpopulation models, and the exchangeability-nonexchangeability model (@sec-borrowing-basket). @sec-hier-choosing illustrates how the between-group scale affects pooling and simulated false positive rates.
 
 ## Seeing it in the lab {#sec-mult-lab}
 
@@ -356,9 +360,9 @@ Go to <https://vsokolov.org/bayesian_trials_lab/05-ulcer-trial.html>. Pick the b
 
 I-SPY 2 and REMAP-CAP address multiplicity through a statistical model and a high decision threshold rather than a familywise adjustment. Neither claims strong familywise control, and neither should be read as showing that the Bayesian machinery of this chapter is a regulatory substitute for it.
 
-### I-SPY 2: ten signatures per drug
+### I-SPY 2: up to ten eligible signatures per drug
 
-I-SPY 2 evaluates each experimental drug in ten prospectively defined biomarker signatures, so a drug is tested in ten overlapping subgroups, which is exactly the subgroup problem of @sec-mult-subgroups. The design does not adjust the threshold ten ways. Estimates come from a covariate-adjusted logistic model for pathologic complete response, and a drug graduates in a signature (moves on to confirmatory testing) when its Bayesian predictive probability of phase 3 success reaches 85% [@park2016ispy2]. The threshold is set high on purpose, and a drug is dropped for futility only if its predictive probability is below 10% in all ten signatures. Each signature receives an estimate and interval, the shared model and decision rule govern selection, with operating characteristics established by simulation before the trial (@sec-simulation), and a graduation is a screening decision, not a claim of efficacy for labeling. The trial, with its neratinib and pembrolizumab results, is told in @sec-landmark-ispy2.
+I-SPY 2 evaluates each experimental drug in the prospectively defined biomarker signatures for which it is eligible (ten signatures in all, so a drug can be tested in up to ten overlapping subgroups), which is exactly the subgroup problem of @sec-mult-subgroups. The design does not adjust the threshold ten ways. Estimates come from a covariate-adjusted logistic model for pathologic complete response, and a drug graduates in a signature (moves on to confirmatory testing) when its Bayesian predictive probability of phase 3 success reaches 85% [@park2016ispy2]. The threshold is set high on purpose, and a drug is dropped for futility only if its predictive probability is below 10% in all of its eligible signatures. Each signature receives an estimate and interval, the shared model and decision rule govern selection, with operating characteristics established by simulation before the trial (@sec-simulation), and a graduation is a screening decision, not a claim of efficacy for labeling. The trial, with its neratinib and pembrolizumab results, is told in @sec-landmark-ispy2.
 
 ### REMAP-CAP: hierarchical modeling across domains and arms
 
@@ -385,11 +389,11 @@ A forest plot of subgroup results should show the shrunken estimates next to the
 - ICH E9 section 5.6 and the FDA multiple endpoints guidance (final, October 2022) ask for the strategy to be prespecified, for one key primary variable where possible, and for strong control of the familywise error rate on the claims. Hypotheses outside the family are exploratory.
 - Subgroups and the forking paths hide multiplicity in analyst choices. Prespecify few, test for interaction, report intervals, and treat the rest as hypothesis generating.
 - Hierarchical shrinkage pays for looking at many groups in the estimate, using the other groups as information; Bonferroni pays in the threshold and ignores them. Stein's result says the raw estimates are inadmissible under total squared-error loss for three or more normal means, which is a statement about that model and loss, not a guarantee for any fitted procedure.
-- In the four-operation ulcer example the Bonferroni-adjusted $p$-value for the most extreme contrast is $`r round(ulcer_std[["bonferroni_6"]], 4)`$, while the hierarchical posterior probability that 75 percent resection has more dumping than drainage is $`r round(ulcer_hier[["pr_75_higher"]], 3)`$ on a contrast shrunk from $`r round(ulcer_std[["log_OR"]], 3)`$ to $`r round(ulcer_hier[["shrunk_contrast"]], 3)`$; a prespecified monotone trend has $p=`r round(ulcer_trend[["p_one_sided"]], 4)`$ and needs no correction.
+- In the four-operation ulcer example the Bonferroni-adjusted $p$-value for 75 percent resection against drainage and vagotomy is $`r round(ulcer_std[["bonferroni_6"]], 4)`$, while the hierarchical posterior probability that 75 percent resection has more dumping than drainage is $`r round(ulcer_hier[["pr_75_higher"]], 3)`$ on a contrast shrunk from $`r round(ulcer_std[["log_OR"]], 3)`$ to $`r round(ulcer_hier[["shrunk_contrast"]], 3)`$; a prespecified monotone trend has $p=`r round(ulcer_trend[["p_one_sided"]], 4)`$ and needs no correction.
 - Shrinkage does not give a familywise error guarantee. When a regulator requires one, calibrate the Bayesian rule by simulation and report the operating characteristics (@sec-simulation).
 - FDA's master protocols draft generally does not recommend multiplicity adjustment across different drugs in a platform, or across one drug's distinct clinical objectives; shrinkage across unrelated drugs is not justified by that position and is a separate modeling choice (@sec-platform).
 - Prefer a single prespecified contrast that encodes the structure (ordered doses, a monotone trend) to a bag of pairwise tests.
-- I-SPY 2 (ten signatures per drug, 85% predictive-probability graduation) and REMAP-CAP (hierarchical IL-6 antagonist effect, 99% efficacy trigger) handle multiplicity by modeling and a demanding threshold, not a familywise adjustment.
+- I-SPY 2 (up to ten eligible signatures per drug, 85% predictive-probability graduation) and REMAP-CAP (hierarchical IL-6 antagonist effect, 99% efficacy trigger) handle multiplicity by modeling and a demanding threshold, not a familywise adjustment.
 
 ::: {.callout-note title="Discussion questions"}
 1. A trial has a primary endpoint and four key secondary endpoints. The team proposes testing the four secondaries at $\alpha/4$ each, regardless of the primary. Why might a fixed-sequence or graphical procedure be better for the claims the sponsor cares about, and what would the team lose by moving to it?

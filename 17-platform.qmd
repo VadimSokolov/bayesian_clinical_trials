@@ -97,7 +97,7 @@ At 480 total patients (@tbl-allocation) the square-root rule lowers the variance
 
 FDA's draft also asks for a larger control arm: with a shared control, the master protocol should consider allocating "more participants to the control arm than each individual drug arm" (PDF p. 9), and the EMA draft gives the square-root rule as one example [@fda_master_protocols_2026; @ema_platform_rp_2026]. The protocol should state the allocation ratio and its rationale.
 
-When arms enter and leave, the number of arms open at a given time changes, so a platform fixes either a constant ratio per open arm or a constant control fraction. I-SPY 2 and GBM AGILE hold a fixed fraction of patients on control per subtype (20% in both [@nanda2020effect; @alexander2018adaptive]), and let the rest be allocated according to performance. For confirmatory platforms, the October 2026 EMA draft recommends maintaining each treatment-to-control allocation ratio and does not support response-adaptive randomization (Section 3.2.1). Sponsors proposing it should address this position explicitly [@ema_platform_rp_2026].
+When arms enter and leave, the number of arms open at a given time changes, so a platform fixes either a constant ratio per open arm or a constant control fraction. I-SPY 2 and the original GBM AGILE design hold a fixed fraction of patients on control per subtype (20% in both [@nanda2020effect; @alexander2018adaptive]), and let the rest be allocated according to performance. GBM AGILE's regorafenib arm was an exception: allocation stayed 1:1 against control throughout enrollment [@wen2026regorafenib]. For confirmatory platforms, the October 2026 EMA draft recommends maintaining each treatment-to-control allocation ratio and does not support response-adaptive randomization (Section 3.2.1). Sponsors proposing it should address this position explicitly [@ema_platform_rp_2026].
 
 ### The number of false positives
 
@@ -210,22 +210,18 @@ If arms in the same platform are modeled as exchangeable, with each arm's effect
 ```{r}
 #| label: tbl-shrinkage
 #| echo: true
-#| tbl-cap: "Shrinkage across arms with the between-arm standard deviation and average sampling variance of the ulcer example, on the log-odds scale: weight on own data, information multiple, and posterior standard deviation before and after."
+#| tbl-cap: "Shrinkage across arms with the between-arm standard deviation and average sampling variance of the ulcer example, on the log-odds scale: weight on own data, information multiple, and posterior standard deviation before and after, holding the common mean fixed."
 lu <- shrink_logodds(ulcer); tau <- shrink_eb_fit(lu$y, lu$v)$tau; v <- mean(lu$v) # between-arm sd and average sampling variance (log-odds scale)
 w <- tau^2 / (tau^2 + v)
 knitr::kable(data.frame(quantity = c("Weight on own data", "Information multiple", "Posterior sd before", "Posterior sd after"),
                         value = c(w, 1 / w, sqrt(v), sqrt(v * w))), digits = 2, align = "lr", col.names = c("Quantity", "Value"))
 ```
 
-With these values (@tbl-shrinkage; the between-arm spread from the ulcer example of @sec-multiplicity) each arm's posterior standard deviation falls from `r round(sqrt(v), 2)` to `r round(sqrt(v * w), 2)`. That information is paid for by an assumption: that the arms are exchangeable. Between unrelated drugs that assumption is hard to defend, and FDA's Bayesian draft asks that a model borrowing across substudies justify exchangeability and include known effect modifiers, such as biomarker status, as covariates rather than treating the groups as interchangeable [@fda_bayesian_2026]. Shrinkage across *arms* is therefore most defensible for arms from one drug class, doses of one drug, or the same drug in related subgroups, which is the territory of @sec-borrowing. It is not a substitute for the multiplicity decision across unrelated drugs, and the protocol should not present it as one.
+With these values (@tbl-shrinkage; the between-arm spread from the ulcer example of @sec-multiplicity) holding the common mean and between-arm standard deviation fixed, the representative conditional posterior standard deviation falls from `r round(sqrt(v), 2)` to `r round(sqrt(v * w), 2)`. That information is paid for by an assumption: that the arms are exchangeable. Between unrelated drugs that assumption is hard to defend, and FDA's Bayesian draft asks that a model borrowing across substudies justify exchangeability and include known effect modifiers, such as biomarker status, as covariates rather than treating the groups as interchangeable [@fda_bayesian_2026]. Shrinkage across *arms* is therefore most defensible for arms from one drug class, doses of one drug, or the same drug in related subgroups, which is the territory of @sec-borrowing. It is not a substitute for the multiplicity decision across unrelated drugs, and the protocol should not present it as one.
 
-## Bayesian platforms
+## I-SPY 2: graduation by predictive probability
 
-### I-SPY 2: graduation by predictive probability
-
-I-SPY 2 is a platform for neoadjuvant breast cancer that has enrolled since 2010 [@park2016ispy2; @berry2025], told in @sec-landmark-ispy2. The primary endpoint of each arm was pathologic complete response (pCR) at surgery, and each therapy was evaluated in each of up to ten *signatures*, the subtype combinations that might become a regulatory indication [@barker2009; @wang2019ispy2].
-
-An arm *graduated* in a signature when its Bayesian predictive probability of success in a hypothetical 300-patient, equally randomized phase 3 trial against the same control, with pCR as endpoint, reached 85%; it was dropped for futility if that probability fell below 10% in all ten signatures, and no arm took more than 120 patients [@park2016ispy2]. The decision is made from phase 2 data, so it answers the question a sponsor asks at a go/no-go meeting. It differs from a posterior probability of benefit, which asks whether the effect is positive and says nothing about the size and power of the trial that would follow. The simulation below (@tbl-graduation) shows the difference with four phase 2 results, 50 patients per arm in the signature, and a phase 3 with 150 per arm tested at one-sided 0.025.
+I-SPY 2 uses an 85% predictive-probability graduation criterion (@sec-landmark-ispy2 tells the trial). An arm *graduates* in a *signature*, a subtype combination that might become a regulatory indication [@barker2009; @wang2019ispy2], when its Bayesian predictive probability of success in a hypothetical 300-patient, equally randomized phase 3 trial against the same control, with pathologic complete response (pCR) as endpoint, reaches 85% [@park2016ispy2]. The decision is made from phase 2 data, so it answers the question a sponsor asks at a go/no-go meeting. It differs from a posterior probability of benefit, which asks whether the effect is positive and says nothing about the size and power of the trial that would follow. The simulation below (@tbl-graduation) shows the difference with four phase 2 results, 50 patients per arm in the signature, and a phase 3 with 150 per arm tested at one-sided 0.025.
 
 ```{r}
 #| label: tbl-graduation
@@ -241,33 +237,33 @@ knitr::kable(tab, digits = 3, align = "lrrc", row.names = FALSE,
 
 The second row has a `r pct(tab$post[2])`% posterior probability that the new arm beats the control, and a predictive probability of phase 3 success of `r pct(tab$pp[2])`%, below the threshold. The posterior probability is a statement about the present, and the predictive probability includes the chance that a true effect of ordinary size is missed by a finite phase 3. Setting the graduation threshold on the predictive scale therefore ties the platform's decision to the confirmatory trial it feeds, and a sponsor can see at the start what phase 2 result would be enough.
 
-Randomization was response adaptive within a signature, with a fixed share held on control (20% [@nanda2020effect]), the remainder going to arms that looked better [@park2016ispy2]. A control cohort for each signature accumulated over the years, with a time machine used to smooth the control response over time. The platform also tested combination regimens as experimental arms against the shared control. The graduation results of the first two graduates are in @sec-landmark-ispy2. Because allocation adapts toward responsive subtypes, the raw difference should not be read as the treatment effect, and a design that allocates by subtype responsiveness needs a model that adjusts for it; @sec-rar describes the mechanism and the critiques.
+Randomization was response adaptive within eight mutually exclusive biomarker subtypes, with a fixed share held on control (20% [@nanda2020effect]), the remainder going to arms that looked better [@park2016ispy2]; efficacy and graduation were assessed in the eligible overlapping signatures. The neratinib and pembrolizumab graduation results are in @sec-landmark-ispy2. Because allocation adapts toward responsive subtypes, the raw difference should not be read as the treatment effect, and a design that allocates by subtype responsiveness needs a model that adjusts for it; @sec-rar describes the mechanism and the critiques.
 
 I-SPY 2 is a phase 2 screening platform. A graduation is a decision to run a phase 3, and it carries a false positive rate that was calibrated by simulation to be acceptable for a screening stage (@sec-simulation). It does not replace a confirmatory trial, and a graduate is not an approval.
 
-### GBM AGILE: a registration platform
+## GBM AGILE: a registration platform
 
 GBM AGILE (Adaptive Global Innovative Learning Environment, NCT03970447) is a Bayesian response-adaptive platform in glioblastoma designed with registration in mind, which I-SPY 2 was not [@alexander2018adaptive]. It uses a seamless phase 2/3 structure: in stage 1 each arm is randomized adaptively against a shared control, and an arm that clears the stage 1 bar graduates to stage 2 with fixed randomization to confirm the finding for registration. The first completed arm, regorafenib, stopped for limited efficacy [@wen2026regorafenib]. The trial is told in @sec-landmark-gbmagile.
 
-The 98% is the kind of number the FDA Bayesian draft discusses under calibration to type I error: the threshold is set by simulation so that the false positive rate over the design's scenarios is acceptable, not by a view about the prior, and the simulation report is part of the submission [@fda_bayesian_2026].
+Regorafenib's final efficacy criterion required at least 98% posterior probability that its overall-survival hazard ratio was below 1 (@sec-landmark-gbmagile). The FDA Bayesian draft discusses calibration to type I error: the threshold is set by simulation so that the false positive rate over the design's scenarios is acceptable, not by a view about the prior, and the simulation report is part of the submission [@fda_bayesian_2026].
 
-### REMAP-CAP: domains, response-adaptive randomization, and an embedded design
+## REMAP-CAP: domains, response-adaptive randomization, and an embedded design
 
 REMAP-CAP (Randomized, Embedded, Multifactorial Adaptive Platform trial for Community-Acquired Pneumonia) is a platform designed before the pandemic it became known for [@angus2020remapcap]. It is organized by *domains*, each a set of alternative interventions for one aspect of care. A patient is randomized in every domain for which he or she is eligible, and each domain has its own appendix and statistical analysis plan, so the master protocol is stable while the domains come and go. The trial runs inside routine care and uses an ordinal primary endpoint, organ-support-free days, analyzed with a Bayesian proportional-odds model [@gordon2021remapcap].
 
 Allocation within a domain is updated at prespecified intervals toward arms with a higher posterior probability of being best, and a domain stops when a prespecified trigger is crossed, so it can be declared complete without waiting for the others, which is the property the sponsors of separate trials have to give up. The IL-6 triggers, the result and the timeline are in @sec-landmark-remapcap. The pandemic and non-pandemic strata, and subgroups within a domain, can be modeled with partial pooling.
 
-### The COVID anticoagulation multiplatform
+## The COVID anticoagulation multiplatform
 
 Three independently funded Bayesian platforms (REMAP-CAP, ATTACC and ACTIV-4a) asked the same question early in the pandemic: therapeutic-dose against prophylactic-dose anticoagulation in COVID-19. Separate reports would have invited conflicting results, so the teams harmonized their protocols and statistical analysis plans before the data were in and combined patient-level data in one Bayesian hierarchical model with dynamic borrowing across severity strata [@lawler2021anticoag; @goligher2021anticoag]. The trial is told in @sec-landmark-heparin.
 
 The shared object was a pre-agreed analysis, not a shared control group, and the platforms are the data sources for a single multi-site analysis.
 
-### Pragmatic pandemic platforms: RECOVERY and PANORAMIC
+## Pragmatic pandemic platforms: RECOVERY and PANORAMIC
 
 RECOVERY (Randomized Evaluation of COVID-19 Therapy) was a large, pragmatic and open-label platform in hospitalized patients, analyzed with frequentist methods, with deliberately little data collected beyond what the health service already records and 28-day mortality as the primary outcome. Its first major result was that dexamethasone reduced 28-day mortality overall (rate ratio 0.83, a reduction of about a sixth), by more among patients on invasive mechanical ventilation (rate ratio 0.64), and with no benefit among those who needed no oxygen [@recovery_dexamethasone_2021]. PANORAMIC took the pragmatic approach into UK primary care and analyzed its primary outcome with Bayesian logistic regression using weakly informative Cauchy priors. Its molnupiravir comparison randomized 25,783 participants between December 2021 and April 2022 to molnupiravir plus usual care or usual care alone (the platform's total of 26,411 includes other comparisons), and hospitalization or death within 28 days occurred in about 1% of each group (adjusted odds ratio 1.06), a clear negative result from a platform that could enroll that many community patients in under five months [@butler2023molnupiravir].
 
-### Traditional against Bayesian platforms: what differs
+## Traditional against Bayesian platforms: what differs
 
 | | Frequentist MAMS (STAMPEDE) | Bayesian platform (I-SPY 2, GBM AGILE, REMAP-CAP) |
 |---|---|---|

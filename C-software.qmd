@@ -1,6 +1,6 @@
 # Software and Code {#sec-software}
 
-All numerical results in the book are produced by R code that the reader can run. Nearly all of the computation lives in a companion R package, `bayestrials`, and the chapters call it in short chunks and draw the figures with ggplot2. This appendix describes how to install the package, how it is organized, a worked example, how to reproduce the results, the companion online lab, and the established software that practitioners use for trial design.
+The book's worked calculations and simulations are produced by runnable R code. Published trial results are cited to their sources; figures displaying those results do not reproduce the original analyses. Nearly all of the computation lives in a companion R package, `bayestrials`, and the chapters call it in short chunks and draw the figures with ggplot2. This appendix describes how to install the package, how it is organized, a worked example, how to reproduce the results, the companion online lab, and the established software that practitioners use for trial design.
 
 ## Installation {#sec-software-env}
 
@@ -32,9 +32,9 @@ Functions are named in snake_case, and the prefix tells the reader which part of
 | `pp_` | Predictive probability of success, conditional power, backward induction | @sec-predictive |
 | `rar_` | Response-adaptive randomization, Thompson sampling, allocation probabilities | @sec-rar |
 | `dose_` | 3+3, CRM, BOIN, isotonic regression, dose-finding simulation | @sec-dose |
-| `borrow_` | Power priors, meta-analytic-predictive and robust priors, basket posteriors, borrowing decision tables | @sec-borrowing |
+| `borrow_` | Power priors, meta-analytic-predictive and robust priors, basket posteriors, borrowing decision tables | @sec-hierarchical, @sec-borrowing |
 | `platform_` | Shared control, correlation between arms, false positive counts, time trends | @sec-platform |
-| `mult_` and `shrink_` | Bonferroni, Holm, Hochberg and graphical procedures, empirical Bayes shrinkage and posterior probabilities | @sec-multiplicity |
+| `mult_` and `shrink_` | Bonferroni, Holm, Hochberg and graphical procedures, empirical Bayes shrinkage and posterior probabilities | @sec-hierarchical, @sec-multiplicity |
 | `ev_` | E-values, test martingales, mixtures, betting paths | @sec-evalues |
 | `select_` | The reconstruction of the SELECT trial: log Bayes factor, look table, event timing, simulation | @sec-cases |
 
@@ -44,7 +44,7 @@ The package also contains four datasets: `ulcer` (the four-operation ulcer trial
 
 ## A worked example {#sec-software-example}
 
-The example calibrates a two-arm Bayesian design with three looks, at 100, 200 and 300 patients per arm and a control response probability of 0.30. The success rule is that the posterior probability of superiority exceeds a threshold $c$ at any look. `oc_calibrate` chooses the smallest $c$ that keeps the type I error at 0.025 under the null, and then the same threshold is applied to the alternative in which the treatment response probability is 0.45.
+The example calibrates a two-arm Bayesian design with three looks, at 100, 200 and 300 patients per arm and a control response probability of 0.30. The success rule is that the posterior probability of superiority exceeds a threshold $c$ at any look. `oc_calibrate` returns a conservative empirical quantile of the largest posterior probability reached under the simulated null scenario, giving an empirical rejection proportion at most 0.025. The resulting threshold is then applied to the alternative in which the treatment response probability is 0.45.
 
 ```{r}
 #| label: code-software-example
@@ -62,7 +62,7 @@ The script gives a calibrated threshold of $c =$ `r round(c_star, 3)`. The rejec
 
 ## Reproducibility {#sec-software-repro}
 
-Every simulation either calls `set.seed()` in the chunk or passes `seed =` to the package function, so the seed is visible next to the result. Functions draw random numbers from R's global generator after the seed is set, so a chunk is repeatable but its results depend on the order of the random calls inside it. Monte Carlo results are reported with their Monte Carlo error (@sec-simulation). Quarto's freeze mechanism (`freeze: auto` in `_quarto.yml`) stores the computed output of each chapter, so a rebuild reuses stored results unless the source of that chapter has changed, and the slow simulation chunks are also knitr-cached with the cache keyed to a checksum of the installed package. To regenerate a result after the package changes, reinstall it, delete the chapter's directory under `_freeze/` and its knitr cache directory, and render the chapter again. The R version and the installed package versions can be recorded with `sessionInfo()`, which a reader who needs exact reproduction should do.
+Every simulation either calls `set.seed()` in the chunk or passes `seed =` to the package function, so the seed is visible next to the result. Functions draw random numbers from R's global generator after the seed is set, so a chunk is repeatable but its results depend on the order of the random calls inside it. Monte Carlo results are reported with their Monte Carlo error (@sec-simulation). Quarto's freeze mechanism (`freeze: auto` in `_quarto.yml`) stores the computed output of each chapter, so a rebuild reuses stored results unless the source of that chapter has changed, and selected chunks in the case-study and protocol chapters include a checksum of the package's R code in their knitr cache keys. After package code or data changes, reinstall the package, remove the affected chapter's directory under `_freeze/` and its knitr cache directory, and render the chapter again. The R version and the installed package versions can be recorded with `sessionInfo()`, which a reader who needs exact reproduction should do.
 
 ## The companion lab {#sec-software-lab}
 

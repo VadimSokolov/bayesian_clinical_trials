@@ -28,10 +28,10 @@
  "credit_names": "Sokolova, Sokolov and Polson",
  "year": "2026",
  "edition": "1",
- "version": "1.3.0",
- "date_released": "2026-11-25",
+ "version": "1.3.1",
+ "date_released": "2026-11-26",
  "publisher": "Independently published",
- "doi": "10.5281/zenodo.24163054",
+ "doi": "10.5281/zenodo.24564479",
  "concept_doi": "10.5281/zenodo.24122875",
  "language": "en",
  "keywords": [
@@ -61,21 +61,19 @@
   "url": "https://opensource.org/license/mit"
  },
  "release": {
-  "tag": "v1.3.0",
-  "url": "https://github.com/VadimSokolov/bayesian_clinical_trials/releases/tag/v1.3.0"
+  "tag": "v1.3.1",
+  "url": "https://github.com/VadimSokolov/bayesian_clinical_trials/releases/tag/v1.3.1"
  },
  "links": {
   "page": "https://vsokolov.org/books/bayesian_clinical_trials/",
   "page_markdown": "https://vsokolov.org/books/bayesian_clinical_trials/index.html.md",
   "results": "https://vsokolov.org/books/bayesian_clinical_trials/results.html",
   "results_markdown": "https://vsokolov.org/books/bayesian_clinical_trials/results.html.md",
-  "pdf": "https://github.com/VadimSokolov/bayesian_clinical_trials/releases/download/v1.3.0/bayesian_clinical_trials.pdf",
+  "pdf": "https://github.com/VadimSokolov/bayesian_clinical_trials/releases/download/v1.3.1/bayesian_clinical_trials.pdf",
   "repository": "https://github.com/VadimSokolov/bayesian_clinical_trials",
-  "source": "https://github.com/VadimSokolov/bayesian_clinical_trials/tree/v1.3.0",
-  "doi": "https://doi.org/10.5281/zenodo.24163054",
+  "source": "https://github.com/VadimSokolov/bayesian_clinical_trials/tree/v1.3.1",
+  "doi": "https://doi.org/10.5281/zenodo.24564479",
   "concept_doi": "https://doi.org/10.5281/zenodo.24122875",
-  "zenodo": "https://zenodo.org/records/24163054",
-  "doi_badge": "https://zenodo.org/badge/DOI/10.5281/zenodo.24163054.svg",
   "icon_pdf": "https://vsokolov.org/books/icon-pdf.svg",
   "icon_github": "https://vsokolov.org/books/icon-github.svg",
   "icon_web": "https://vsokolov.org/books/icon-web.svg",
@@ -83,16 +81,16 @@
   "cover": "https://vsokolov.org/books/bayesian_clinical_trials/cover.jpg"
  },
  "citation": {
-  "text": "Sokolova, Sokolov and Polson (2026), Bayesian Clinical Trials, edition 1, https://doi.org/10.5281/zenodo.24163054.",
-  "bibtex": "@book{sokolovasokolovpolson2026bayesian_clinical_trials,\n  author = {Sokolova, Alexandra and Sokolov, Vadim and Polson, Nicholas G.},\n  title = {{Bayesian Clinical Trials}},\n  year = {2026},\n  publisher = {Independently published},\n  doi = {10.5281/zenodo.24163054},\n  url = {https://vsokolov.org/books/bayesian_clinical_trials/}\n}",
+  "text": "Sokolova, Sokolov and Polson (2026), Bayesian Clinical Trials, edition 1, https://doi.org/10.5281/zenodo.24564479.",
+  "bibtex": "@book{sokolovasokolovpolson2026bayesian_clinical_trials,\n  author = {Sokolova, Alexandra and Sokolov, Vadim and Polson, Nicholas G.},\n  title = {{Bayesian Clinical Trials}},\n  year = {2026},\n  publisher = {Independently published},\n  doi = {10.5281/zenodo.24564479},\n  url = {https://vsokolov.org/books/bayesian_clinical_trials/}\n}",
   "bibkey": "sokolovasokolovpolson2026bayesian_clinical_trials",
   "example": "Sokolova, Sokolov and Polson (2026), Section 12.9.1"
  },
  "pdf": {
   "file": "bayesian_clinical_trials.pdf",
   "pages": 610,
-  "bytes": 8630165,
-  "sha256": "da5deeb60fa50cc1645d1656972062a83575cc902bf026cbbd73ce0a7f5f27af"
+  "bytes": 8626721,
+  "sha256": "2477b9fc140a097b80ffd78a4ef2dc82ad0c3bab9a2f21b089e45a0577b56d52"
  },
  "bundle": {
   "page": "site/index.md",
@@ -104,7 +102,7 @@
  "serve": [
   {
    "path": "cover.jpg",
-   "url": "https://raw.githubusercontent.com/VadimSokolov/bayesian_clinical_trials/v1.3.0/pdf/cover.jpg"
+   "url": "https://raw.githubusercontent.com/VadimSokolov/bayesian_clinical_trials/v1.3.1/pdf/cover.jpg"
   }
  ],
  "chapters": [
@@ -227,7 +225,7 @@
    "last_page": "242",
    "pages": 22,
    "summary_markdown": "https://raw.githubusercontent.com/VadimSokolov/bayesian_clinical_trials/main/summaries/11_multiplicity_and_shrinkage.md",
-   "summary": "This chapter asks what multiplicity costs and how to pay for it. It starts with many chances for luck, what counts as the family, and what keeping the option to look costs in patients. It sets out the traditional toolbox: Bonferroni, Holm, Hochberg, closed testing, fixed sequence and graphical procedures, and what the FDA multiple endpoints guidance asks for. It treats subgroups and forking paths, and how the result was chosen. The Bayesian alternative is shrinkage instead of threshold inflation: Stein, Efron and Morris and the batting averages, a numerical illustration of the winner's curse, and what shrinkage does not do. It treats false discovery rate and prior probabilities. It uses the hierarchical model rather than developing it, pointing to the separate chapter on hierarchical pooling, and applies it to the RECOVERY subgroups and to a four operation ulcer trial, which contrasts the traditional and hierarchical readings, shows structure a correction cannot see, and compares the two ways to pay for looking. It covers comparisons across arms and drugs in platforms, including the June 2026 FDA draft position on master protocols, then multiplicity handled by modeling in I-SPY 2 and REMAP-CAP (the trials themselves are told in the chapter of landmark trials), and reviewer expectations.\n\n#### From the literature\n\nBonferroni and Dunn (1961); Dunnett (1955); Holm (1979); Hochberg (1988); Hommel (1988); Simes (1986); closed testing (Marcus, Peritz and Gabriel 1976); gatekeeping (Dmitrienko and colleagues 2003); graphical procedures (Bretz and colleagues 2009, 2011, Burman and colleagues 2009, Maurer and Bretz 2013); false discovery rate (Benjamini and Hochberg 1995, Benjamini and Yekutieli 2001); shrinkage (Stein 1956, James and Stein 1961, Efron and Morris 1975); empirical Bayes and large scale inference (Efron 2008); Bayesian multiplicity (Berry and Berry 2004, Scott and Berger 2006, 2010, Berry and Hochberg 1999, Gelman and colleagues 2012); type S and M errors (Gelman and Tuerlinckx 2000); subgroups (Wang and colleagues 2007, Rothman 1990, Mehrotra and colleagues 2012); whether to adjust (Rothman 1990, Proschan and Waclawiw 2000); the ulcer data (Grizzle, Starmer and Koch 1969); I-SPY 2 (Park and colleagues 2016); REMAP-CAP (Gordon and colleagues 2021); the FDA multiple endpoints guidance (2022).\n\n#### New results\n\n- [Four operation ulcer trial, adjusted p value against posterior probability](https://vsokolov.org/books/bayesian_clinical_trials/results.html#ulcer_bonferroni_vs_posterior) (Section 11.5.2, page 236; computed): In the dumping syndrome data of the four operation ulcer trial, the Bonferroni adjusted p value for the most extreme contrast is 0.2724, while a hierarchical model gives posterior probability 0.92 that 75 per cent resection has the higher dumping rate, on a contrast shrunk from 0.574 to 0.28. New in this book.\n\n#### Key terms\n\nmultiplicity, familywise error rate, false discovery rate, Bonferroni, Holm, Hochberg, closed testing, fixed sequence, graphical procedure, subgroup analysis, forking paths, winner's curse, shrinkage, Stein estimator, empirical Bayes, ulcer trial, multiplicity across arms and drugs, master protocol multiplicity, I-SPY 2, REMAP-CAP."
+   "summary": "This chapter asks what multiplicity costs and how to pay for it. It starts with many chances for luck, what counts as the family, and what keeping the option to look costs in patients. It sets out the traditional toolbox: Bonferroni, Holm, Hochberg, closed testing, fixed sequence and graphical procedures, and what the FDA multiple endpoints guidance asks for. It treats subgroups and forking paths, and how the result was chosen. The Bayesian alternative is shrinkage instead of threshold inflation: Stein, Efron and Morris and the batting averages, a numerical illustration of the winner's curse, and what shrinkage does not do. It treats false discovery rate and prior probabilities. It uses the hierarchical model rather than developing it, pointing to the separate chapter on hierarchical pooling, and applies it to the RECOVERY subgroups and to a four operation ulcer trial, which contrasts the traditional and hierarchical readings, shows structure a correction cannot see, and compares the two ways to pay for looking. It covers comparisons across arms and drugs in platforms, including the June 2026 FDA draft position on master protocols, then multiplicity handled by modeling in I-SPY 2 and REMAP-CAP (the trials themselves are told in the chapter of landmark trials), and reviewer expectations.\n\n#### From the literature\n\nBonferroni and Dunn (1961); Dunnett (1955); Holm (1979); Hochberg (1988); Hommel (1988); Simes (1986); closed testing (Marcus, Peritz and Gabriel 1976); gatekeeping (Dmitrienko and colleagues 2003); graphical procedures (Bretz and colleagues 2009, 2011, Burman and colleagues 2009, Maurer and Bretz 2013); false discovery rate (Benjamini and Hochberg 1995, Benjamini and Yekutieli 2001); shrinkage (Stein 1956, James and Stein 1961, Efron and Morris 1975); empirical Bayes and large scale inference (Efron 2008); Bayesian multiplicity (Berry and Berry 2004, Scott and Berger 2006, 2010, Berry and Hochberg 1999, Gelman and colleagues 2012); type S and M errors (Gelman and Tuerlinckx 2000); subgroups (Wang and colleagues 2007, Rothman 1990, Mehrotra and colleagues 2012); whether to adjust (Rothman 1990, Proschan and Waclawiw 2000); the ulcer data (Grizzle, Starmer and Koch 1969); I-SPY 2 (Park and colleagues 2016); REMAP-CAP (Gordon and colleagues 2021); the FDA multiple endpoints guidance (2022).\n\n#### New results\n\n- [Four operation ulcer trial, adjusted p value against posterior probability](https://vsokolov.org/books/bayesian_clinical_trials/results.html#ulcer_bonferroni_vs_posterior) (Section 11.5.2, page 236; computed): In the dumping syndrome data of the four operation ulcer trial, the Bonferroni adjusted one sided p value for 75 per cent resection against drainage is 0.1362, while a hierarchical model gives posterior probability 0.92 that 75 per cent resection has the higher dumping rate, on a contrast shrunk from 0.574 to 0.28. New in this book.\n\n#### Key terms\n\nmultiplicity, familywise error rate, false discovery rate, Bonferroni, Holm, Hochberg, closed testing, fixed sequence, graphical procedure, subgroup analysis, forking paths, winner's curse, shrinkage, Stein estimator, empirical Bayes, ulcer trial, multiplicity across arms and drugs, master protocol multiplicity, I-SPY 2, REMAP-CAP."
   },
   {
    "key": "12",
@@ -434,7 +432,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#bnt162b2_beta_binomial_reproduction",
    "source": "05-bayes.qmd",
    "label": "res-bnt162b2-reproduction",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/05-bayes.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/05-bayes.qmd"
   },
   {
    "id": "bayes_bar_crossing_46",
@@ -452,7 +450,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#bayes_bar_crossing_46",
    "source": "06-evidence.qmd",
    "label": "res-bayes-bar-crossing",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/06-evidence.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/06-evidence.qmd"
   },
   {
    "id": "moderate_deviation_sample_size",
@@ -470,7 +468,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#moderate_deviation_sample_size",
    "source": "08-power.qmd",
    "label": "res-md-sample-size",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/08-power.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/08-power.qmd"
   },
   {
    "id": "moderate_deviation_select_comparison",
@@ -488,7 +486,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#moderate_deviation_select_comparison",
    "source": "08-power.qmd",
    "label": "res-md-select-prediction",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/08-power.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/08-power.qmd"
   },
   {
    "id": "ulcer_bonferroni_vs_posterior",
@@ -501,12 +499,12 @@
    "origin": "book",
    "origin_text": "New in this book.",
    "highlight": false,
-   "summary": "In the dumping syndrome data of the four operation ulcer trial, the Bonferroni adjusted p value for the most extreme contrast is 0.2724, while a hierarchical model gives posterior probability 0.92 that 75 per cent resection has the higher dumping rate, on a contrast shrunk from 0.574 to 0.28.",
-   "statement": "In the four operation ulcer trial (dumping syndrome counts of Grizzle, Starmer and Koch 1969, pooled over four hospitals), the most extreme contrast, 75 per cent resection against drainage and vagotomy, has log odds ratio $0.574$ (standard error $0.287$, $Z = 2$, unadjusted two sided $p$ value $0.0454$), and its Bonferroni adjusted $p$ value over the six pairwise contrasts is $0.2724$. A hierarchical model across the four operations, with the between arm standard deviation estimated by marginal likelihood ($0.196$ on the log odds scale), shrinks the contrast to $0.28$ (posterior standard deviation $0.199$) and gives posterior probability $0.92$ that 75 per cent resection has the higher dumping rate. A posterior probability of $0.92$ is not a claim of statistical significance under strong familywise error control.",
+   "summary": "In the dumping syndrome data of the four operation ulcer trial, the Bonferroni adjusted one sided p value for 75 per cent resection against drainage is 0.1362, while a hierarchical model gives posterior probability 0.92 that 75 per cent resection has the higher dumping rate, on a contrast shrunk from 0.574 to 0.28.",
+   "statement": "In the four operation ulcer trial (dumping syndrome counts of Grizzle, Starmer and Koch 1969, pooled over four hospitals), the contrast between the two ends of the resection range, 75 per cent resection against drainage and vagotomy, has log odds ratio $0.574$ (standard error $0.287$, $Z = 2$, unadjusted one sided $p$ value $0.0227$), and its Bonferroni adjusted $p$ value over the six pairwise contrasts is $0.1362$. A hierarchical model across the four operations, with the between arm standard deviation estimated by marginal likelihood ($0.196$ on the log odds scale), shrinks the contrast to $0.28$ (posterior standard deviation $0.199$) and gives posterior probability $0.92$ that 75 per cent resection has the higher dumping rate. A posterior probability of $0.92$ is not a claim of statistical significance under strong familywise error control.",
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#ulcer_bonferroni_vs_posterior",
    "source": "09-multiplicity.qmd",
    "label": "res-ulcer-reading",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/09-multiplicity.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/09-multiplicity.qmd"
   },
   {
    "id": "evidence_tolls_three_scales",
@@ -524,7 +522,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#evidence_tolls_three_scales",
    "source": "10-sequential.qmd",
    "label": "res-evidence-tolls",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/10-sequential.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/10-sequential.qmd"
   },
   {
    "id": "surcharge_seventy_percent",
@@ -542,7 +540,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#surcharge_seventy_percent",
    "source": "10-sequential.qmd",
    "label": "res-seventy-percent",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/10-sequential.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/10-sequential.qmd"
   },
   {
    "id": "null_maximum_calibration",
@@ -560,7 +558,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#null_maximum_calibration",
    "source": "12-simulation.qmd",
    "label": "res-null-max-calibration",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/12-simulation.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/12-simulation.qmd"
   },
   {
    "id": "backward_induction_states",
@@ -578,7 +576,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#backward_induction_states",
    "source": "13-predictive.qmd",
    "label": "res-backward-induction-states",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/13-predictive.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/13-predictive.qmd"
   },
   {
    "id": "utility_only_rule_null_declaration",
@@ -596,7 +594,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#utility_only_rule_null_declaration",
    "source": "13-predictive.qmd",
    "label": "res-utility-only-null",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/13-predictive.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/13-predictive.qmd"
   },
   {
    "id": "shared_control_false_positive_counts",
@@ -614,7 +612,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#shared_control_false_positive_counts",
    "source": "17-platform.qmd",
    "label": "res-shared-control-counts",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/17-platform.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/17-platform.qmd"
   },
   {
    "id": "select_reconstruction_medians",
@@ -632,7 +630,7 @@
    "url": "https://vsokolov.org/books/bayesian_clinical_trials/results.html#select_reconstruction_medians",
    "source": "18-cases.qmd",
    "label": "res-select-reconstruction",
-   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.0/18-cases.qmd"
+   "source_url": "https://github.com/VadimSokolov/bayesian_clinical_trials/blob/v1.3.1/18-cases.qmd"
   }
  ]
 }

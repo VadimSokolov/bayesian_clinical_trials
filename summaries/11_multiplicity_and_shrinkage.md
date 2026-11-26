@@ -1,7 +1,7 @@
 # Chapter 11. Multiplicity and Shrinkage
 
 <!-- cite:begin -->
-From *Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 11. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24163054. Book page: https://vsokolov.org/books/bayesian_clinical_trials/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials.
+From *Bayesian Clinical Trials* by Alexandra Sokolova, Vadim Sokolov and Nicholas G. Polson (2026), chapter 11. Cite as Sokolova, Sokolov and Polson (2026), *Bayesian Clinical Trials*, edition 1, https://doi.org/10.5281/zenodo.24564479. Book page: https://vsokolov.org/books/bayesian_clinical_trials/. Source: https://github.com/VadimSokolov/bayesian_clinical_trials.
 <!-- cite:end -->
 
 This chapter asks what multiplicity costs and how to pay for it. It starts with many chances for luck, what counts as the family, and what keeping the option to look costs in patients. It sets out the traditional toolbox: Bonferroni, Holm, Hochberg, closed testing, fixed sequence and graphical procedures, and what the FDA multiple endpoints guidance asks for. It treats subgroups and forking paths, and how the result was chosen. The Bayesian alternative is shrinkage instead of threshold inflation: Stein, Efron and Morris and the batting averages, a numerical illustration of the winner's curse, and what shrinkage does not do. It treats false discovery rate and prior probabilities. It uses the hierarchical model rather than developing it, pointing to the separate chapter on hierarchical pooling, and applies it to the RECOVERY subgroups and to a four operation ulcer trial, which contrasts the traditional and hierarchical readings, shows structure a correction cannot see, and compares the two ways to pay for looking. It covers comparisons across arms and drugs in platforms, including the June 2026 FDA draft position on master protocols, then multiplicity handled by modeling in I-SPY 2 and REMAP-CAP (the trials themselves are told in the chapter of landmark trials), and reviewer expectations.
@@ -13,7 +13,7 @@ Bonferroni and Dunn (1961); Dunnett (1955); Holm (1979); Hochberg (1988); Hommel
 ## New results
 
 <!-- results:begin -->
-- [Four operation ulcer trial, adjusted p value against posterior probability](../RESULTS.md#ulcer_bonferroni_vs_posterior) (Section 11.5.2, page 236; computed): In the dumping syndrome data of the four operation ulcer trial, the Bonferroni adjusted p value for the most extreme contrast is 0.2724, while a hierarchical model gives posterior probability 0.92 that 75 per cent resection has the higher dumping rate, on a contrast shrunk from 0.574 to 0.28. New in this book.
+- [Four operation ulcer trial, adjusted p value against posterior probability](../RESULTS.md#ulcer_bonferroni_vs_posterior) (Section 11.5.2, page 236; computed): In the dumping syndrome data of the four operation ulcer trial, the Bonferroni adjusted one sided p value for 75 per cent resection against drainage is 0.1362, while a hierarchical model gives posterior probability 0.92 that 75 per cent resection has the higher dumping rate, on a contrast shrunk from 0.574 to 0.28. New in this book.
 <!-- results:end -->
 
 ## Key terms
