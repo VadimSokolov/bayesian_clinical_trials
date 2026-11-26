@@ -1,13 +1,13 @@
 # Notation {#sec-notation}
 
-This appendix fixes the meaning of every symbol the book uses, defines the abbreviations, and gives short definitions of the key terms. Each symbol has one meaning throughout. Where a chapter needs a local symbol, it defines it on the spot and does not reuse one from this table.
+This appendix fixes the meaning of every symbol the book uses, defines the abbreviations, and gives short definitions of the key terms. Each symbol has one meaning throughout, except where the tables note an exception. Where a chapter needs a local symbol, it defines it on the spot and does not reuse one from this table.
 
 ## Symbols {#sec-notation-symbols}
 
 | Symbol | Meaning |
 |---|---|
 | $\theta$ | Treatment effect (generic). For time-to-event outcomes $\theta = -\log \mathrm{HR}$, so that benefit is positive. |
-| $\delta$ | Treatment effect in the FDA draft's success criterion $\Pr(\delta > a \mid \text{data}) > c$. Used only when quoting that criterion; elsewhere the book writes $\theta$. |
+| $\delta$ | Treatment effect in the success criterion of FDA's draft Bayesian guidance, $\Pr(\delta > a \mid \text{data}) > c$. Used only when quoting that criterion; elsewhere the book writes $\theta$. |
 | $a$, $c$ | The minimum clinically relevant effect and the posterior probability threshold in that criterion. |
 | $b$ | Threshold on the Bayes factor (or on the e-value, $b = 1/\alpha$), distinct from the posterior probability threshold $c$. |
 | $p_j$ | Response probability in arm $j$. The index $j = 0$ is the control arm. |
@@ -26,12 +26,12 @@ This appendix fixes the meaning of every symbol the book uses, defines the abbre
 | $E_n$ | E-value, or test martingale, at stage $n$. |
 | $t$ | Information fraction in a group sequential design, the share of the planned information accrued so far. |
 | $\mathrm{Beta}(a,b)$ | Beta distribution with shape parameters $a$ and $b$, the conjugate prior for a response probability. Here $a$ is a shape parameter and not the threshold $a$ of the success criterion above. |
-| $\tau$ | Prior scale of the treatment effect: $\theta \sim N(0, \tau^2)$ in the SELECT reconstructions of Parts III to V, with $\tau = 0.25$. |
+| $\tau$ | Prior scale of the treatment effect: $\theta \sim N(0, \tau^2)$ in the reconstructions of the SELECT cardiovascular trial in Parts III to V, with $\tau = 0.25$. |
 | $\tau_b$ | Between-stratum or between-arm standard deviation in the shrinkage examples of @sec-cases-alz, @sec-reanalyses-recovery and @sec-platform. A local symbol, distinct from the prior scale $\tau$. |
 | $p^*$ | Posterior probability threshold for continuous monitoring, calibrated by simulation so that the type I error is 0.025 (about 0.995 in the SELECT reconstruction). |
 | $d$ | Number of events in a time-to-event trial. It plays the role of $n$, with total information $I_n = d/4$ for the log hazard ratio (per-event information 1/4) under one to one allocation. |
 | $S$ | Score statistic, $S = \theta I_n$ on the mean path, with $Z = S/\sqrt{I_n}$. |
-| $L_n$ | Ockham penalty of a normal prior of scale $\tau$, $L_n = \log(1 + I_n\tau^2)$; in the large-information approximation the Bayes-factor bar is $Z_n^2 \ge L_n + 2\log b$, with $Z_n > 0$ for a one-sided claim; the exact bar for the normal mixture multiplies the right side by $1 + 1/(I_n\tau^2)$ (@sec-evidence, @sec-sequential, @sec-evalues). |
+| $L_n$ | Ockham penalty of a normal prior of scale $\tau$, $L_n = \log(1 + I_n\tau^2)$. In the large-information approximation the Bayes-factor bar is $Z_n^2 \ge L_n + 2\log b$, with $Z_n > 0$ for a one-sided claim. The exact bar for the normal mixture multiplies the right side by $1 + 1/(I_n\tau^2)$ (@sec-evidence, @sec-sequential, @sec-evalues). |
 | $I_n$ | Total information after $n$ observations, $nI$. |
 | $N(\mu,\sigma^2)$ | Normal distribution with mean $\mu$ and variance $\sigma^2$. |
 | $X \sim F$ | $X$ is distributed as $F$. |
@@ -60,14 +60,14 @@ The companion package `bayestrials` (@sec-software) uses plain-text argument nam
 |---|---|
 | BLA | Biologics License Application. |
 | BOIN | Bayesian optimal interval design for dose finding. |
-| CID | Complex innovative trial design. Also the name of the FDA paired meeting program for such designs. |
+| CID | Complex innovative trial design. Also the name of the FDA paired meeting program for such designs (CID Paired Meeting Program). |
 | CPIM | Critical Path Innovation Meetings, an FDA program for nonbinding, product-independent discussion of methods. |
 | CRM | Continual reassessment method, a model-based dose-finding design. |
 | CSR | Clinical study report. |
 | DDT | Drug development tool, as in the FDA qualification programs. |
 | DMC | Data monitoring committee. |
 | EMA | European Medicines Agency. |
-| ESS | Effective sample size of a prior, the number of patients' worth of information it carries. |
+| ESS | Effective sample size of a prior (see Key terms). |
 | FDA | United States Food and Drug Administration. |
 | FWER | Familywise error rate, the probability of at least one false positive among a family of hypotheses. |
 | HMA | Heads of Medicines Agencies. |
@@ -81,7 +81,7 @@ The companion package `bayestrials` (@sec-software) uses plain-text argument nam
 | MHRA | Medicines and Healthcare products Regulatory Agency (United Kingdom). |
 | MIDD | Model-informed drug development. |
 | NDA | New Drug Application. |
-| OC | Operating characteristics of a design, such as type I error, power and expected sample size. |
+| OC | Operating characteristics of a design (see Key terms). |
 | PDUFA | Prescription Drug User Fee Act, the statute and commitment letters under which FDA programs such as CID are run. |
 | QALY | Quality-adjusted life year. |
 | RAR | Response-adaptive randomization. |
@@ -96,7 +96,7 @@ The companion package `bayestrials` (@sec-software) uses plain-text argument nam
 
 **Effective sample size.** The number of patients whose data would carry the same information as the prior distribution (@sec-priors).
 
-**E-value.** A nonnegative statistic whose expectation under the null is at most one. A running product of nonnegative factors forms a test supermartingale when each factor has conditional expectation at most one given the preceding data under every null distribution, and then, by Ville's inequality, it allows valid decisions at any stopping time (@sec-evalues).
+**E-value.** A nonnegative statistic whose expectation under the null is at most one. A running product of nonnegative factors is a test supermartingale when each factor has conditional expectation at most one, given the preceding data, under every null distribution. By Ville's inequality, such a product allows valid decisions at any stopping time (@sec-evalues).
 
 **Estimand.** The precise description of the treatment effect to be estimated: the treatment condition, the population, the variable, how intercurrent events are handled, and the population-level summary (ICH E9(R1), @sec-randomization).
 
@@ -106,4 +106,4 @@ The companion package `bayestrials` (@sec-software) uses plain-text argument nam
 
 **Predictive probability.** The probability, given the data so far, that a trial will meet its success criterion at the planned end, averaging over the unseen future data (@sec-predictive).
 
-**Posterior probability of benefit.** $\Pr(\delta > a \mid \text{data})$, the quantity compared with the threshold $c$ in the FDA Bayesian draft (@sec-evidence).
+**Posterior probability of benefit.** $\Pr(\delta > a \mid \text{data})$, the quantity compared with the threshold $c$ in FDA's draft Bayesian guidance (@sec-evidence).

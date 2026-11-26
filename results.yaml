@@ -32,7 +32,7 @@
 - id: evidence_tolls_three_scales
   name: The three deviation scales (evidence tolls)
   label: res-evidence-tolls
-  chapter: "11"
+  chapter: "12"
   origin: paper:polson2026bayesstandard
   status: proved
   highlight: true
@@ -43,7 +43,7 @@
 - id: surcharge_seventy_percent
   name: The surcharge for validity at every stopping time is about 70 per cent of the fixed trial requirement, as a comparison of boundary terms
   label: res-seventy-percent
-  chapter: "11"
+  chapter: "12"
   origin: paper:polson2026bayesstandard
   status: proved
   highlight: true
@@ -54,7 +54,7 @@
 - id: bayes_bar_crossing_46
   name: The Bayes factor bar exceeds the fixed level bar once information times prior variance passes about 46
   label: res-bayes-bar-crossing
-  chapter: "7"
+  chapter: "8"
   origin: book
   status: computed
   summary: Against a single unadjusted look, the Bayes rule with a point null asks for more evidence than the fixed level test once the data carry about 46 times the information in the prior.
@@ -64,7 +64,7 @@
 - id: moderate_deviation_sample_size
   name: Moderate deviation sample size equation
   label: res-md-sample-size
-  chapter: "9"
+  chapter: "10"
   origin: paper:polson2026bayesstandard
   status: proved
   highlight: true
@@ -75,7 +75,7 @@
 - id: moderate_deviation_select_comparison
   name: Moderate deviation and textbook sizes at the SELECT hazard ratio of 0.80 (not a prediction of SELECT's size)
   label: res-md-select-prediction
-  chapter: "9"
+  chapter: "10"
   origin: paper:polson2026bayesstandard
   status: computed
   summary: At a hazard ratio of 0.80 and 90 per cent power the textbook formula gives 844 events and the moderate deviation formula more; SELECT was designed for a hazard ratio of 0.83, where the textbook formula gives about 1,211 events against the planned 1,225, so the formula does not predict SELECT's size.
@@ -85,7 +85,7 @@
 - id: null_maximum_calibration
   name: Calibration of a posterior probability rule by the null maximum
   label: res-null-max-calibration
-  chapter: "14"
+  chapter: "15"
   origin: book
   status: proved
   highlight: true
@@ -96,7 +96,7 @@
 - id: backward_induction_states
   name: Exact backward induction for binary endpoints on a cubic lattice
   label: res-backward-induction-states
-  chapter: "15"
+  chapter: "16"
   origin: paper:polson2026simbayes
   status: proved
   highlight: true
@@ -107,7 +107,7 @@
 - id: utility_only_rule_null_declaration
   name: A utility only backward induction rule declares treatment better half the time under the null
   label: res-utility-only-null
-  chapter: "15"
+  chapter: "16"
   origin: paper:polson2026simbayes
   status: computed
   summary: A stopping loss that does not penalize false positives gives a good treatment choice rule and a useless confirmatory rule, because it declares treatment better in about half of null trials.
@@ -117,7 +117,7 @@
 - id: select_reconstruction_medians
   name: SELECT reconstruction, median events at decision with conditioning
   label: res-select-reconstruction
-  chapter: "21"
+  chapter: "22"
   origin: paper:polson2026bayesstandard
   status: computed
   highlight: true
@@ -126,14 +126,14 @@
     In the SELECT reconstruction (true hazard ratio 0.80, normal prior of scale 0.25 on the log hazard ratio, at most 1,270 events, rules evaluated at every second event, 40,000 simulated paths, SELECT designed for hazard ratio 0.83 with 90 per cent power, 1,225 planned events and one interim at two thirds, Ryan et al. 2020), the median number of events at decision among simulated trials that declare efficacy is 464 for the Bayesian rule calibrated to 2.5 per cent one sided, 612 for the e value rule and 952 for a hypothetical four look O\'Brien-Fleming design. Over all trials, counting a trial that never crosses at its maximum, the medians are 486, 714 and 952. Power is 0.947, 0.831 and 0.977, and the realized one sided type I errors are 0.025, 0.0058 and 0.0255 (the Bayesian rule is calibrated to 2.5 per cent, the e value rule is bounded by it). SELECT\'s planned design (interim at 817 of 1,225 events with Lan-DeMets O\'Brien-Fleming type spending, then final) has median 817 in both senses, power 0.974 and type I error 0.0254. A single unadjusted look would cross at 309 events on the mean path, a mean path approximation and not a stopping time. The reconstruction is ours and not the sponsor\'s, and it is a counterfactual, not a power calculation made before the trial.
 
 - id: ulcer_bonferroni_vs_posterior
-  name: Four operation ulcer example, adjusted p value against posterior probability
+  name: Four operation ulcer trial, adjusted p value against posterior probability
   label: res-ulcer-reading
-  chapter: "10"
-  origin: paper:polson2026bayesstandard
+  chapter: "11"
+  origin: book
   status: computed
-  summary: In the four operation ulcer example the Bonferroni adjusted p value for best against worst is 0.0855, while the hierarchical posterior probability that drainage is worse than 75 per cent resection is 0.952 on a contrast shrunk from 1.053 to 0.464.
+  summary: In the dumping syndrome data of the four operation ulcer trial, the Bonferroni adjusted p value for the most extreme contrast is 0.2724, while a hierarchical model gives posterior probability 0.92 that 75 per cent resection has the higher dumping rate, on a contrast shrunk from 0.574 to 0.28.
   statement: >-
-    In the four operation ulcer example (counts illustrative, at the scale of the 1965 trial of Novick and Grizzle), the Bonferroni adjusted $p$-value for best against worst is $0.0855$, while the hierarchical posterior probability that drainage and vagotomy is worse than 75 per cent resection is $0.952$, on a contrast shrunk from $1.053$ to $0.464$. A posterior probability of $0.952$ is not a claim of statistical significance under strong familywise error control.
+    In the four operation ulcer trial (dumping syndrome counts of Grizzle, Starmer and Koch 1969, pooled over four hospitals), the most extreme contrast, 75 per cent resection against drainage and vagotomy, has log odds ratio $0.574$ (standard error $0.287$, $Z = 2$, unadjusted two sided $p$ value $0.0454$), and its Bonferroni adjusted $p$ value over the six pairwise contrasts is $0.2724$. A hierarchical model across the four operations, with the between arm standard deviation estimated by marginal likelihood ($0.196$ on the log odds scale), shrinks the contrast to $0.28$ (posterior standard deviation $0.199$) and gives posterior probability $0.92$ that 75 per cent resection has the higher dumping rate. A posterior probability of $0.92$ is not a claim of statistical significance under strong familywise error control.
 
 - id: bnt162b2_beta_binomial_reproduction
   name: Reproduction of the BNT162b2 beta binomial analysis
@@ -149,7 +149,7 @@
 - id: shared_control_false_positive_counts
   name: Shared control false positive counts for four arms
   label: res-shared-control-counts
-  chapter: "20"
+  chapter: "21"
   origin: book
   status: computed
   summary: With a shared control, the chance of at least one false positive among four null arms falls from 9.6 to 7.8 per cent and the chance of two or more rises from 0.4 to 1.7 per cent, while the mean count stays at 0.10.

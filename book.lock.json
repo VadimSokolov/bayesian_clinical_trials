@@ -1,9 +1,9 @@
 {
  "edition": "1",
  "pdf": {
-  "bytes": 7083550,
+  "bytes": 8630165,
   "file": "pdf/bayesian_clinical_trials.pdf",
-  "pages": 612,
+  "pages": 610,
   "parts": [
    {
     "first_page": "i",
@@ -15,333 +15,354 @@
    {
     "first_page": "7",
     "key": "1",
-    "last_page": "26",
-    "pages": 20,
-    "title": "Chapter 1. A Trial Is a Decision"
+    "last_page": "18",
+    "pages": 12,
+    "title": "Chapter 1. Why Bayesian Trials?"
    },
    {
-    "first_page": "27",
+    "first_page": "19",
     "key": "2",
-    "last_page": "36",
-    "pages": 10,
-    "title": "Chapter 2. The Life of a Drug: Phases I to IV"
-   },
-   {
-    "first_page": "37",
-    "key": "3",
-    "last_page": "62",
-    "pages": 26,
-    "title": "Chapter 3. The Regulatory Framework"
-   },
-   {
-    "first_page": "65",
-    "key": "4",
-    "last_page": "84",
-    "pages": 20,
-    "title": "Chapter 4. Are They Different? Testing From the Ground Up"
-   },
-   {
-    "first_page": "85",
-    "key": "5",
-    "last_page": "114",
-    "pages": 30,
-    "title": "Chapter 5. Randomization From the Ground Up"
-   },
-   {
-    "first_page": "115",
-    "key": "6",
-    "last_page": "138",
+    "last_page": "42",
     "pages": 24,
+    "title": "Chapter 2. Basics of Testing"
+   },
+   {
+    "first_page": "43",
+    "key": "3",
+    "last_page": "70",
+    "pages": 28,
+    "title": "Chapter 3. Randomization"
+   },
+   {
+    "first_page": "71",
+    "key": "4",
+    "last_page": "96",
+    "pages": 26,
+    "title": "Chapter 4. The Regulatory Framework"
+   },
+   {
+    "first_page": "97",
+    "key": "5",
+    "last_page": "106",
+    "pages": 10,
+    "title": "Chapter 5. Trial lifecycle: Phases I to IV"
+   },
+   {
+    "first_page": "109",
+    "key": "6",
+    "last_page": "136",
+    "pages": 28,
     "title": "Chapter 6. Prior, Likelihood, Posterior"
    },
    {
-    "first_page": "139",
+    "first_page": "137",
     "key": "7",
-    "last_page": "164",
-    "pages": 26,
-    "title": "Chapter 7. Weighing Evidence: p-values, Bayes Factors, and Posterior Probabilities"
+    "last_page": "148",
+    "pages": 12,
+    "title": "Chapter 7. Hierarchical Models: How Much to Pool"
    },
    {
-    "first_page": "165",
+    "first_page": "149",
     "key": "8",
-    "last_page": "186",
-    "pages": 22,
-    "title": "Chapter 8. Choosing and Defending Priors"
-   },
-   {
-    "first_page": "189",
-    "key": "9",
-    "last_page": "214",
+    "last_page": "174",
     "pages": 26,
-    "title": "Chapter 9. Error Rates, Power, and Sample Size"
+    "title": "Chapter 8. Weighing Evidence: p-values, Bayes Factors, and Posterior Probabilities"
    },
    {
-    "first_page": "215",
-    "key": "10",
-    "last_page": "238",
-    "pages": 24,
-    "title": "Chapter 10. Multiplicity and Shrinkage"
-   },
-   {
-    "first_page": "239",
-    "key": "11",
-    "last_page": "266",
-    "pages": 28,
-    "title": "Chapter 11. Interim Looks and the Three Deviation Scales"
-   },
-   {
-    "first_page": "267",
-    "key": "12",
-    "last_page": "286",
+    "first_page": "175",
+    "key": "9",
+    "last_page": "194",
     "pages": 20,
-    "title": "Chapter 12. Anytime-Valid Inference and E-values"
+    "title": "Chapter 9. Choosing and Defending Priors"
+   },
+   {
+    "first_page": "197",
+    "key": "10",
+    "last_page": "220",
+    "pages": 24,
+    "title": "Chapter 10. Error Rates, Power, and Sample Size"
+   },
+   {
+    "first_page": "221",
+    "key": "11",
+    "last_page": "242",
+    "pages": 22,
+    "title": "Chapter 11. Multiplicity and Shrinkage"
+   },
+   {
+    "first_page": "243",
+    "key": "12",
+    "last_page": "268",
+    "pages": 26,
+    "title": "Chapter 12. Interim Looks and the Three Deviation Scales"
+   },
+   {
+    "first_page": "269",
+    "key": "13",
+    "last_page": "286",
+    "pages": 18,
+    "title": "Chapter 13. Anytime-Valid Inference and E-values"
    },
    {
     "first_page": "287",
-    "key": "13",
-    "last_page": "300",
-    "pages": 14,
-    "title": "Chapter 13. Safety Signals and Safety Monitoring"
-   },
-   {
-    "first_page": "303",
     "key": "14",
-    "last_page": "326",
-    "pages": 24,
-    "title": "Chapter 14. Operating Characteristics by Simulation"
-   },
-   {
-    "first_page": "327",
-    "key": "15",
-    "last_page": "354",
-    "pages": 28,
-    "title": "Chapter 15. Predictive Probability, Interim Monitoring, and Stopping"
-   },
-   {
-    "first_page": "355",
-    "key": "16",
-    "last_page": "382",
-    "pages": 28,
-    "title": "Chapter 16. Response-Adaptive Randomization and Bandits"
-   },
-   {
-    "first_page": "383",
-    "key": "17",
-    "last_page": "404",
-    "pages": 22,
-    "title": "Chapter 17. Dose Finding and Dose Optimization"
-   },
-   {
-    "first_page": "405",
-    "key": "18",
-    "last_page": "416",
+    "last_page": "298",
     "pages": 12,
-    "title": "Chapter 18. Time-to-Event Endpoints"
+    "title": "Chapter 14. Safety Signals and Safety Monitoring"
    },
    {
-    "first_page": "417",
-    "key": "19",
-    "last_page": "444",
+    "first_page": "301",
+    "key": "15",
+    "last_page": "322",
+    "pages": 22,
+    "title": "Chapter 15. Operating Characteristics by Simulation"
+   },
+   {
+    "first_page": "323",
+    "key": "16",
+    "last_page": "348",
+    "pages": 26,
+    "title": "Chapter 16. Predictive Probability, Interim Monitoring, and Stopping"
+   },
+   {
+    "first_page": "349",
+    "key": "17",
+    "last_page": "376",
     "pages": 28,
-    "title": "Chapter 19. Borrowing Information"
+    "title": "Chapter 17. Response-Adaptive Randomization and Bandits"
    },
    {
-    "first_page": "445",
+    "first_page": "377",
+    "key": "18",
+    "last_page": "396",
+    "pages": 20,
+    "title": "Chapter 18. Dose Finding and Dose Optimization"
+   },
+   {
+    "first_page": "397",
+    "key": "19",
+    "last_page": "408",
+    "pages": 12,
+    "title": "Chapter 19. Time-to-Event Endpoints"
+   },
+   {
+    "first_page": "409",
     "key": "20",
-    "last_page": "468",
-    "pages": 24,
-    "title": "Chapter 20. Master Protocols and Platform Trials"
+    "last_page": "434",
+    "pages": 26,
+    "title": "Chapter 20. Borrowing Information"
    },
    {
-    "first_page": "471",
+    "first_page": "435",
     "key": "21",
-    "last_page": "502",
+    "last_page": "456",
+    "pages": 22,
+    "title": "Chapter 21. Master Protocols and Platform Trials"
+   },
+   {
+    "first_page": "459",
+    "key": "22",
+    "last_page": "490",
     "pages": 32,
-    "title": "Chapter 21. Case Studies: Cardiovascular, Alzheimer's and Vaccine Trials"
+    "title": "Chapter 22. Case Studies: Cardiovascular, Alzheimer's and Vaccine Trials"
+   },
+   {
+    "first_page": "491",
+    "key": "23",
+    "last_page": "502",
+    "pages": 12,
+    "title": "Chapter 23. Bayes in Landmark Trials"
    },
    {
     "first_page": "503",
-    "key": "22",
-    "last_page": "514",
-    "pages": 12,
-    "title": "Chapter 22. Bayesian Reanalyses of Landmark Trials"
+    "key": "24",
+    "last_page": "512",
+    "pages": 10,
+    "title": "Chapter 24. Bayesian Reanalyses of Landmark Trials"
    },
    {
-    "first_page": "515",
-    "key": "23",
-    "last_page": "536",
+    "first_page": "513",
+    "key": "25",
+    "last_page": "534",
     "pages": 22,
-    "title": "Chapter 23. Writing the Bayesian Protocol and Working With Regulators"
+    "title": "Chapter 25. Writing the Bayesian Protocol and Working With Regulators"
    },
    {
-    "first_page": "537",
+    "first_page": "535",
     "key": "",
-    "last_page": "578",
+    "last_page": "576",
     "pages": 42,
     "title": "References"
    },
    {
-    "first_page": "579",
+    "first_page": "577",
     "key": "A",
-    "last_page": "584",
+    "last_page": "582",
     "pages": 6,
     "title": "Appendix A. Notation"
    },
    {
-    "first_page": "585",
+    "first_page": "583",
     "key": "B",
-    "last_page": "590",
+    "last_page": "588",
     "pages": 6,
     "title": "Appendix B. Regulatory Documents and Programs"
    },
    {
-    "first_page": "591",
+    "first_page": "589",
     "key": "C",
-    "last_page": "596",
+    "last_page": "594",
     "pages": 6,
     "title": "Appendix C. Software and Code"
    }
   ],
-  "sha256": "f4ef4e8a38fb7474fe89608cefc12aac6067c2002fba669567ab92dddf2b8696"
+  "sha256": "da5deeb60fa50cc1645d1656972062a83575cc902bf026cbbd73ce0a7f5f27af"
  },
  "results": {
   "backward_induction_states": {
    "environment": "res",
    "file": "13-predictive.qmd",
-   "fingerprint": "de25d7aa9603",
+   "fingerprint": "f9177bfb785a",
    "label": "res-backward-induction-states",
-   "number": "15.6.2",
-   "page": "342",
-   "printed": "Section 15.6.2",
-   "verified_fingerprint": "de25d7aa9603",
-   "verified_on": "2026-11-11"
+   "number": "16.6.2",
+   "page": "338",
+   "printed": "Section 16.6.2",
+   "verified_fingerprint": "f9177bfb785a",
+   "verified_on": "2026-11-25"
   },
   "bayes_bar_crossing_46": {
    "environment": "res",
    "file": "06-evidence.qmd",
-   "fingerprint": "72f1500e1266",
+   "fingerprint": "ecb898a12266",
    "label": "res-bayes-bar-crossing",
-   "number": "7.5.1",
-   "page": "148",
-   "printed": "Section 7.5.1",
-   "verified_fingerprint": "72f1500e1266",
-   "verified_on": "2026-11-11"
+   "number": "8.5.1",
+   "page": "157",
+   "printed": "Section 8.5.1",
+   "verified_fingerprint": "ecb898a12266",
+   "verified_on": "2026-11-12"
   },
   "bnt162b2_beta_binomial_reproduction": {
    "environment": "res",
    "file": "05-bayes.qmd",
-   "fingerprint": "c8861878f449",
+   "fingerprint": "64e6f2fc9240",
    "label": "res-bnt162b2-reproduction",
-   "number": "6.12.1",
-   "page": "136",
-   "printed": "Section 6.12.1",
-   "verified_fingerprint": "c8861878f449",
-   "verified_on": "2026-11-11"
+   "number": "6.6",
+   "page": "118",
+   "printed": "Section 6.6",
+   "verified_fingerprint": "64e6f2fc9240",
+   "verified_on": "2026-11-25"
   },
   "evidence_tolls_three_scales": {
    "environment": "res",
    "file": "10-sequential.qmd",
-   "fingerprint": "af0fdeea3a09",
+   "fingerprint": "0b7d8f258d20",
    "label": "res-evidence-tolls",
-   "number": "11.9.2",
-   "page": "253",
-   "printed": "Section 11.9.2",
-   "verified_fingerprint": "af0fdeea3a09",
-   "verified_on": "2026-11-11"
+   "number": "12.9.1",
+   "page": "257",
+   "printed": "Section 12.9.1",
+   "verified_fingerprint": "0b7d8f258d20",
+   "verified_on": "2026-11-25"
   },
   "moderate_deviation_sample_size": {
    "environment": "res",
    "file": "08-power.qmd",
-   "fingerprint": "f4f4fa072295",
+   "fingerprint": "928f519cfd83",
    "label": "res-md-sample-size",
-   "number": "9.3.2",
-   "page": "202",
-   "printed": "Section 9.3.2",
-   "verified_fingerprint": "f4f4fa072295",
-   "verified_on": "2026-11-11"
+   "number": "10.3.1",
+   "page": "210",
+   "printed": "Section 10.3.1",
+   "verified_fingerprint": "928f519cfd83",
+   "verified_on": "2026-11-25"
   },
   "moderate_deviation_select_comparison": {
    "environment": "res",
    "file": "08-power.qmd",
-   "fingerprint": "008239b71000",
+   "fingerprint": "351f68d70512",
    "label": "res-md-select-prediction",
-   "number": "9.3.6",
-   "page": "207",
-   "printed": "Section 9.3.6",
-   "verified_fingerprint": "008239b71000",
-   "verified_on": "2026-11-11"
+   "number": "10.3.5",
+   "page": "214",
+   "printed": "Section 10.3.5",
+   "verified_fingerprint": "351f68d70512",
+   "verified_on": "2026-11-12"
   },
   "null_maximum_calibration": {
    "environment": "res",
    "file": "12-simulation.qmd",
-   "fingerprint": "cc1057e0971f",
+   "fingerprint": "a862fc393995",
    "label": "res-null-max-calibration",
-   "number": "14.4.1",
-   "page": "309",
-   "printed": "Section 14.4.1",
-   "verified_fingerprint": "cc1057e0971f",
-   "verified_on": "2026-11-11"
+   "number": "15.4",
+   "page": "306",
+   "printed": "Section 15.4",
+   "verified_fingerprint": "a862fc393995",
+   "verified_on": "2026-11-25"
   },
   "select_reconstruction_medians": {
    "environment": "res",
    "file": "18-cases.qmd",
-   "fingerprint": "a3685b8c9627",
+   "fingerprint": "6964e8036139",
    "label": "res-select-reconstruction",
-   "number": "21.1.2",
-   "page": "476",
-   "printed": "Section 21.1.2",
-   "verified_fingerprint": "a3685b8c9627",
-   "verified_on": "2026-11-11"
+   "number": "22.1.1",
+   "page": "463",
+   "printed": "Section 22.1.1",
+   "verified_fingerprint": "6964e8036139",
+   "verified_on": "2026-11-25"
   },
   "shared_control_false_positive_counts": {
    "environment": "res",
    "file": "17-platform.qmd",
-   "fingerprint": "f550b5653aa1",
+   "fingerprint": "b24c440203cb",
    "label": "res-shared-control-counts",
-   "number": "20.4.1",
-   "page": "452",
-   "printed": "Section 20.4.1",
-   "verified_fingerprint": "f550b5653aa1",
-   "verified_on": "2026-11-11"
+   "number": "21.4.1",
+   "page": "441",
+   "printed": "Section 21.4.1",
+   "verified_fingerprint": "b24c440203cb",
+   "verified_on": "2026-11-25"
   },
   "surcharge_seventy_percent": {
    "environment": "res",
    "file": "10-sequential.qmd",
-   "fingerprint": "534cac2b2da5",
+   "fingerprint": "1aa4ec6864f8",
    "label": "res-seventy-percent",
-   "number": "11.9.4",
-   "page": "256",
-   "printed": "Section 11.9.4",
-   "verified_fingerprint": "534cac2b2da5",
-   "verified_on": "2026-11-11"
+   "number": "12.9.3",
+   "page": "259",
+   "printed": "Section 12.9.3",
+   "verified_fingerprint": "1aa4ec6864f8",
+   "verified_on": "2026-11-25"
   },
   "ulcer_bonferroni_vs_posterior": {
    "environment": "res",
    "file": "09-multiplicity.qmd",
-   "fingerprint": "d15b6f81157f",
+   "fingerprint": "94a67b2851ec",
    "label": "res-ulcer-reading",
-   "number": "10.5.3",
-   "page": "232",
-   "printed": "Section 10.5.3",
-   "verified_fingerprint": "d15b6f81157f",
-   "verified_on": "2026-11-11"
+   "number": "11.5.2",
+   "page": "236",
+   "printed": "Section 11.5.2",
+   "verified_fingerprint": "94a67b2851ec",
+   "verified_on": "2026-11-25"
   },
   "utility_only_rule_null_declaration": {
    "environment": "res",
    "file": "13-predictive.qmd",
-   "fingerprint": "561f82d9c5ed",
+   "fingerprint": "a7e1418a91ed",
    "label": "res-utility-only-null",
-   "number": "15.6.3",
-   "page": "345",
-   "printed": "Section 15.6.3",
-   "verified_fingerprint": "561f82d9c5ed",
-   "verified_on": "2026-11-11"
+   "number": "16.6.3",
+   "page": "341",
+   "printed": "Section 16.6.3",
+   "verified_fingerprint": "a7e1418a91ed",
+   "verified_on": "2026-11-25"
   }
  },
- "updated": "2026-11-11",
+ "updated": "2026-11-25",
  "zenodo": {
   "concept_doi": "10.5281/zenodo.24122875",
   "doi": "10.5281/zenodo.24147174",
+  "draft": {
+   "doi": "10.5281/zenodo.24163054",
+   "html": "https://zenodo.org/deposit/24163054",
+   "id": 24163054,
+   "reserved_on": "2026-11-12",
+   "version": "1.3.0"
+  },
   "html": "https://zenodo.org/records/24147174",
   "latest_id": 24147174,
   "tag": "v1.2.0",

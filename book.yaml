@@ -21,12 +21,12 @@ authors:
 credit_names: "Sokolova, Sokolov and Polson"                 # how a citation names the authors, e.g. "Polson and Sokolov"; empty: built from the family names
 year: 2026
 edition: "1"
-version: "1.2.0"                 # the release tag is v<version>
-date_released: "2026-11-11"                # YYYY-MM-DD, set at release
+version: "1.3.0"                 # the release tag is v<version>
+date_released: "2026-11-25"                # YYYY-MM-DD, set at release
 publisher: "Independently published"                    # "Independently published" (the imprint KDP shows for a free KDP ISBN)
 # no isbn: a free KDP ISBN may be used only on KDP, so it goes on the ISBN line of kdp.md (private) and is not printed in
 # the PDF unless kdp.md says "ISBN on the copyright page: yes" (kdp.py interior); this file is published (references/publishing.md)
-doi: "10.5281/zenodo.24147174" # this edition's DOI; zenodo.py reserve writes it before the final build
+doi: "10.5281/zenodo.24163054" # this edition's DOI; zenodo.py reserve writes it before the final build
 license_text: CC-BY-4.0          # text, figures and PDF
 license_code: MIT
 repository: https://github.com/VadimSokolov/bayesian_clinical_trials   # the public repository; its name is the slug
@@ -47,7 +47,7 @@ description: |
 
   We test this on real trials. In our reconstruction of the semaglutide trial SELECT, simulated at a true hazard ratio of 0.80, a calibrated Bayesian rule stops at a median of 486 events over all simulated trials (464 among those that declare efficacy), against 817 for SELECT's planned design (one interim analysis with Lan-DeMets spending, then the final), with power of 95 percent against 97 percent; an anytime valid evidence rule is slower and less powerful. The reconstruction is ours, not the sponsor's. We also put the cost of waiting in three currencies, the trial cost avoided, the cardiovascular label reached earlier inside a fixed patent life, and the health value inside and outside the trial, each a modeled counterfactual with its assumptions stated. A scheduled design can win when the effect is modest, as the dulaglutide trial REWIND shows.
 
-  Beyond design and monitoring, the book follows a drug from first in human to postmarketing, with recruitment and the value of speed told through the 1995 Larry King appeal for prostate cancer families, covers covariate adjustment, safety signals (rofecoxib, the gamma Poisson shrinker, toxicity stopping rules), time to event endpoints, noninferiority, Bayesian reanalyses of GUSTO, EOLIA, ANDROMEDA SHOCK and RECOVERY, and trials running now, among them TRIUMPH 3 and Lp(a)HORIZON. A companion book, Personalized Medicine, turns from the trial to the patient.
+  The opening chapters say why a sponsor would run a Bayesian trial, then cover hypothesis testing, randomization, the regulatory framework, and the life of a drug from first in human to postmarketing, with recruitment and the value of speed told through the 1995 Larry King appeal for prostate cancer families. The Bayesian basics are worked on trial data: the beta binomial on the 1965 trial of four duodenal ulcer operations and on the BNT162b2 vaccine success rule, the gamma Poisson for event rates, and normal normal shrinkage, followed by a chapter on hierarchical models and how much related groups should borrow from each other. Later chapters cover covariate adjustment, safety signals (rofecoxib, the gamma Poisson shrinker, toxicity stopping rules), time to event endpoints, noninferiority, and what trials can borrow from online experimentation. A chapter on Bayes in landmark trials goes through I-SPY 2, REMAP-CAP, the heparin multiplatform trial, BNT162b2, REBYOTA, GBM AGILE, DINAMO, DAWN and SNAP, giving for each the design, the decision rule, what happened and what regulators accepted. The book also reanalyzes GUSTO, EOLIA, ANDROMEDA SHOCK and RECOVERY, and describes trials running now, among them TRIUMPH 3 and Lp(a)HORIZON. A companion book, Personalized Medicine, turns from the trial to the patient.
 
   Every number comes from the companion R package bayestrials (https://github.com/VadimSokolov/bayestrials), an interactive lab at https://vsokolov.org/bayesian_trials_lab/ lets readers run the trials themselves, and an online encyclopedia at https://vsokolov.org/bayesian_trials_lab/encyclopedia/ links the methods, trials and documents to the sections of the book that treats it.
 source:
@@ -79,74 +79,80 @@ related_papers:
     url: https://arxiv.org/abs/2602.09208
 chapters:
   - key: "1"
-    title: "A Trial Is a Decision"
-    stem: 01_a_trial_is_a_decision
+    title: "Why Bayesian Trials?"
+    stem: 01_why_bayesian_trials
   - key: "2"
-    title: "The Life of a Drug: Phases I to IV"
-    stem: 02_the_life_of_a_drug_phases_i_to_iv
+    title: "Basics of Testing"
+    stem: 02_basics_of_testing
   - key: "3"
-    title: "The Regulatory Framework"
-    stem: 03_the_regulatory_framework
+    title: "Randomization"
+    stem: 03_randomization
   - key: "4"
-    title: "Are They Different? Testing From the Ground Up"
-    stem: 04_are_they_different_testing_from_the_ground_up
+    title: "The Regulatory Framework"
+    stem: 04_the_regulatory_framework
   - key: "5"
-    title: "Randomization From the Ground Up"
-    stem: 05_randomization_from_the_ground_up
+    title: "Trial lifecycle: Phases I to IV"
+    stem: 05_trial_lifecycle_phases_i_to_iv
   - key: "6"
     title: "Prior, Likelihood, Posterior"
     stem: 06_prior_likelihood_posterior
   - key: "7"
-    title: "Weighing Evidence: p-values, Bayes Factors, and Posterior Probabilities"
-    stem: 07_weighing_evidence_p_values_bayes_factors_and_posterior
+    title: "Hierarchical Models: How Much to Pool"
+    stem: 07_hierarchical_models_how_much_to_pool
   - key: "8"
-    title: "Choosing and Defending Priors"
-    stem: 08_choosing_and_defending_priors
+    title: "Weighing Evidence: p-values, Bayes Factors, and Posterior Probabilities"
+    stem: 08_weighing_evidence_p_values_bayes_factors_and_posterior
   - key: "9"
-    title: "Error Rates, Power, and Sample Size"
-    stem: 09_error_rates_power_and_sample_size
+    title: "Choosing and Defending Priors"
+    stem: 09_choosing_and_defending_priors
   - key: "10"
-    title: "Multiplicity and Shrinkage"
-    stem: 10_multiplicity_and_shrinkage
+    title: "Error Rates, Power, and Sample Size"
+    stem: 10_error_rates_power_and_sample_size
   - key: "11"
-    title: "Interim Looks and the Three Deviation Scales"
-    stem: 11_interim_looks_and_the_three_deviation_scales
+    title: "Multiplicity and Shrinkage"
+    stem: 11_multiplicity_and_shrinkage
   - key: "12"
-    title: "Anytime-Valid Inference and E-values"
-    stem: 12_anytime_valid_inference_and_e_values
+    title: "Interim Looks and the Three Deviation Scales"
+    stem: 12_interim_looks_and_the_three_deviation_scales
   - key: "13"
-    title: "Safety Signals and Safety Monitoring"
-    stem: 13_safety_signals_and_safety_monitoring
+    title: "Anytime-Valid Inference and E-values"
+    stem: 13_anytime_valid_inference_and_e_values
   - key: "14"
-    title: "Operating Characteristics by Simulation"
-    stem: 14_operating_characteristics_by_simulation
+    title: "Safety Signals and Safety Monitoring"
+    stem: 14_safety_signals_and_safety_monitoring
   - key: "15"
-    title: "Predictive Probability, Interim Monitoring, and Stopping"
-    stem: 15_predictive_probability_interim_monitoring_and_stopping
+    title: "Operating Characteristics by Simulation"
+    stem: 15_operating_characteristics_by_simulation
   - key: "16"
-    title: "Response-Adaptive Randomization and Bandits"
-    stem: 16_response_adaptive_randomization_and_bandits
+    title: "Predictive Probability, Interim Monitoring, and Stopping"
+    stem: 16_predictive_probability_interim_monitoring_and_stopping
   - key: "17"
-    title: "Dose Finding and Dose Optimization"
-    stem: 17_dose_finding_and_dose_optimization
+    title: "Response-Adaptive Randomization and Bandits"
+    stem: 17_response_adaptive_randomization_and_bandits
   - key: "18"
-    title: "Time-to-Event Endpoints"
-    stem: 18_time_to_event_endpoints
+    title: "Dose Finding and Dose Optimization"
+    stem: 18_dose_finding_and_dose_optimization
   - key: "19"
-    title: "Borrowing Information"
-    stem: 19_borrowing_information
+    title: "Time-to-Event Endpoints"
+    stem: 19_time_to_event_endpoints
   - key: "20"
-    title: "Master Protocols and Platform Trials"
-    stem: 20_master_protocols_and_platform_trials
+    title: "Borrowing Information"
+    stem: 20_borrowing_information
   - key: "21"
-    title: "Case Studies: Cardiovascular, Alzheimer's and Vaccine Trials"
-    stem: 21_case_studies_cardiovascular_alzheimers_and_vaccine_trials
+    title: "Master Protocols and Platform Trials"
+    stem: 21_master_protocols_and_platform_trials
   - key: "22"
-    title: "Bayesian Reanalyses of Landmark Trials"
-    stem: 22_bayesian_reanalyses_of_landmark_trials
+    title: "Case Studies: Cardiovascular, Alzheimer's and Vaccine Trials"
+    stem: 22_case_studies_cardiovascular_alzheimers_and_vaccine_trials
   - key: "23"
+    title: "Bayes in Landmark Trials"
+    stem: 23_bayes_in_landmark_trials
+  - key: "24"
+    title: "Bayesian Reanalyses of Landmark Trials"
+    stem: 24_bayesian_reanalyses_of_landmark_trials
+  - key: "25"
     title: "Writing the Bayesian Protocol and Working With Regulators"
-    stem: 23_writing_the_bayesian_protocol_and_working_with_regulators
+    stem: 25_writing_the_bayesian_protocol_and_working_with_regulators
   - key: "A"
     title: "Notation"
     stem: A_notation

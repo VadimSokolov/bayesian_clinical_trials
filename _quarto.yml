@@ -25,13 +25,14 @@ book:
     - part: "Trials, Decisions, and Regulation"
       chapters:
         - 01-decision.qmd
-        - 02a-lifecycle.qmd
-        - 02-regulatory.qmd
-    - part: "Basics: Comparing Groups, Randomizing, and Updating Beliefs"
-      chapters:
         - 03-testing.qmd
         - 04-randomization.qmd
+        - 02-regulatory.qmd
+        - 02a-lifecycle.qmd
+    - part: "Bayesian Inference"
+      chapters:
         - 05-bayes.qmd
+        - 05b-hierarchical.qmd
         - 06-evidence.qmd
         - 07-priors.qmd
     - part: "The Standard Apparatus Reconsidered"
@@ -53,6 +54,7 @@ book:
     - part: "From Design to Approval"
       chapters:
         - 18-cases.qmd
+        - 18b-landmark.qmd
         - 18a-reanalyses.qmd
         - 19-protocol.qmd
     - references.qmd
@@ -93,11 +95,13 @@ bibliography:
 
 execute:
   freeze: auto
+  cache: true
   echo: false
   warning: false
 
 knitr:
   opts_chunk:
+    autodep: true
     fig.align: center
     out.width: "85%"
     dev: png
